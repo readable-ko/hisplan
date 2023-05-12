@@ -5,6 +5,6 @@ import wixLocation from 'wix-location';
 
 $w.onReady(function () {
   if (wixUsers.currentUser.loggedIn) {
-    wixLocation.to("/Home");
+    wixLocation.to("https://seohwee.editorx.io/hisplan/home");
   }
 });
