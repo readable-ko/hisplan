@@ -9,9 +9,7 @@
 
 **********/
 
-import { sql } from '@velo/wix-data-sql-backend';
-
-export function groupMatching() {
+export function groupMatching(students) {
   let studyGroups = [];
 
   for (let student of students) {
@@ -41,15 +39,6 @@ export function groupMatching() {
   assignRemainingStudents(students, studyGroups);
 
   return studyGroups;
-}
-
-export async function getAllStudentIDs() {
-  try {
-    const results = await sql("SELECT ID FROM Student");
-    return results.payload.data;
-  } catch (error) {
-    console.error(error);
-  }
 }
 
 export function sortCoursesByWeight(coursePreferences) {
