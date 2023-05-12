@@ -7,6 +7,10 @@ import {authentication} from 'wix-members';
 
 $w.onReady(async() => {
   const isLoggedIn = authentication.loggedIn();
+  wixUsers.onLogin(function (user) {
+    wixLocation.to("https://seohwee.editorx.io/hisplan/home");
+  });
+  
   if (isLoggedIn) wixLocation.to("https://seohwee.editorx.io/hisplan/home");
 });
 // $w.onReady(function () {
