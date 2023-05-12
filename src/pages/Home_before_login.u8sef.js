@@ -3,10 +3,15 @@
 
 import wixUsers from 'wix-users';
 import wixLocation from 'wix-location';
+import {authentication} from 'wix-members';
 
-$w.onReady(function () {
-  wixUsers.onLogin(function (user) {
-    wixLocation.to("https://seohwee.editorx.io/hisplan/home");
-  });
+$w.onReady(async() => {
+  const isLoggedIn = authentication.loggedIn();
+  if (isLoggedIn) wixLocation.to("https://seohwee.editorx.io/hisplan/home");
 });
+// $w.onReady(function () {
+//   wixUsers.onLogin(function (user) {
+//     wixLocation.to("https://seohwee.editorx.io/hisplan/home");
+//   });
+// });
 
