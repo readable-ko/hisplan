@@ -6,7 +6,7 @@ import wixLocation from 'wix-location';
 
 $w.onReady(function () {
   wixUsers.onLogin(function (user) {
-    wixLocation.to("https://www.naver.com/");
+    wixLocation.to("https://seohwee.editorx.io/hisplan/home");
   });
 });
 
