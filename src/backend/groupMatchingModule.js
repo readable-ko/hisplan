@@ -1,22 +1,26 @@
-/*********
- .jsw file
- *********
+export function getStudentInfo(items) {
+  let students = [];
 
- Backend .jsw files contain functions that run on the server side but can be called from page code and frontend files.
- Use backend functions to keep code private and hidden from a user's browser. More info:
+  for (let i = 0; i < items.length; ++i) {
+    let preference = items[i].preference;
+    let student = {
+      id: items[i].studentId,
+      friends: preference.friends,
+      first: preference.first,
+      second: preference.second,
+      third: preference.third,
+    };
+    students.push(student);
+  }
 
- https://support.wix.com/en/article/velo-web-modules-calling-backend-code-from-the-frontend
-
-**********/
+  return students;
+}
 
 export function groupMatching(students) {
   let studyGroups = [];
 
   for (let student of students) {
-    if (
-      student.friend !== null &&
-      student.friend.friend === student
-    ) {
+    if (student.friend !== null && student.friend.friend === student) {
       let sortedCourses = sortCoursesByWeight(student.coursePreferences);
 
       let studyGroup = null;
@@ -35,7 +39,7 @@ export function groupMatching(students) {
       }
     }
   }
-  
+
   assignRemainingStudents(students, studyGroups);
 
   return studyGroups;
@@ -49,9 +53,11 @@ export function sortCoursesByWeight(coursePreferences) {
 export function findStudyGroupByCourse(studyGroups, course) {
   // Find a study group with the given course
   for (let group of studyGroups) {
-    if (group.course === course) { return group; }
+    if (group.course === course) {
+      return group;
+    }
   }
-  
+
   return null;
 }
 
@@ -69,7 +75,7 @@ export function createStudyGroup(course) {
   // Create a new study group for the given course
   let studyGroup = { course: course, members: [] };
   studyGroups.push(studyGroup);
-  
+
   return studyGroup;
 }
 
@@ -88,8 +94,10 @@ export function assignRemainingStudents(students, studyGroups) {
 
 export function isAssignedToStudyGroup(student, studyGroups) {
   for (let studyGroup of studyGroups) {
-    if (studyGroup.members.includes(student)) { return true; }
+    if (studyGroup.members.includes(student)) {
+      return true;
+    }
   }
-  
+
   return false;
 }
