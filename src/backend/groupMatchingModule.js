@@ -1,3 +1,5 @@
+import { sql } from "@velo/wix-data-sql-backend";
+
 export function getStudentInfo(items) {
   let students = [];
 
