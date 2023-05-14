@@ -22,6 +22,7 @@ $w.onReady(function () {
                 if(status === "ACTIVE") {
                     wixLocation.to("https://seohwee.editorx.io/hisplan/info");
                 }
+            });
         }
     });
 });
