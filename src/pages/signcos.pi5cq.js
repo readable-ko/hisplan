@@ -6,7 +6,9 @@ $w.onReady(function () {
 });
 
 $w("#button1").onClick(() => {
-    console.log('TEST IS DOING WELL!!');
+    const email = $w("email").value;
+    const password = $w("password").value;
+    console.log('User:',email,password);
 });
 
 //     authentication.register(email, password, options)
