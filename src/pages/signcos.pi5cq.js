@@ -8,7 +8,8 @@ $w.onReady(function () {
 $w("#button1").onClick(() => {
     const email = $w("email").value;
     const password = $w("password").value;
-    console.log('User:',email,password);
+    console.log(email);
+    console.log(password);
 });
 
 //     authentication.register(email, password, options)
