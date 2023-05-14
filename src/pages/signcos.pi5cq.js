@@ -12,7 +12,7 @@ $w.onReady(function () {
         const testPW = $w("#password").value;
         if(!$w("#email").valid) {
             $w("#email").value = 'Invaild! Use handong email only!';
-            wixWindow.openLightbox("#handongvaild");
+            wixWindow.openLightbox("InvaildBox");
         }
         console.log(testPW);
     });
