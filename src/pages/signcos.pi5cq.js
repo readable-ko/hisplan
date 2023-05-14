@@ -10,7 +10,7 @@ $w("#button1").onClick(() => {
     const email = $w("#email").value;
     const testPW = $w("#password").value;
     if(!$w("#email").valid) {
-         reject("Email is invalid should be handong email");
+         $w("#email").text = 'Invaild! Use handong email only!';
     }
     console.log(testPW);
 });
