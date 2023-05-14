@@ -1,6 +1,7 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import { authentication } from 'wix-members';
+import wixLocation from 'wix-location';
 
 $w.onReady(function () {
 });
@@ -10,7 +11,8 @@ $w("#button1").onClick(() => {
     const email = $w("#email").value;
     const testPW = $w("#password").value;
     if(!$w("#email").valid) {
-         $w("#email").value = 'Invaild! Use handong email only!';
+        $w("#email").value = 'Invaild! Use handong email only!';
+        $w("#handongvaild").show();
     }
     console.log(testPW);
 });
