@@ -2,6 +2,8 @@
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import { authentication } from 'wix-members';
 import wixLocation from 'wix-location';
+import wixWindow from 'wix-window';
+
 
 $w.onReady(function () {
     $w("#button1").onClick(() => {
@@ -10,7 +12,7 @@ $w.onReady(function () {
         const testPW = $w("#password").value;
         if(!$w("#email").valid) {
             $w("#email").value = 'Invaild! Use handong email only!';
-            $w("#handongvaild").show();
+            wixWindow.openLightbox("#handongvaild");
         }
         console.log(testPW);
     });
