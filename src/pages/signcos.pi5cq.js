@@ -3,9 +3,12 @@
 import { authentication } from 'wix-members';
 
 $w.onReady(function () {
-    $w.("#button1").onClick(() => {
-        console.log('TEST IS DOING WELL!!');
-    });
+});
+
+$w.("#button1").onClick(() => {
+    console.log('TEST IS DOING WELL!!');
+});
+
 //     authentication.register(email, password, options)
 //         .then((registrationResult) => {
 //         const status = registrationResult.status;
@@ -26,4 +29,3 @@ $w.onReady(function () {
 //         .catch((error) => {
 //         console.error(error);
 //     });
-});
