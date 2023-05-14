@@ -10,7 +10,7 @@ $w("#button1").onClick(() => {
     const email = $w("#email").value;
     const testPW = $w("#password").value;
     if(!$w("#email").valid) {
-         $w("#email").text = 'Invaild! Use handong email only!';
+         $w("#email").value = 'Invaild! Use handong email only!';
     }
     console.log(testPW);
 });
