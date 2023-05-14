@@ -11,7 +11,7 @@ $w.onReady(function () {
         const email = $w("#email").value;
         const testPW = $w("#password").value;
         if(!$w("#email").valid) {
-            $w("#email").value = 'Invaild! Use handong email only!';
+            $w("#email").value = '';
             wixWindow.openLightbox("InvaildBox");
         }
         console.log(testPW);
