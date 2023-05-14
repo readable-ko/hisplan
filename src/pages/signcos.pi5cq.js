@@ -4,18 +4,16 @@ import { authentication } from 'wix-members';
 import wixLocation from 'wix-location';
 
 $w.onReady(function () {
-});
-
-$w("#button1").onClick(() => {
-    const pattern = /.+[@]handong[.].+/;
-    const email = $w("#email").value;
-    const testPW = $w("#password").value;
-    if(!$w("#email").valid) {
-        $w("#email").value = 'Invaild! Use handong email only!';
-        $w("#handongvaild").show();
-        
-    }
-    console.log(testPW);
+    $w("#button1").onClick(() => {
+        const pattern = /.+[@]handong[.].+/;
+        const email = $w("#email").value;
+        const testPW = $w("#password").value;
+        if(!$w("#email").valid) {
+            $w("#email").value = 'Invaild! Use handong email only!';
+            $w("#handongvaild").show();
+        }
+        console.log(testPW);
+    });
 });
 
 //     authentication.register(email, password, options)
