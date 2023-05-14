@@ -13,6 +13,7 @@ $w("#button1").onClick(() => {
     if(!$w("#email").valid) {
         $w("#email").value = 'Invaild! Use handong email only!';
         $w("#handongvaild").show();
+        
     }
     console.log(testPW);
 });
