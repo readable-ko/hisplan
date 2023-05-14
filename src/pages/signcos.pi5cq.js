@@ -6,8 +6,12 @@ $w.onReady(function () {
 });
 
 $w("#button1").onClick(() => {
+    const pattern = /.+[@]handong[.].+/;
+    const email = $w("#email").value;
     const testPW = $w("#password").value;
-    console.log($w("#email").value);
+    if(!$w("#email").valid) {
+         reject("Email is invalid should be handong email");
+    }
     console.log(testPW);
 });
 
