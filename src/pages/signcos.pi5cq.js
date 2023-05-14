@@ -5,7 +5,7 @@ import { authentication } from 'wix-members';
 $w.onReady(function () {
 });
 
-$w.("#button1").onClick(() => {
+$w.(#button1).onClick(() => {
     console.log('TEST IS DOING WELL!!');
 });
 
