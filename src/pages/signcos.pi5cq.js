@@ -19,9 +19,7 @@ $w.onReady(function () {
             const pw = $w("#password").value;
             authentication.register(email, pw).then((registResult) => {
                 const status = registResult.status;
-                if(status === "ACTIVE") {
-                    wixLocation.to("https://seohwee.editorx.io/hisplan/info");
-                }
+                wixLocation.to("https://seohwee.editorx.io/hisplan/info");
             });
         }
     });
