@@ -7,12 +7,21 @@ import wixWindow from 'wix-window';
 
 $w.onReady(function () {
     $w("#button1").onClick(() => {
-        const pattern = /.+[@]handong[.].+/;
-        const email = $w("#email").value;
-        const testPW = $w("#password").value;
         if(!$w("#email").valid) {
             $w("#email").value = '';
             wixWindow.openLightbox("InvaildBox");
+        }
+        else if(!$w("#password").valid) {
+            wixWindow.openLightbox("passwordBox");
+        }
+        else {
+            const email = $w("#email").value;
+            const pw = $w("#password").value;
+            authentication.register(email, pw).then((registResult) => {
+                const status = registResult.status;
+                if(status === "ACTIVE") {
+                    wixLocation.to("https://seohwee.editorx.io/hisplan/info");
+                }
         }
         console.log(testPW);
     });
