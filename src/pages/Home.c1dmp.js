@@ -8,3 +8,12 @@ $w.onReady(function () {
 
     // Click 'Preview' to run your code
 });
+
+import wixUsers from 'wix-users';
+import wixLocation from 'wix-location';
+
+$w.onReady(function () {
+  wixUsers.register.onSuccess(function (user) {
+    wixLocation.to("https://www.naver.com/");
+  });
+});
