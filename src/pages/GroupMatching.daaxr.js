@@ -1,4 +1,5 @@
 import wixData from "wix-data";
+import { sql } from "@velo/wix-data-sql-backend";
 // import { getStudentInfo, groupMatching } from "backend/groupMatchingModule.jsw";
 
 $w.onReady(function () {
