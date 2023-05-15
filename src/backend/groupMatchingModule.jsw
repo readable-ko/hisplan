@@ -1,4 +1,4 @@
-import { sql } from "@velo/wix-data-sql-backend";
+import { sql } from "backend/exposer.jsw";
 
 export function getStudentInfo(items) {
   let students = [];
@@ -47,12 +47,12 @@ export function groupMatching(students) {
   return studyGroups;
 }
 
-export function sortCoursesByWeight(coursePreferences) {
+function sortCoursesByWeight(coursePreferences) {
   // Sort course preferences in descending order of weight
   return coursePreferences.sort((a, b) => b.weight - a.weight);
 }
 
-export function findStudyGroupByCourse(studyGroups, course) {
+function findStudyGroupByCourse(studyGroups, course) {
   // Find a study group with the given course
   for (let group of studyGroups) {
     if (group.course === course) {
@@ -63,17 +63,17 @@ export function findStudyGroupByCourse(studyGroups, course) {
   return null;
 }
 
-export function hasVacancy(studyGroup) {
+function hasVacancy(studyGroup) {
   // Check if the study group has a vacancy for another student
   return studyGroup.members.length < 4; // Max capacity: 4
 }
 
-export function addStudentToStudyGroup(student, studyGroup) {
+function addStudentToStudyGroup(student, studyGroup) {
   // Add the student to the study group
   studyGroup.members.push(student);
 }
 
-export function createStudyGroup(course) {
+function createStudyGroup(course) {
   // Create a new study group for the given course
   let studyGroup = { course: course, members: [] };
   studyGroups.push(studyGroup);
@@ -81,7 +81,7 @@ export function createStudyGroup(course) {
   return studyGroup;
 }
 
-export function assignRemainingStudents(students, studyGroups) {
+function assignRemainingStudents(students, studyGroups) {
   for (let student of students) {
     if (!isAssignedToStudyGroup(student, studyGroups)) {
       for (let studyGroup of studyGroups) {
@@ -94,7 +94,7 @@ export function assignRemainingStudents(students, studyGroups) {
   }
 }
 
-export function isAssignedToStudyGroup(student, studyGroups) {
+function isAssignedToStudyGroup(student, studyGroups) {
   for (let studyGroup of studyGroups) {
     if (studyGroup.members.includes(student)) {
       return true;
