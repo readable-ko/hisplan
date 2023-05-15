@@ -13,9 +13,3 @@ $w.onReady(async() => {
   
   if (isLoggedIn) wixLocation.to("https://seohwee.editorx.io/hisplan/home");
 });
-// $w.onReady(function () {
-//   wixUsers.onLogin(function (user) {
-//     wixLocation.to("https://seohwee.editorx.io/hisplan/home");
-//   });
-// });
-
