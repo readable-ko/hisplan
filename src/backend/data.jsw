@@ -3,7 +3,7 @@ import wixData from 'wix-data';
 export async function getAllTasks(visitorId) {
     try {
         const results = await wixData.query('Todo List')
-            .eq('visitorId', visitorId)
+            .eq('studentId', visitorId)
             .find();
         return results.items;
     } catch (error) {
