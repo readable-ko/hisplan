@@ -19,14 +19,17 @@ async function fetchValueFromDatabase() {
         const results = await wixData.query(collection)
             .limit(1)
             .find(filter);
-        
-        if(results.item.length > 0) {
-            const value = results.items[0].field;
-            $w('#text6').value = value;
-            // console.log(value);
-        } else {
-            console.log('No matching items found');
-        } 
+
+        const value = results.items[0].field;
+        $w('#text6').value = value;
+
+        // if(results.item.length > 0) {
+        //     const value = results.items[0].field;
+        //     $w('#text6').value = value;
+        //     // console.log(value);
+        // } else {
+        //     console.log('No matching items found');
+        // } 
 
     } catch(err) {
         console.error('Error : ' + err);
