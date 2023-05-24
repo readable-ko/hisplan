@@ -1,5 +1,6 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
+import wixWindow from 'wix-window';
 
 $w.onReady(function () {
     // Write your JavaScript here
