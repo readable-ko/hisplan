@@ -14,14 +14,16 @@ $w.onReady(function () {
         else if(!$w("#password").valid) {
             wixWindow.openLightbox("passwordBox");
         }
-//         else {
-//             const email = $w("#email").value;
-//             const pw = $w("#password").value;
-//             authentication.register(email, pw).then((registResult) => {
-//                 const status = registResult.status;
-//                 wixLocation.to("https://seohwee.editorx.io/hisplan/info");
-//             });
-//         }
+        else {
+            const email = $w("#email").value;
+            const pw = $w("#password").value;
+            authentication.register(email, pw).then((registResult) => {
+                const status = registResult.status;
+                if(status === "ACTIVE") {
+                    wixLocation.to("https://seohwee.editorx.io/hisplan/info");
+                }
+            });
+        }
     });
 });
 
