@@ -26,6 +26,7 @@ $w.onReady(function () {
         $w('#RandomCodeTextBox').value = randomStr;
 
         // Open the lightbox
-        $w('#randomCodeLightBox').show();
+        //$w('#randomCodeLightBox').show();
+        wixWindow.openLightbox('randomCodeLightBox');        
     });
 });
