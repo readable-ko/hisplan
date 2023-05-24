@@ -32,6 +32,7 @@ function registerHandlers() {
 
 function setVisitor() {
     visitorId = local.getItem('studentId');
+    console.log('visitor ID: ', visitorId);
     if (!visitorId) {
         visitorId = Math.random().toString(36);
         local.setItem('studentId', visitorId);
