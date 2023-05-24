@@ -19,16 +19,13 @@ $w.onReady(function () {
     }
     
     $w('#button3').onClick(() => {
-    let randomStr = generateRandomString(7);
-    console.log(randomStr);
+        let randomStr = generateRandomString(7);
+        console.log(randomStr);
 
-    // Save the random string in the 'randomCode' field of the 'GroupStudyReport' container
-    $w('#GroupStudyReport').setFieldValue('randomCode', randomStr)
-      .then(() => {
-        console.log('Random code saved successfully.');
-      })
-      .catch((error) => {
-        console.error('Error occurred while saving the random code:', error);
-      });
-  });
+        // Set the value of the textbox with the random code
+        $w('#RandomCode').value = randomStr;
+
+        // Open the lightbox
+        $w('#randomCodeLightBox').show();
+    });
 });
