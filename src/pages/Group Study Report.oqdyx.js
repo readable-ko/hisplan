@@ -23,9 +23,9 @@ $w.onReady(function () {
         console.log(randomStr);
 
         // Set the value of the textbox with the random code
-        $w('#RandomCodeText').value = randomStr;
+        $w('#text13').value = randomStr;
 
         // Open the lightbox
-        $w('#randomCodeLightBox').show();
+        //$w('#randomCodeLightBox').show();
     });
 });
