@@ -1,6 +1,7 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixWindow from 'wix-window';
+import wixData from 'wix-data';
 
 $w.onReady(function () {
     // Write your JavaScript here
@@ -29,5 +30,19 @@ $w.onReady(function () {
         // Open the lightbox
         //$w('#randomCodeLightBox').show();
         //wixWindow.openLightbox('randomCodeLightBox');        
+    });
+    
+    let toInsert = {
+      "RandomCode":   randomStr
+    };
+    
+    $ww('#submitButton').onClick(() => {
+        wixData.insert("GroupStudyReport", toInsert)
+          .then((results) => {
+            let item = results; //see item below
+          })
+          .catch((err) => {
+            let errorMsg = err;
+          });
     });
 });
