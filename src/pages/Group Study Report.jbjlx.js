@@ -7,4 +7,17 @@ $w.onReady(function () {
     // To select an element by ID use: $w('#elementID')
 
     // Click 'Preview' to run your code
+    const generateRandomString = (num) => {
+      const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      let result = '';
+      const charactersLength = characters.length;
+      for (let i = 0; i < num; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+
+      return result;
+    }
+    
+    let randomStr = generateRandomString(7);
+    console.log(randomStr);
 });
