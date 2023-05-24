@@ -30,4 +30,4 @@ async function fetchValueFromDatabase() {
     } catch(err) {
         console.error('Error : ' + err);
     }
-}
+} 
