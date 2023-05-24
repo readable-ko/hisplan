@@ -61,6 +61,7 @@ async function createNewTask() {
         await insertTask(toInsert);
         await fetchData();
     } catch (error) {
+        console.log("ERROR HERE?");
         console.error(error);
     }
 }
