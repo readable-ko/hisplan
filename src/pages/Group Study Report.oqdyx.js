@@ -32,17 +32,17 @@ $w.onReady(function () {
         //wixWindow.openLightbox('randomCodeLightBox');        
     });
     
-    let toInsert = {
-      "RandomCode":   randomStr
-    };
+//     let toInsert = {
+//       "RandomCode":   randomStr
+//     };
     
-    $ww('#submitButton').onClick(() => {
-        wixData.insert("GroupStudyReport", toInsert)
-          .then((results) => {
-            let item = results; //see item below
-          })
-          .catch((err) => {
-            let errorMsg = err;
-          });
-    });
+//     $ww('#submitButton').onClick(() => {
+//         wixData.insert("GroupStudyReport", toInsert)
+//           .then((results) => {
+//             let item = results; //see item below
+//           })
+//           .catch((err) => {
+//             let errorMsg = err;
+//           });
+//     });
 });
