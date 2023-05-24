@@ -16,20 +16,14 @@ async function fetchValueFromDatabase() {
         const collection = 'Student';
         const filter = wixData.filter().eq('Name');
 
-        const results = await wixData.query(collection)
-            .limit(1)
-            .find(filter);
+        console.log(filter);
 
-        const value = results.items[0].field;
-        $w('#text6').value = value;
+        // const results = await wixData.query(collection)
+        //     .limit(1)
+        //     .find(filter);
 
-        // if(results.item.length > 0) {
-        //     const value = results.items[0].field;
-        //     $w('#text6').value = value;
-        //     // console.log(value);
-        // } else {
-        //     console.log('No matching items found');
-        // } 
+        // const value = results.items[0].field;
+        // $w('#text6').value = value;
 
     } catch(err) {
         console.error('Error : ' + err);
