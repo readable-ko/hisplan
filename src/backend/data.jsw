@@ -2,7 +2,7 @@ import wixData from 'wix-data';
 
 export async function getAllTasks(visitorId) {
     try {
-        const results = await wixData.query('MyTasks')
+        const results = await wixData.query('Todo List')
             .eq('visitorId', visitorId)
             .find();
         return results.items;
@@ -13,7 +13,7 @@ export async function getAllTasks(visitorId) {
 
 export async function insertTask(taskObj) {
     try {
-        await wixData.insert('MyTasks', taskObj);
+        await wixData.insert('Todo List', taskObj);
     } catch (error) {
         console.error(error);
     }
@@ -25,7 +25,7 @@ export async function updateTask(task, newStatus) {
             ...task,
             isComplete: newStatus
         };
-        await wixData.update('MyTasks', toUpdate);
+        await wixData.update('Todo List', toUpdate);
     } catch (error) {
         console.error(error);
     }
@@ -35,7 +35,7 @@ export async function updateTask(task, newStatus) {
 // this is done in order to allow calling it several times without waiting to each call to complete
 export function removeTask(taskID) {
     try {
-        const removePromise = wixData.remove('MyTasks', taskID);
+        const removePromise = wixData.remove('Todo List', taskID);
         return removePromise;
     } catch (error) {
         console.error(error);
