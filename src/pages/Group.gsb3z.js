@@ -16,7 +16,7 @@ async function fetchValueFromDatabase() {
         const collection = 'Student';
         const filter = wixData.filter().eq('Name');
 
-        const result = await wixData.query(collection)
+        const results = await wixData.query(collection)
             .limit(1)
             .find(filter);
         
