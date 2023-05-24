@@ -18,7 +18,7 @@ $w.onReady(function () {
       return result;
     }
     
-    $w('#button21').onClick(() => {
+    $w('#button3').onClick(() => {
     let randomStr = generateRandomString(7);
     console.log(randomStr);
 
