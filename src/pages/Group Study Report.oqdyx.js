@@ -18,14 +18,17 @@ $w.onReady(function () {
       return result;
     }
     
+    $w('#generateButton').onClick(() => {
     let randomStr = generateRandomString(7);
     console.log(randomStr);
-    
+
+    // Save the random string in the 'randomCode' field of the 'GroupStudyReport' container
     $w('#GroupStudyReport').setFieldValue('randomCode', randomStr)
-    .then(() => {
-      console.log('Random code saved successfully.');
-    })
-    .catch((error) => {
-      console.error('Error occurred while saving the random code:', error);
-    });
+      .then(() => {
+        console.log('Random code saved successfully.');
+      })
+      .catch((error) => {
+        console.error('Error occurred while saving the random code:', error);
+      });
+  });
 });
