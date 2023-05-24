@@ -24,10 +24,10 @@ $w.onReady(function () {
         console.log(randomStr);
 
         // Set the value of the textbox with the random code
-        $w('#RandomCodeTextBox').value = randomStr;
+        $w('#generateCode').value = randomStr;
 
         // Open the lightbox
         //$w('#randomCodeLightBox').show();
-        wixWindow.openLightbox('randomCodeLightBox');        
+        //wixWindow.openLightbox('randomCodeLightBox');        
     });
 });
