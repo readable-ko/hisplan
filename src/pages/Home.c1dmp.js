@@ -32,7 +32,6 @@ function registerHandlers() {
 
 function setVisitor() {
     visitorId = local.getItem('studentId');
-    console.log('visitor ID: ', visitorId);
     if (!visitorId) {
         visitorId = Math.random().toString(36);
         local.setItem('studentId', visitorId);
@@ -98,6 +97,7 @@ async function clearCompletedTasks() {
     try {
         await Promise.all(removePromises);
     } catch (error) {
+        console.log("THIS FUNC ERROR!!!");
         console.error(error);
     }
     $w('#repeater').data = remainedTasks;
