@@ -45,7 +45,6 @@ async function fetchData() {
         $w('#repeater').data = await getAllTasks(visitorId);
         $w('#loaderImage').collapse();
     } catch (error) {
-        console.log("ERROR HERE?");
         console.error(error);
     }
 }
@@ -54,7 +53,7 @@ async function createNewTask() {
     const toInsert = {
         title: $w('#taskInput').value,
         isComplete: false,
-        visitorId
+        studentId: visitorId
     };
     $w('#taskInput').value = null;
     try {
@@ -77,7 +76,6 @@ async function changeCompleteStatus($item, itemData) {
             await updateTask(itemData, true);
         }
     } catch (error) {
-        console.log("ERROR HERE!!!!!");
         console.error(error);
     }
 }
