@@ -53,7 +53,7 @@ async function createNewTask() {
     const toInsert = {
         title: $w('#taskInput').value,
         isComplete: false,
-        studentId
+        visitorId
     };
     $w('#taskInput').value = null;
     try {
