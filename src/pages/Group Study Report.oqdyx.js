@@ -20,4 +20,12 @@ $w.onReady(function () {
     
     let randomStr = generateRandomString(7);
     console.log(randomStr);
+    
+    $w('#GroupStudyReport').setFieldValue('randomCode', randomStr)
+    .then(() => {
+      console.log('Random code saved successfully.');
+    })
+    .catch((error) => {
+      console.error('Error occurred while saving the random code:', error);
+    });
 });
