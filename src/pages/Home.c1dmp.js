@@ -45,6 +45,7 @@ async function fetchData() {
         $w('#repeater').data = await getAllTasks(visitorId);
         $w('#loaderImage').collapse();
     } catch (error) {
+        console.log("ERROR HERE?");
         console.error(error);
     }
 }
@@ -60,7 +61,6 @@ async function createNewTask() {
         await insertTask(toInsert);
         await fetchData();
     } catch (error) {
-        console.log("ERROR HERE?");
         console.error(error);
     }
 }
@@ -77,6 +77,7 @@ async function changeCompleteStatus($item, itemData) {
             await updateTask(itemData, true);
         }
     } catch (error) {
+        console.log("ERROR HERE!!!!!");
         console.error(error);
     }
 }
@@ -97,7 +98,6 @@ async function clearCompletedTasks() {
     try {
         await Promise.all(removePromises);
     } catch (error) {
-        console.log("THIS FUNC ERROR!!!");
         console.error(error);
     }
     $w('#repeater').data = remainedTasks;
