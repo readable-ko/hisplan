@@ -8,7 +8,7 @@ $w.onReady(function () {
 
     // Click 'Preview' to run your code
     const generateRandomString = (num) => {
-      const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       let result = '';
       const charactersLength = characters.length;
       for (let i = 0; i < num; i++) {
@@ -19,11 +19,11 @@ $w.onReady(function () {
     }
     
     $w('#button3').onClick(() => {
-        let randomStr = generateRandomString(7);
+        let randomStr = generateRandomString(6);
         console.log(randomStr);
 
         // Set the value of the textbox with the random code
-        $w('#RandomCode').value = randomStr;
+        $w('#RandomCodeText').value = randomStr;
 
         // Open the lightbox
         $w('#randomCodeLightBox').show();
