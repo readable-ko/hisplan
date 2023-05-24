@@ -22,7 +22,8 @@ async function fetchValueFromDatabase() {
         
         if(results.item.length > 0) {
             const value = results.items[0].field;
-            console.log(value);
+            $w('#text6').value = value;
+            // console.log(value);
         } else {
             console.log('No matching items found');
         } 
