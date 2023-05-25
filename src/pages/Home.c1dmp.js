@@ -64,7 +64,7 @@ async function fetchData() {
 
 async function createNewTask() {
     const toInsert = {
-        title: $w('#taskInput').value,
+        todo: $w('#taskInput').value,
         isComplete: false,
         studentId: visitorId
     };
