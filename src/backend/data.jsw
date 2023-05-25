@@ -6,7 +6,8 @@ const results = await wixData.query("Todo List")
   .find()
   .then((results) => {
     if(results.items.length > 0) {
-      console.log(results.items[0]); //see firstItem below
+      console.log("TEST!");
+      console.log("TT",results.items[0]); //see firstItem below
     } else {
       // handle case where no matching items found
     }
