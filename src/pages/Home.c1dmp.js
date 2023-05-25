@@ -42,7 +42,7 @@ async function setVisitor() {
     visitorId = memInfo;
     //local.getItem('studentId');
     console.log("visitorId is:", visitorId);
-    console.log("memInfo is:", memInfo);
+
     if (!visitorId) {
         visitorId = Math.random().toString(36);
         local.setItem('studentId', visitorId);
@@ -54,6 +54,7 @@ async function fetchData() {
     $w('#loaderImage').expand();
     try {
         $w('#repeater').data = await getAllTasks(visitorId);
+        console.log("DATA IS:", $w('#repeater').data.length);
         $w('#loaderImage').collapse();
     } catch (error) {
         console.error(error);
