@@ -7,6 +7,7 @@ export async function getAllTasks(visitorId) {
             .find();
         return results.items;
     } catch (error) {
+        console.log("ERROR HERE!");
         console.error(error);
     }
 }
