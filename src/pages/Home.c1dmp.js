@@ -41,7 +41,7 @@ function setVisitor() {
     });
     visitorId = memInfo.id;
     //local.getItem('studentId');
-    console.log("visitorId is:", visitorId);
+    console.log("visitorId is:", memInfo);
     if (!visitorId) {
         visitorId = Math.random().toString(36);
         local.setItem('studentId', visitorId);
