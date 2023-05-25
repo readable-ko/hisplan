@@ -32,7 +32,7 @@ function registerHandlers() {
 }
 
 function setVisitor() {
-    const memInfo = await currentMember.getMember().then((member) => {
+    const memInfo = currentMember.getMember().then((member) => {
         const id = member._id;
         const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
         return id;
