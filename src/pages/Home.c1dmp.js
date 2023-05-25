@@ -39,9 +39,10 @@ function setVisitor() {
     }).catch((error) => {
         console.error(error);
     });
-    visitorId = memInfo["id"];
+    visitorId = memInfo["_id"];
     //local.getItem('studentId');
     console.log("visitorId is:", visitorId);
+    console.log("memInfo is:", memInfo);
     if (!visitorId) {
         visitorId = Math.random().toString(36);
         local.setItem('studentId', visitorId);
