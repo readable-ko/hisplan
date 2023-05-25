@@ -1,16 +1,21 @@
 import wixData from 'wix-data';
 
 export async function getAllTasks(visitorId) {
-    try {
-        const results = await wixData.query('Todo List')
-            .eq('studentId', visitorId)
-            .find();
-        console.log("Length of item is: ", results.length);
-        return results.items;
-    } catch (error) {
-        
-        console.error(error);
+const results = await wixData.query("Todo List")
+  .eq("studentId", visitorId)
+  .find()
+  .then((results) => {
+    if(results.items.length > 0) {
+      console.log(results.items[0]); //see firstItem below
+    } else {
+      // handle case where no matching items found
     }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  return results.items;
+
 }
 
 export async function insertTask(taskObj) {
