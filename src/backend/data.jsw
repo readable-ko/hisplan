@@ -9,6 +9,7 @@ const results = await wixData.query("TodoList")
       console.log("TEST!");
       console.log("TT",results.items[0]); //see firstItem below
     } else {
+      console.log("NOTFOUND");
       // handle case where no matching items found
     }
   })
