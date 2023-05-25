@@ -1,7 +1,7 @@
 import wixData from 'wix-data';
 
 export async function getAllTasks(visitorId) {
-const results = await wixData.query("Todo List")
+const results = await wixData.query("TodoList")
   .eq("studentId", visitorId)
   .find()
   .then((results) => {
