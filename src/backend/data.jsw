@@ -5,9 +5,10 @@ export async function getAllTasks(visitorId) {
         const results = await wixData.query('Todo List')
             .eq('studentId', visitorId)
             .find();
+        console.log("Length of item is: ", results.length);
         return results.items;
     } catch (error) {
-        console.log("ERROR HERE!");
+        
         console.error(error);
     }
 }
