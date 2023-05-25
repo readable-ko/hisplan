@@ -1,5 +1,6 @@
 import { getAllTasks, insertTask, updateTask, removeTask } from 'backend/data';
 import { local } from 'wix-storage';
+import { currentMember } from 'wix-members';
 
 const htmlFontFamily = `madefor-display`;
 const htmlFontSize = `14px`;
@@ -31,7 +32,15 @@ function registerHandlers() {
 }
 
 function setVisitor() {
-    visitorId = local.getItem('studentId');
+    const memInfo = currentMember.getMember().then((member) => {
+        const id = member._id;
+        const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
+        return member;
+    }).catch((error) => {
+        console.error(error);
+    });
+    visitorId = memInfo.id;
+    //local.getItem('studentId');
     console.log("visitorId is:", visitorId);
     if (!visitorId) {
         visitorId = Math.random().toString(36);
