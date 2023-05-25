@@ -1,40 +1,38 @@
-import { sql } from "backend/exposer.jsw";
+import wixData from "wix-data";
 
-export function getStudentInfo(items) {
+export async function getStudentsInfo() {
   let students = [];
+  const preferences = await wixData.query("Preference").include("friends").find();
 
-  for (let i = 0; i < items.length; ++i) {
-    let preference = items[i].preference;
-    let student = {
-      id: items[i].studentId,
-      friends: preference.friends,
-      first: preference.first,
-      second: preference.second,
-      third: preference.third,
-    };
-    students.push(student);
-  }
+  preferences.items.forEach((preference) => {
+    students.push({
+      id: preference.student,
+      coursePriority: [preference.first, preference.second, preference.third],
+      desiredFriends: preference.friends.map((friend) => friend._id),
+    });
+  });
 
   return students;
 }
 
-export function groupMatching(students) {
+export function matchGroups(studentsPreferences) {
   let studyGroups = [];
 
-  for (let student of students) {
+  for (let student of studentsPreferences) {
     if (student.friend !== null && student.friend.friend === student) {
-      let sortedCourses = sortCoursesByWeight(student.coursePreferences);
-
       let studyGroup = null;
-      for (let course of sortedCourses) {
+
+      for (let course of student.coursePriority) {
         studyGroup = findStudyGroupByCourse(studyGroups, course);
 
+        // If the study group exists and has a vacancy, add the student to it
         if (studyGroup !== null && hasVacancy(studyGroup)) {
           addStudentToStudyGroup(student, studyGroup);
           break;
         }
       }
 
+      // If the study group doesn't exist or doesn't have a vacancy, create a new one
       if (studyGroup === null || !hasVacancy(studyGroup)) {
         studyGroup = createStudyGroup(course);
         addStudentToStudyGroup(student, studyGroup);
@@ -42,14 +40,10 @@ export function groupMatching(students) {
     }
   }
 
-  assignRemainingStudents(students, studyGroups);
+  // Assign the remaining students to the study groups
+  assignRemainingStudents(studentsPreferences, studyGroups);
 
   return studyGroups;
-}
-
-function sortCoursesByWeight(coursePreferences) {
-  // Sort course preferences in descending order of weight
-  return coursePreferences.sort((a, b) => b.weight - a.weight);
 }
 
 function findStudyGroupByCourse(studyGroups, course) {
@@ -81,8 +75,8 @@ function createStudyGroup(course) {
   return studyGroup;
 }
 
-function assignRemainingStudents(students, studyGroups) {
-  for (let student of students) {
+function assignRemainingStudents(studentsPreferences, studyGroups) {
+  for (let student of studentsPreferences) {
     if (!isAssignedToStudyGroup(student, studyGroups)) {
       for (let studyGroup of studyGroups) {
         if (hasVacancy(studyGroup)) {

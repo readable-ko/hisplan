@@ -1,15 +1,14 @@
-import { sql } from "backend/exposer.jsw";
-// import { getStudentInfo, groupMatching } from "backend/groupMatchingModule.jsw";
+import { getStudentsInfo, matchGroups } from "backend/groupMatchingModule.jsw";
 
 $w.onReady(function () {
   $w("#button").onClick(async () => {
     try {
-      const results = await sql("SELECT * FROM Student");
-      console.log(results.payload.data);
+      const students = await getStudentsInfo();
+      console.log(students);
+      // const studyGroups = matchGroups(students);
+      // console.log(studyGroups);
     } catch (error) {
       console.log(error);
     }
   });
 });
-
-function getStudentInfo(items) {}

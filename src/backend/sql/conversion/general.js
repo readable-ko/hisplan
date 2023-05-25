@@ -4,6 +4,7 @@ export function convertCollectionName(convertionObj, parsedInputArr, index) {
   if (index >= parsedInputArr.length) {
     throw new Error(errors[20].message);
   }
+
   const collectionName = parsedInputArr[index];
   convertionObj.collectionName = collectionName;
 }

@@ -8,8 +8,8 @@ export async function execute(convertionObj) {
     timeStartRun: convertionObj.timeStart,
     timeStartExecution: new Date(),
   };
-  let wixDataFunc;
-  let funcResults;
+
+  let wixDataFunc, funcResults;
 
   switch (convertionObj.expType) {
     case "SELECT":
@@ -17,17 +17,21 @@ export async function execute(convertionObj) {
       wixDataFunc = buildWixDataQuery(convertionObj.collectionName, convertionObj.filterObj, convertionObj.anotherCondType);
       wixDataFunc = addOrderByToQuery(wixDataFunc, convertionObj.orderBy);
       wixDataFunc = addLimitToQuery(wixDataFunc, convertionObj);
+
       if (convertionObj.expType === "SELECT") {
         funcResults = await wixDataFunc.find();
       } else if (convertionObj.expType === "SELECT DISTINCT") {
         funcResults = await wixDataFunc.distinct(convertionObj.queriedColumns.columns[0]);
       }
+
       returnedJson.timeEndExecution = new Date();
+
       if (funcResults.items.length > 0) {
         returnedJson.payload = buildTableFromResults(funcResults.items, convertionObj.queriedColumns, convertionObj.expType);
       } else {
         returnedJson.payload = { data: { columns: [], rows: [] } };
       }
+
       break;
     }
 
@@ -36,23 +40,27 @@ export async function execute(convertionObj) {
       let wixDataFilter = buildWixDataFilter(convertionObj);
       funcResults = await wixDataFunc.filter(wixDataFilter).run();
       returnedJson.timeEndExecution = new Date();
+
       if (funcResults.items.length > 0) {
         returnedJson.payload = buildTableOfFunctionsResults(funcResults.items[0]);
       } else {
         returnedJson.payload = { data: { columns: [], rows: [] } };
       }
+
       break;
     }
 
     case "UPDATE": {
       wixDataFunc = buildWixDataQuery(convertionObj.collectionName, convertionObj.filterObj, convertionObj.anotherCondType);
       funcResults = await wixDataFunc.find();
-      for (let i = 0; i < funcResults.items.length; i++) {
+
+      for (let i = 0; i < funcResults.items.length; ++i) {
         funcResults.items[i] = {
           ...funcResults.items[i],
           ...convertionObj.toUpdateObj,
         };
       }
+
       funcResults = await wixData.bulkUpdate(convertionObj.collectionName, funcResults.items);
       returnedJson.timeEndExecution = new Date();
       returnedJson.payload = { updated: funcResults.updated };
@@ -61,14 +69,18 @@ export async function execute(convertionObj) {
 
     case "INSERT": {
       const toInsertObj = {};
-      for (let i = 0; i < convertionObj.toInsert.columns.length; i++) {
+
+      for (let i = 0; i < convertionObj.toInsert.columns.length; ++i) {
         let column = convertionObj.toInsert.columns[i];
         let value = null;
+
         if (i < convertionObj.toInsert.values.length) {
           value = convertionObj.toInsert.values[i];
         }
+
         toInsertObj[column] = value;
       }
+
       funcResults = await wixData.insert(convertionObj.collectionName, toInsertObj);
       returnedJson.timeEndExecution = new Date();
       returnedJson.payload = { inserted: true };
@@ -87,30 +99,33 @@ export async function execute(convertionObj) {
 
     case "INNER JOIN":
     case "LEFT JOIN": {
-      let joinedWixDataFunc;
       adjustConvertionObjectToJoin(convertionObj);
 
       wixDataFunc = buildWixDataQuery(convertionObj.collectionName, convertionObj.condsMap[convertionObj.collectionName], convertionObj.anotherCondType);
-      joinedWixDataFunc = buildWixDataQuery(
+      wixDataFunc = addOrderByToQuery(wixDataFunc, convertionObj.orderByMap[convertionObj.collectionName]);
+      wixDataFunc = addLimitToQuery(wixDataFunc, convertionObj);
+
+      let joinedWixDataFunc = buildWixDataQuery(
         convertionObj.joinedCollectionName,
         convertionObj.condsMap[convertionObj.joinedCollectionName],
         convertionObj.anotherCondType
       );
-      wixDataFunc = addOrderByToQuery(wixDataFunc, convertionObj.orderByMap[convertionObj.collectionName]);
       joinedWixDataFunc = addOrderByToQuery(joinedWixDataFunc, convertionObj.orderByMap[convertionObj.joinedCollectionName]);
-      wixDataFunc = addLimitToQuery(wixDataFunc, convertionObj);
+      joinedWixDataFunc = addLimitToQuery(joinedWixDataFunc, convertionObj);
 
       funcResults = await wixDataFunc.find();
-      if (funcResults.items.length > 0) {
+      if (funcResults.length > 0) {
         let joinedFuncResults = await joinedWixDataFunc.find();
         returnedJson.payload = buildTableFromJoinResults(funcResults.items, joinedFuncResults.items, convertionObj);
       } else {
         returnedJson.payload = { data: { columns: [], rows: [] } };
       }
+
       returnedJson.timeEndExecution = new Date();
       break;
     }
   }
+
   return returnedJson;
 }
 
@@ -121,6 +136,7 @@ function adjustConvertionObjectToJoin(convertionObj) {
     if (!convertionObj.columnsMap[collectionName]) {
       convertionObj.columnsMap[collectionName] = [];
     }
+
     convertionObj.columnsMap[collectionName].push(columnName);
   }
 
@@ -132,11 +148,13 @@ function adjustConvertionObjectToJoin(convertionObj) {
         if (!convertionObj.condsMap[collectionName]) {
           convertionObj.condsMap[collectionName] = [];
         }
+
         const obj = {
           [columnName]: {
             [filterOp]: filterVal,
           },
         };
+
         convertionObj.condsMap[collectionName].push(obj);
       }
     }
@@ -149,9 +167,11 @@ function adjustConvertionObjectToJoin(convertionObj) {
       if (!convertionObj.orderByMap[collectionName]) {
         convertionObj.orderByMap[collectionName] = [];
       }
+
       const obj = {
         [columnName]: orderType,
       };
+
       convertionObj.orderByMap[collectionName].push(obj);
     }
   }

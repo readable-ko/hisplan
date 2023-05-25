@@ -3,18 +3,15 @@ import { errors } from "../engine/errors.js";
 export function buildTableOfFunctionsResults(funcResults) {
   const columnsArr = [];
   const rowObj = {};
+
   for (const [funcNameColumnName, value] of Object.entries(funcResults)) {
     if (funcNameColumnName !== "_id") {
       columnsArr.push(funcNameColumnName);
       rowObj[funcNameColumnName] = value;
     }
   }
-  return {
-    data: {
-      columns: columnsArr,
-      rows: [rowObj],
-    },
-  };
+
+  return { data: { columns: columnsArr, rows: [rowObj] } };
 }
 
 export function buildTableFromJoinResults(funcResultsItems, joinedFuncResultsItems, convertionObj) {
@@ -27,13 +24,14 @@ export function buildTableFromJoinResults(funcResultsItems, joinedFuncResultsIte
     const [collectionNameKey, columnNameKey] = collectionAndColumnKey.split(".");
     const [collectionNameVal, columnNameVal] = collectionAndColumnVal.split(".");
 
-    for (let i = 0; i < funcResultsItems.length; i++) {
+    for (let i = 0; i < funcResultsItems.length; ++i) {
       const matchedValue = funcResultsItems[i][columnNameKey];
       let matchedItem = joinedFuncResultsItems.find((item) => item[columnNameVal] === matchedValue);
-
       let itemObj = {};
+
       for (const [key, value] of Object.entries(funcResultsItems[i])) {
         const newKey = convertionObj.collectionName + "_" + key;
+
         if (queryColumnsNames.includes(newKey)) {
           itemObj[newKey] = value;
         }
@@ -47,6 +45,7 @@ export function buildTableFromJoinResults(funcResultsItems, joinedFuncResultsIte
             joinItemObj[newKey] = value;
           }
         }
+
         rows.push({
           ...itemObj,
           ...joinItemObj,
@@ -56,6 +55,7 @@ export function buildTableFromJoinResults(funcResultsItems, joinedFuncResultsIte
       }
     }
   }
+
   return { data: { columns, rows } };
 }
 
@@ -86,13 +86,8 @@ export function buildTableFromResults(resultItems, queriedColumns, expType) {
       return itemObj;
     });
   }
-  const tableDataObj = {
-    data: {
-      columns: createColumns(resultItems, queriedColumns, expType),
-      rows,
-    },
-  };
-  return tableDataObj;
+
+  return { data: { columns: createColumns(resultItems, queriedColumns, expType), rows } };
 }
 
 // builds the columns array for the results' table

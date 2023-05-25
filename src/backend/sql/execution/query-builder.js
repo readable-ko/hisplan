@@ -4,6 +4,7 @@ import { errors } from "../engine/errors.js";
 export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
   let first = true;
   let wixDataFunc = wixData.query(collectionName);
+
   if (filterObj && Object.keys(filterObj).length !== 0) {
     for (const obj of filterObj) {
       for (const [filterFieldName, filterPair] of Object.entries(obj)) {
@@ -18,6 +19,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "gt": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).gt(filterFieldName, filterVal));
@@ -27,6 +29,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "ge": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).ge(filterFieldName, filterVal));
@@ -36,6 +39,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "lt": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).lt(filterFieldName, filterVal));
@@ -45,6 +49,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "le": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).le(filterFieldName, filterVal));
@@ -54,6 +59,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "ne": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).ne(filterFieldName, filterVal));
@@ -63,6 +69,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "startsWith": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).startsWith(filterFieldName, filterVal));
@@ -72,6 +79,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "endsWith": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).endsWith(filterFieldName, filterVal));
@@ -81,6 +89,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             case "contains": {
               if (anotherCondType === "OR" && !first) {
                 wixDataFunc = wixDataFunc.or(wixData.query(collectionName).contains(filterFieldName, filterVal));
@@ -90,6 +99,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
               }
               break;
             }
+
             default: {
               throw new Error(errors[44].message);
             }
@@ -98,6 +108,7 @@ export function buildWixDataQuery(collectionName, filterObj, anotherCondType) {
       }
     }
   }
+
   return wixDataFunc;
 }
 
@@ -114,6 +125,7 @@ export function addOrderByToQuery(prevWixDataFunc, orderByArr) {
       }
     }
   }
+
   return wixDataFunc;
 }
 
@@ -122,6 +134,7 @@ export function addLimitToQuery(prevWixDataFunc, convertionObj) {
   if (convertionObj.limit) {
     wixDataFunc = wixDataFunc.limit(convertionObj.limit);
   }
+
   return wixDataFunc;
 }
 
@@ -133,27 +146,33 @@ export function buildWixDataAggregateQuery(convertionObj) {
         wixDataAggFunc = wixDataAggFunc.min(funcQueryObj.columnName);
         break;
       }
+
       case "MAX": {
         wixDataAggFunc = wixDataAggFunc.max(funcQueryObj.columnName);
         break;
       }
+
       case "AVG": {
         wixDataAggFunc = wixDataAggFunc.avg(funcQueryObj.columnName);
         break;
       }
+
       case "SUM": {
         wixDataAggFunc = wixDataAggFunc.sum(funcQueryObj.columnName);
         break;
       }
+
       case "COUNT": {
         wixDataAggFunc = wixDataAggFunc.count();
         break;
       }
+
       default: {
         throw new Error(errors[43].message);
       }
     }
   }
+
   return wixDataAggFunc;
 }
 
@@ -174,6 +193,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "gt": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).gt(filterFieldName, filterVal));
@@ -183,6 +203,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "ge": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).ge(filterFieldName, filterVal));
@@ -192,6 +213,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "lt": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).lt(filterFieldName, filterVal));
@@ -201,6 +223,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "le": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).le(filterFieldName, filterVal));
@@ -210,6 +233,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "ne": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).ne(filterFieldName, filterVal));
@@ -219,6 +243,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "startsWith": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).startsWith(filterFieldName, filterVal));
@@ -228,6 +253,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "endsWith": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).endsWith(filterFieldName, filterVal));
@@ -237,6 +263,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             case "contains": {
               if (convertionObj.anotherCondType === "OR" && !first) {
                 wixDataAggFilter = wixDataAggFilter.or(wixData.query(convertionObj.collectionName).contains(filterFieldName, filterVal));
@@ -246,6 +273,7 @@ export function buildWixDataFilter(convertionObj) {
               }
               break;
             }
+
             default: {
               throw new Error(errors[42].message);
             }
@@ -254,5 +282,6 @@ export function buildWixDataFilter(convertionObj) {
       }
     }
   }
+
   return wixDataAggFilter;
 }

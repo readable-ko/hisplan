@@ -33,43 +33,52 @@ function init() {
 
 // Iterates over the input array and handles the conversion according to the expression's type
 function convertor() {
-  for (let i = 0; i < parsedInputArr.length; i++) {
+  for (let i = 0; i < parsedInputArr.length; ++i) {
     switch (parsedInputArr[i].toUpperCase()) {
       case "SELECT": {
         i = convertSelectExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "WHERE": {
         i = convertCondExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "ORDER": {
         i = convertOrderByExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "UPDATE": {
         i = convertUpdateExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "LIMIT": {
         i = convertLimitExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "INSERT": {
         i = convertInsertExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "DELETE": {
         i = convertDeleteExp(convertionObj, parsedInputArr, i + 1);
         break;
       }
+
       case "INNER":
       case "LEFT": {
         i = convertJoinExp(convertionObj, parsedInputArr, i);
         break;
       }
-      default:
+
+      default: {
         throw new Error(errors[0].message + " " + parsedInputArr[i]);
+      }
     }
   }
 }

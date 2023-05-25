@@ -25,5 +25,6 @@ export function parseIntoArr(inputStr) {
   parsedInputStr = parsedInputStr.replace(/<\s\s>/g, "<>");
   parsedInputStr = parsedInputStr.replace(/\s[\s]+/g, " "); // replace all sequences of 2 spaces or more with 1 space char
   parsedInputStr = parsedInputStr.replace(/\s,/g, ","); // remove space before commas
+
   return parsedInputStr.split(" ");
 }
