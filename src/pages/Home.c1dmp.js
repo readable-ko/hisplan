@@ -15,7 +15,7 @@ $w.onReady(function () {
 
 function registerHandlers() {
     $w('#repeater').onItemReady(($item, itemData) => {
-        $item('#taskTitle').text = itemData.title;
+        $item('#taskTitle').text = itemData.Todo;
         if (itemData.isComplete === true) {
             $item('#taskCompleteButton').label = 'V';
         }
