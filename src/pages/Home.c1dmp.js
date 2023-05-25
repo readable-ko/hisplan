@@ -54,7 +54,7 @@ async function fetchData() {
     $w('#loaderImage').expand();
     try {
         $w('#repeater').data = await getAllTasks(visitorId);
-        console.log("DATA IS:", $w('#repeater').data.length);
+        console.log("DATA IS:", $w('#repeater').data);
         $w('#loaderImage').collapse();
     } catch (error) {
         console.error(error);
