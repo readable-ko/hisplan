@@ -14,7 +14,7 @@ export async function getAllTasks(visitorId) {
 
 export async function insertTask(taskObj) {
     try {
-        await wixData.insert('Todo List', taskObj);
+        await wixData.insert('TodoList', taskObj);
     } catch (error) {
         console.error(error);
     }
@@ -26,7 +26,7 @@ export async function updateTask(task, newStatus) {
             ...task,
             isComplete: newStatus
         };
-        await wixData.update('Todo List', toUpdate);
+        await wixData.update('TodoList', toUpdate);
     } catch (error) {
         console.error(error);
     }
@@ -36,7 +36,7 @@ export async function updateTask(task, newStatus) {
 // this is done in order to allow calling it several times without waiting to each call to complete
 export function removeTask(taskID) {
     try {
-        const removePromise = wixData.remove('Todo List', taskID);
+        const removePromise = wixData.remove('TodoList', taskID);
         return removePromise;
     } catch (error) {
         console.error(error);
