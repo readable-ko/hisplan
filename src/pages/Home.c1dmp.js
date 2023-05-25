@@ -35,11 +35,11 @@ function setVisitor() {
     const memInfo = currentMember.getMember().then((member) => {
         const id = member._id;
         const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
-        return member;
+        return id;
     }).catch((error) => {
         console.error(error);
     });
-    visitorId = memInfo["_id"];
+    visitorId = await memInfo;
     //local.getItem('studentId');
     console.log("visitorId is:", visitorId);
     console.log("memInfo is:", memInfo);
