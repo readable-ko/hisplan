@@ -34,14 +34,14 @@ function registerHandlers() {
 function setVisitor() {
     const memInfo = currentMember.getMember().then((member) => {
         const id = member._id;
+        visitorId = id;
         const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
         return member;
     }).catch((error) => {
         console.error(error);
     });
-    visitorId = memInfo.id;
     //local.getItem('studentId');
-    console.log("visitorId is:", memInfo);
+    console.log("visitorId is:", visitorId);
     if (!visitorId) {
         visitorId = Math.random().toString(36);
         local.setItem('studentId', visitorId);
