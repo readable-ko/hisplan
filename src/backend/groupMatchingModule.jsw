@@ -1,99 +1,108 @@
 import wixData from "wix-data";
 
-export async function getStudentsInfo() {
-  let students = [];
-  const preferences = await wixData.query("Preference").include("friends").find();
-
-  preferences.items.forEach((preference) => {
-    students.push({
-      id: preference.student,
-      coursePriority: [preference.first, preference.second, preference.third],
-      desiredFriends: preference.friends.map((friend) => friend._id),
-    });
-  });
-
-  return students;
-}
-
-export function matchGroups(studentsPreferences) {
+// Match students into study groups
+export async function matchGroups() {
   let studyGroups = [];
 
-  for (let student of studentsPreferences) {
-    if (student.friend !== null && student.friend.friend === student) {
-      let studyGroup = null;
+  // Get the students' information from the database
+  const students = await getStudentsInfo();
 
-      for (let course of student.coursePriority) {
-        studyGroup = findStudyGroupByCourse(studyGroups, course);
-
-        // If the study group exists and has a vacancy, add the student to it
-        if (studyGroup !== null && hasVacancy(studyGroup)) {
-          addStudentToStudyGroup(student, studyGroup);
-          break;
-        }
-      }
-
-      // If the study group doesn't exist or doesn't have a vacancy, create a new one
-      if (studyGroup === null || !hasVacancy(studyGroup)) {
-        studyGroup = createStudyGroup(course);
-        addStudentToStudyGroup(student, studyGroup);
-      }
-    }
-  }
+  // Assign the students to the study groups
+  assignStudentsToStudyGroups(students, studyGroups);
 
   // Assign the remaining students to the study groups
-  assignRemainingStudents(studentsPreferences, studyGroups);
+  assignRemainingStudents(students, studyGroups);
 
   return studyGroups;
 }
 
-function findStudyGroupByCourse(studyGroups, course) {
-  // Find a study group with the given course
-  for (let group of studyGroups) {
-    if (group.course === course) {
-      return group;
-    }
-  }
+// Get the students' information from the database
+async function getStudentsInfo() {
+  let students = [];
 
-  return null;
-}
-
-function hasVacancy(studyGroup) {
-  // Check if the study group has a vacancy for another student
-  return studyGroup.members.length < 4; // Max capacity: 4
-}
-
-function addStudentToStudyGroup(student, studyGroup) {
-  // Add the student to the study group
-  studyGroup.members.push(student);
-}
-
-function createStudyGroup(course) {
-  // Create a new study group for the given course
-  let studyGroup = { course: course, members: [] };
-  studyGroups.push(studyGroup);
-
-  return studyGroup;
-}
-
-function assignRemainingStudents(studentsPreferences, studyGroups) {
-  for (let student of studentsPreferences) {
-    if (!isAssignedToStudyGroup(student, studyGroups)) {
-      for (let studyGroup of studyGroups) {
-        if (hasVacancy(studyGroup)) {
-          addStudentToStudyGroup(student, studyGroup);
-          break;
+  await wixData
+    .query("Preference")
+    .include("student", "first", "second", "third", "friends")
+    .find()
+    .then(
+      // Handle the returned collection of items
+      (preferences) => {
+        // Check if preferences were found
+        if (preferences.items.length > 0) {
+          // Add each student's information to the array
+          preferences.items.forEach((preference) => {
+            students.push({
+              studentId: preference.student.studentId,
+              name: preference.student.name,
+              coursePriority: [
+                { courseId: preference.first.courseId, subject: preference.first.subject, instructor: preference.first.instructor },
+                { courseId: preference.second.courseId, subject: preference.second.subject, instructor: preference.second.instructor },
+                { courseId: preference.third.courseId, subject: preference.third.subject, instructor: preference.third.instructor },
+              ],
+              desiredFriends: preference.friends.map((friend) => ({ studentId: friend.studentId, name: friend.name })),
+            });
+          });
+        } else {
+          // Handle case where no preferences were found
+          console.log("No preferences found");
         }
+      },
+      // Handle potential errors
+      (error) => {
+        console.error(error.message);
+      }
+    );
+
+  return students;
+}
+
+// Assign the students to the study groups
+function assignStudentsToStudyGroups(students, studyGroups) {
+  students.forEach((student) => {
+    let studyGroup = undefined;
+
+    // Find a study group with a course that the student wants to study
+    student.coursePriority.forEach((course) => {
+      studyGroup = studyGroups.find((group) => group.course === course);
+
+      // If the study group exists and has a vacancy, add the student to it
+      if (studyGroup !== undefined && hasVacancy(studyGroup)) {
+        studyGroup.members.push({ studentId: student.studentId, name: student.name });
+        return;
+      }
+    });
+
+    // If the study group doesn't exist or doesn't have a vacancy, create a new one
+    if (studyGroup === undefined || !hasVacancy(studyGroup)) {
+      studyGroup = { courseInfo: student.coursePriority[0], members: [{ studentId: student.studentId, name: student.name }] };
+    }
+  });
+}
+
+// Assign the remaining students to the study groups
+function assignRemainingStudents(students, studyGroups) {
+  students.forEach((student) => {
+    // Check if the student is already assigned to a study group
+    let isAssignedToStudyGroup = studyGroups.some((studyGroup) => studyGroup.members.includes(student));
+    if (!isAssignedToStudyGroup) {
+      studyGroups.forEach((studyGroup) => {
+        // If the study group has a vacancy, add the student to it
+        if (hasVacancy(studyGroup)) {
+          studyGroup.members.push({ studentId: student.studentId, name: student.name });
+          isAssignedToStudyGroup = true;
+          return;
+        }
+      });
+
+      // If the student is still not assigned to a study group, create a new one
+      if (!isAssignedToStudyGroup) {
+        studyGroups.push({ courseInfo: student.coursePriority[0], members: [{ studentId: student.studentId, name: student.name }] });
       }
     }
-  }
+  });
 }
 
-function isAssignedToStudyGroup(student, studyGroups) {
-  for (let studyGroup of studyGroups) {
-    if (studyGroup.members.includes(student)) {
-      return true;
-    }
-  }
-
-  return false;
+// Check if the study group has a vacancy for another student
+function hasVacancy(studyGroup) {
+  return studyGroup.members.length < 4; // Max capacity: 4
 }

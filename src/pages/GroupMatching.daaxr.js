@@ -1,14 +1,12 @@
-import { getStudentsInfo, matchGroups } from "backend/groupMatchingModule.jsw";
+import { matchGroups } from "backend/groupMatchingModule.jsw";
 
-$w.onReady(function () {
+$w.onReady(() => {
   $w("#button").onClick(async () => {
     try {
-      const students = await getStudentsInfo();
-      console.log(students);
-      // const studyGroups = matchGroups(students);
-      // console.log(studyGroups);
+      const studyGroups = await matchGroups();
+      console.log(studyGroups);
     } catch (error) {
-      console.log(error);
+      console.error(error.message);
     }
   });
 });
