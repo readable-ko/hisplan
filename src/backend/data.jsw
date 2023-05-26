@@ -1,0 +1,44 @@
+import wixData from 'wix-data';
+
+export async function getAllTasks(visitorId) {
+    try {
+        const results = await wixData.query('TodoList')
+            .eq('studentId', visitorId)
+            .find();
+        console.log("Length of item is: ", results.length);
+        return results.items;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function insertTask(taskObj) {
+    try {
+        await wixData.insert('TodoList', taskObj);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function updateTask(task, newStatus) {
+    try {
+        const toUpdate = {
+            ...task,
+            isComplete: newStatus
+        };
+        await wixData.update('TodoList', toUpdate);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// this function is different from the previous ones as it returns a promise
+// this is done in order to allow calling it several times without waiting to each call to complete
+export function removeTask(taskID) {
+    try {
+        const removePromise = wixData.remove('TodoList', taskID);
+        return removePromise;
+    } catch (error) {
+        console.error(error);
+    }
+}
