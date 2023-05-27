@@ -7,7 +7,7 @@ $w.onReady(() => {
     const selectedvalue1 = $w('#dropdown1').value;
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
-      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject.courseId}));
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown4').options = optionvalue;
     })
   });
@@ -16,7 +16,7 @@ $w.onReady(() => {
     const selectedvalue2 = $w('#dropdown2').value;
 
     wixData.query('Course').eq('subject', selectedvalue2).find().then(results => {
-      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject.courseId}));
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown5').options = optionvalue;
     })
   });
@@ -25,16 +25,14 @@ $w.onReady(() => {
     const selectedvalue3 = $w('#dropdown3').value;
 
     wixData.query('Course').eq('subject', selectedvalue3).find().then(results => {
-      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject.courseId}));
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown6').options = optionvalue;
+      console.log(optionvalue)
     })
   });
 
   $w("#button1").onClick(async () => {
     try{
-      console.log($w('#dropdown4').key)
-      console.log($w('#dropdown4').value)
-      console.log($w('#dropdown4').label)
       wixData.insert("Preference", { 
         first: $w('#dropdown4').key, 
         second: $w('#dropdown5').key, 
