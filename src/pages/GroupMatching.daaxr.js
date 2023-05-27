@@ -16,4 +16,5 @@ $w.onReady(() => {
     } catch (error) {
       console.error(error.message);
     }
+  });
 });
