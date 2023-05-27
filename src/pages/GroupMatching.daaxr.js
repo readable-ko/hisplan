@@ -13,7 +13,7 @@ $w.onReady(() => {
     const selectedvalue = $w('#dropdown1').value;
 
     console.log(selectedvalue);
-  }
+  });
 
 //   // Dropbox JavaScript SDK 로드
 //   const Dropbox = require('dropbox').Dropbox;
