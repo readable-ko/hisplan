@@ -8,7 +8,7 @@ $w.onReady(() => {
 
   wixData.query('Student').eq('_id', '5ba9ad7b-21ae-4379-b35d-b2dc86e2ccd9').find().then(results => {
     console.log(results.items[0]);
-    console.log(results.items[0].map(item => item.studentId));
+    console.log(results.items[0]['studentId']);
   })
   
   // 1번 Drop Down 누른 경우
