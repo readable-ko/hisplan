@@ -2,44 +2,54 @@ import { matchGroups } from "backend/groupMatchingModule.jsw";
 
 $w.onReady(() => {
   
-  $w('#dropdown1').onChange(async() => {
-    const selectedvalue1 = $w('#dropdown1').value;
-    $w('#selectionTags1').value = selectedvalue1;
-    const selectedvalue2 = $w('#dropdown2').value;
-    $w('#input2').value = selectedvalue2;
-    const selectedvalue3 = $w('#dropdown3').value;
-    $w('#input3').value = selectedvalue3;
-    console.log(selectedvalue);
-  });
-  
 //   $w('#dropdown1').onChange(async() => {
-//     let hasStates = false;
-//     const selectedCourse = $w('#dropdown1').value;
+//     const selectedvalue1 = $w('#dropdown1').value;
+//     $w('#selectionTags1').value = selectedvalue1;
+//     const selectedvalue2 = $w('#dropdown2').value;
+//     $w('#input2').value = selectedvalue2;
+//     const selectedvalue3 = $w('#dropdown3').value;
+//     $w('#input3').value = selectedvalue3;
+//     console.log(selectedvalue);
 //   });
   
-//   if (countryStates[selectedCountry]) {
-//       hasStates = true;
-//       $w('#stateDropdown').options = countryStates[selectedCountry];
-//   } else {
-//       const results = await wixData.query('States')
-//           .eq('country', selectedCountry)
-//           .ascending('title')
-//           .find()
+  const courseId = {};
+  
+  wixData.query('Course')
+    .ascending('subject')
+    .find()
+    .then(results => {
+        const courseOptions = results.items.map(course => ({ label: course.subject, value: course.courseId }));
+        $w('#dropdown1').options = courseOptions;
+    });
+  
+  $w('#dropdown1').onChange(async() => {
+    let hasStates = false;
+    const selectedCourse = $w('#dropdown1').value;
+  });
+  
+  if (courseId[selectedCourse]) {
+      hasStates = true;
+      $w('#stateDropdown').options = courseId[selectedCourse];
+  } else {
+      const results = await wixData.query('courseId')
+          .eq('subject', selectedCourse)
+          .ascending('subject')
+          .find()
 
-// if (results.length > 0) {
-//   hasStates = true;
-//   const stateOptions = results.items.map(state => ({ label: state.title, value: state._id }));
-//   $w('#stateDropdown').options = stateOptions;
-//   countryStates[selectedCountry] = stateOptions;
-// }    
-//   }
+if (results.length > 0) {
+  hasStates = true;
+  const courseOptions = results.items.map(state => ({ label: course.subject, value: course.courseId }));
+  $w('#dropdown1').options = courseOptions;
+  courseId[selectedCourse] = courseOptions;
+}    
+  }
 
-//   if (hasStates) {
-//       $w('#stateDropdown').selectedIndex = undefined;
-//       $w('#stateDropdown').expand();
-//       $w('#searchButton').disable();
-//   } else {
-// $w('#stateDropdown').collapse();
+  if (hasStates) {
+      $w('#dropdown4').selectedIndex = undefined;
+      $w('#stateDropdown').expand();
+      $w('#searchButton').disable();
+  } else {
+// $w('#dropdown4').collapse();
 //       $w('#searchButton').enable();
 //   }
 
