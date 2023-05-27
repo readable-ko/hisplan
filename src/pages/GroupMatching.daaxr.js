@@ -5,6 +5,7 @@ $w.onReady(() => {
   
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
+    const optionvalue = {};
 
     $w('#input1').value = ''
 
@@ -15,12 +16,18 @@ $w.onReady(() => {
 
       for(let i = 0 ; i < results.length ; i++) {
         $w('#dropdown4').options = results.items[i]['courseId'];
+        optionvalue += results.items[i]['courseId'];
+        console.log('Option value : ', optionvalue);
+
         console.log('Search Data : ', results.items[i]['courseId']);
         $w('#input1').value += results.items[i]['courseId'];
         if(i != results.length -1) {
           $w('#input1').value += ', '
         }
       }
+
+
+      $w('#dropdown4').options = optionvalue;
     })
   });
 
