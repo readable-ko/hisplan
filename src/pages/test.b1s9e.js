@@ -21,7 +21,7 @@ $w.onReady(function () {
       const documentId = newDocument._id; // 신규 문서의 ID 얻기
       
       // 데이터베이스 업데이트
-      const result = await wixData.update("Preference", "documentId", {
+      const result = await wixData.update("Preference", documentId, {
         friends: selectedOptions
       });
       console.log("Data updated successfully:", result);
