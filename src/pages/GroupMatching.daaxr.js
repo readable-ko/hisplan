@@ -33,9 +33,9 @@ $w.onReady(() => {
   $w("#button1").onClick(async () => {
     try{
       wixData.insert("Preference", { 
-        first: $w('#dropdown4').value, 
-        second: $w('#dropdown5').value, 
-        third: $w('#dropdown6').value
+        first: $w('#dropdown4').label, 
+        second: $w('#dropdown5').label, 
+        third: $w('#dropdown6').label
   });
     } catch{
       console.error("Failed to update data:");
