@@ -13,13 +13,11 @@ $w.onReady(() => {
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
 
-      // let optionvalue = results.item.map(course => ({label : countyId.title}))
-      console.log(results);
+      let optionvalue = results.item.map(course => ({label : course.couseId, value : course._id}));
+      $w('#dropdown4').options = optionvalue;
+      console.log(optionvalue);
 
       for(let i = 0 ; i < results.length ; i++) {
-        $w('#dropdown4').data = results.items[i]['courseId'];
-        // optionvalue += results.items[i]['courseId'];
-        // console.log('Debug : ', optionvalue);
 
         console.log('Search Data : ', results.items[i]['courseId']);
         $w('#input1').value += results.items[i]['courseId'];
