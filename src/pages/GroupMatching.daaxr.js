@@ -1,37 +1,47 @@
 import { matchGroups } from "backend/groupMatchingModule.jsw";
+import wixData from 'wix-data';
 
 $w.onReady(() => {
   
-  const myDropdown = document.getElementById('#dropdown1');
-  myDropdown.addEventListener('change', function() {
-    const selectedValue = myDropdown.value;
-    
-    console.log('Selected Value : ', selectedValue);
+  $w('#dropdown1').onChange(async() => {
+    const selectedvalue1 = $w('#dropdown1').value;
+
+    wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
+      $w('#dropdown4').options = optionvalue;
+    })
   });
-                                             
-//   // Dropbox JavaScript SDK 로드
-//   const Dropbox = require('dropbox').Dropbox;
-//   const dbx = new Dropbox("#dropdown1");
 
-//   // column 정보 가져오기
-//   dbx.filesListFolder("Course")
-//     .then(response => {
-//       const columns = response.entries; // column 정보를 가져옵니다.
-  
-//       // 두 개의 column 정보를 합치기
-//       const combinedColumns = columns.map(column => {
-//         return column.subject + ' ' + column.courseId;
-//       });
+  $w('#dropdown2').onChange(async() => {
+    const selectedvalue2 = $w('#dropdown2').value;
 
-//       // 합쳐진 column 정보를 표시
-//       combinedColumns.forEach(column => {
-//         console.log(column);
-//       });
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-  
+    wixData.query('Course').eq('subject', selectedvalue2).find().then(results => {
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
+      $w('#dropdown5').options = optionvalue;
+    })
+  });
+
+  $w('#dropdown3').onChange(async() => {
+    const selectedvalue3 = $w('#dropdown3').value;
+
+    wixData.query('Course').eq('subject', selectedvalue3).find().then(results => {
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
+      $w('#dropdown6').options = optionvalue;
+    })
+  });
+
+  $w("#button1").onClick(async () => {
+    try{
+      wixData.insert("Preference", { 
+        first: $w('#dropdown4').options[$w('#dropdown4').selectedIndex].label, 
+        second: $w('#dropdown5').options[$w('#dropdown5').selectedIndex].label, 
+        third: $w('#dropdown6').options[$w('#dropdown6').selectedIndex].label
+  });
+    } catch{
+      console.error("Failed to update data:");
+    }
+  });
+
   $w("#button").onClick(async () => {
     try {
       const studyGroups = await matchGroups();
