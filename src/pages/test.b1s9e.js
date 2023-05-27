@@ -11,14 +11,14 @@ $w.onReady(function () {
     $w('#textBox1').value += " ";
     
     // 선택한 옵션을 배열에 추가
-    selectedOptions.push(selectedOption);
+    selectedOptions.push({ friends: selectedOptions });
   });
   
   $w("#button1").onClick(async () => {
     console.log(selectedOptions);
     try {
       // 신규 문서 추가
-      const newDocument = await wixData.insert("Preference", { friends: selectedOptions });
+      const newDocument = await wixData.insert("Preference", selectedOptions);
       const documentId = newDocument._id; // 신규 문서의 ID 얻기
       
       // 데이터베이스 업데이트
