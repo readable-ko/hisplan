@@ -19,6 +19,7 @@ $w.onReady(function () {
     console.log("dropdown chosen");
     const selectedOption = $w('#dropdown1').value;
     $w('#textBox1').value += selectedOption;
+    $w('#textBox1').value += " ";
 
     // 데이터베이스에서 Preference 문서 가져오기
     wixData.get('Preference', 'Preference')
