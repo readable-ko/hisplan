@@ -3,6 +3,10 @@ import wixData from 'wix-data';
 
 
 $w.onReady(function () {
+  
+  // 두 번째 드롭다운 숨기기
+  $w('#dropdown3').hide();
+  
   // 페이지 로드 시, 과목(subject)을 가져와서 첫 번째 드롭다운에 설정
   wixData.query("Course")
     .find()
@@ -24,6 +28,10 @@ $w.onReady(function () {
         .find();
       const instructors = queryResult.items.map(item => item.instructor);
       $w('#dropdown3').options = instructors;
+      
+      // 두 번째 드롭다운 보이기
+      $w('#dropdown3').show();
+      
     } catch (error) {
       console.error("Failed to fetch instructors:", error);
     }
