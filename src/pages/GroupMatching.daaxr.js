@@ -5,7 +5,7 @@ $w.onReady(() => {
   
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
-    let optionvalue = [];
+    // let optionvalue = [];
 
     $w('#input1').value = ''
 
@@ -13,10 +13,12 @@ $w.onReady(() => {
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
 
+      // let optionvalue = results.item.map()
+
       for(let i = 0 ; i < results.length ; i++) {
-        $w('#dropdown4').options = results.items[i]['courseId'];
-        optionvalue += results.items[i]['courseId'];
-        console.log('Debug : ', optionvalue);
+        $w('#dropdown4').data = results.items[i]['courseId'];
+        // optionvalue += results.items[i]['courseId'];
+        // console.log('Debug : ', optionvalue);
 
         console.log('Search Data : ', results.items[i]['courseId']);
         $w('#input1').value += results.items[i]['courseId'];
@@ -25,7 +27,7 @@ $w.onReady(() => {
         }
       }
 
-      $w('#dropdown4').options = optionvalue;
+      // $w('#dropdown4').options = optionvalue;
     })
   });
 
