@@ -4,9 +4,9 @@ import wixUsers from 'wix-users';
 
 $w.onReady(() => {
 
-  console.log(wixUsers.currentUser['5ba9ad7b-21ae-4379-b35d-b2dc86e2ccd9']);
+  console.log(wixUsers.currentUser['id']);
 
-  wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
+  wixData.query('Student').eq('_id', '5ba9ad7b-21ae-4379-b35d-b2dc86e2ccd9').find().then(results => {
     console.log(results.items);
   })
   
