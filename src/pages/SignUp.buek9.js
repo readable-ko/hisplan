@@ -7,18 +7,18 @@ $w.onReady(() => {
     //     firstEmail = results.items[0]['sharedemail'];
     // });  
 
-    // $w("#button1").onClick(async () => {
-    //     try {
+    $w("#button1").onClick(async () => {
+        try {
             
 
-    //         wixData.insert("Student", { 
-    //             name: $w('#input1').value, 
-    //             studentId: $w('#input2').value,
-    //             // email: firstEmail
+            wixData.insert("Student", { 
+                name: $w('#input1').value, 
+                studentId: $w('#input2').value
+                // email: firstEmail
 
-    //         });
-    //     } catch (error) {
-    //         console.error(error.message);
-    //     }
-    // });
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    });
 });
