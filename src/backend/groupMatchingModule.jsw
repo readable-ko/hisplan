@@ -29,12 +29,12 @@ async function getStudentsInfo() {
       (preferences) => {
         // Check if preferences were found
         if (preferences.items.length > 0) {
-          // Add each student's information to the array
+          // Add the students' information to the students array
           preferences.items.forEach((preference) => {
             students.push({
               studentId: preference.student.studentId,
               name: preference.student.name,
-              coursePriority: [
+              prioritizedCourses: [
                 { courseId: preference.first.courseId, subject: preference.first.subject, instructor: preference.first.instructor },
                 { courseId: preference.second.courseId, subject: preference.second.subject, instructor: preference.second.instructor },
                 { courseId: preference.third.courseId, subject: preference.third.subject, instructor: preference.third.instructor },
@@ -59,68 +59,72 @@ async function getStudentsInfo() {
 // Assign the students to the study groups
 function assignStudentsToStudyGroups(students, studyGroups) {
   students.forEach((student) => {
-    let studyGroup = undefined;
+    let isAssigned = false;
 
-    // Find a study group with a course that the student wants to study
-    student.coursePriority.forEach((course) => {
-      studyGroup = studyGroups.find((group) => group.course === course);
+    // Iterate over the course priorities of the student
+    student.prioritizedCourses.forEach((course) => {
+      // Check if there are groups available for the current course
+      const groupsForCourse = studyGroups.filter((group) => group.courseInfo === course);
+      if (groupsForCourse.length > 0) {
+        // Check if there are groups with vacancies
+        const groupsWithVacancy = groupsForCourse.filter((group) => hasVacancy(group));
+        if (groupsWithVacancy.length > 0) {
+          // Check if there are groups among friends' groups
+          const groupsWithFriends = getGroupsWithFriends(student, groupsWithVacancy);
+          if (groupsWithFriends.length > 0) {
+            // Select the first group among friends' groups and assign the student to it
+            groupsWithFriends[0].members.push({ studentId: student.studentId, name: student.name });
+          } else {
+            // Select the first group with vacancies and assign the student to it
+            groupsWithVacancy[0].members.push({ studentId: student.studentId, name: student.name });
+          }
 
-      // If the study group exists and has a vacancy, add the student to it
-      if (studyGroup !== undefined && hasVacancy(studyGroup)) {
-        studyGroup.members.push({ studentId: student.studentId, name: student.name });
-        return;
+          isAssigned = true;
+          return;
+        }
       }
     });
 
-    // If the study group doesn't exist or doesn't have a vacancy, create a new one
-    if (studyGroup === undefined || !hasVacancy(studyGroup)) {
-      // Get the friends' study groups
-      const friendsStudyGroups = getFriendsStudyGroups(student, studyGroups);
-
-      // Find the first available study group among friends' study groups
-      studyGroup = friendsStudyGroups.find((group) => hasVacancy(group));
-
-      // If no study group is available among friends' study groups, create a new one
-      if (studyGroup === undefined) {
-        studyGroups.push({ courseInfo: student.coursePriority[0], members: [{ studentId: student.studentId, name: student.name }] });
-      }
+    // If not assigned to any group, create a new group for the first course
+    if (!isAssigned) {
+      studyGroups.push({ courseInfo: student.prioritizedCourses[0], members: [{ studentId: student.studentId, name: student.name }] });
     }
   });
 }
 
-// Get the study groups of a student's friends
-function getFriendsStudyGroups(student, studyGroups) {
-  const friendsStudyGroups = [];
-
-  student.desiredFriends.forEach((friend) => {
-    studyGroups.forEach((group) => {
+// Get the groups among friends' groups
+function getGroupsWithFriends(student, groups) {
+  const groupIdsWithFriends = student.desiredFriends.reduce((groupIds, friend) => {
+    groups.forEach((group) => {
       if (group.members.some((member) => member.studentId === friend.studentId)) {
-        friendsStudyGroups.push(group);
+        groupIds.add(group.courseInfo);
       }
     });
-  });
 
-  return friendsStudyGroups;
+    return groupIds;
+  }, new Set());
+
+  return groups.filter((group) => groupIdsWithFriends.has(group.courseInfo));
 }
 
 // Assign the remaining students to the study groups
 function assignRemainingStudents(students, studyGroups) {
   students.forEach((student) => {
     // Check if the student is already assigned to a study group
-    let isAssignedToStudyGroup = studyGroups.some((studyGroup) => studyGroup.members.includes(student));
-    if (!isAssignedToStudyGroup) {
+    let isAssigned = studyGroups.some((studyGroup) => studyGroup.members.includes(student));
+    if (!isAssigned) {
       studyGroups.forEach((studyGroup) => {
-        // If the study group has a vacancy, add the student to it
+        // If the study group has a vacancy, assign the student to it
         if (hasVacancy(studyGroup)) {
           studyGroup.members.push({ studentId: student.studentId, name: student.name });
-          isAssignedToStudyGroup = true;
+          isAssigned = true;
           return;
         }
       });
 
       // If the student is still not assigned to a study group, create a new one
-      if (!isAssignedToStudyGroup) {
-        studyGroups.push({ courseInfo: student.coursePriority[0], members: [{ studentId: student.studentId, name: student.name }] });
+      if (!isAssigned) {
+        studyGroups.push({ courseInfo: student.prioritizedCourses[0], members: [{ studentId: student.studentId, name: student.name }] });
       }
     }
   });
