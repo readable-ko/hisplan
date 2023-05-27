@@ -32,6 +32,9 @@ $w.onReady(() => {
 
   $w("#button1").onClick(async () => {
     try{
+      console.log($w('#dropdown4').key)
+      console.log($w('#dropdown4').value)
+      console.log($w('#dropdown4').label)
       wixData.insert("Preference", { 
         first: $w('#dropdown4').key, 
         second: $w('#dropdown5').key, 
