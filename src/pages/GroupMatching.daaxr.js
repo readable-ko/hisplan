@@ -1,9 +1,8 @@
 import { matchGroups } from "backend/groupMatchingModule.jsw";
-import wixData from 'wix-data';
 
 $w.onReady(() => {
   
-  const myDropdown = document.getElementById('dropdown1');
+  const myDropdown = document.getElementById('#dropdown1');
   myDropdown.addEventListener('change', function() {
     const selectedValue = myDropdown.value;
     
