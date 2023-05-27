@@ -9,11 +9,9 @@ $w.onReady(() => {
 
     $w('#input1').value = ''
 
-
-
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
 
-      let optionvalue = results.item.map(course => ({label : course.couseId, value : course._id}));
+      let optionvalue = results.item.map(subject => ({label : subject.subject, value : subject._id}));
       $w('#dropdown4').options = optionvalue;
       console.log(optionvalue);
 
