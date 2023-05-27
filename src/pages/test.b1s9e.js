@@ -11,7 +11,7 @@ $w.onReady(function () {
     $w('#textBox1').value += " ";
     
     // 선택한 옵션을 배열에 추가
-    selectedOptions.push({ friends: selectedOptions });
+    selectedOptions.push({ friends: selectedOption });
   });
   
   $w("#button1").onClick(async () => {
