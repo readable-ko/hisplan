@@ -4,3 +4,4 @@ node_modules/
 .idea/
 .wix/
 jsconfig.json
+hisplan.code-workspace
