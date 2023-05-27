@@ -1,4 +1,15 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
+import wixData from 'wix-data';
 
-$w.onReady(function () {});
+$w.onReady(() => {
+
+    $w("#button1").onClick(async () => {
+        try {
+            wixData.insert("Student", { 
+                name: $w('#input1').value, 
+                studentId: $w('#input2').value
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    });
+});
