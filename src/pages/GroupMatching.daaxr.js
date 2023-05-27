@@ -11,6 +11,37 @@ $w.onReady(() => {
     $w('#input3').value = selectedvalue3;
     console.log(selectedvalue);
   });
+  
+//   $w('#dropdown1').onChange(async() => {
+//     let hasStates = false;
+//     const selectedCourse = $w('#dropdown1').value;
+//   });
+  
+//   if (countryStates[selectedCountry]) {
+//       hasStates = true;
+//       $w('#stateDropdown').options = countryStates[selectedCountry];
+//   } else {
+//       const results = await wixData.query('States')
+//           .eq('country', selectedCountry)
+//           .ascending('title')
+//           .find()
+
+// if (results.length > 0) {
+//   hasStates = true;
+//   const stateOptions = results.items.map(state => ({ label: state.title, value: state._id }));
+//   $w('#stateDropdown').options = stateOptions;
+//   countryStates[selectedCountry] = stateOptions;
+// }    
+//   }
+
+//   if (hasStates) {
+//       $w('#stateDropdown').selectedIndex = undefined;
+//       $w('#stateDropdown').expand();
+//       $w('#searchButton').disable();
+//   } else {
+// $w('#stateDropdown').collapse();
+//       $w('#searchButton').enable();
+//   }
 
 
 
