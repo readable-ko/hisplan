@@ -14,9 +14,6 @@
 
 // });
 
-import { $w } from 'wix-sdk';
-import wixData from 'wix-data';
-
 $w.onReady(function () {
   $w('#dropdown1').onChange(function () {
     console.log("dropdown chosen");
