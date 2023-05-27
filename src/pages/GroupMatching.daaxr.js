@@ -20,12 +20,12 @@ $w.onReady(() => {
 
   $w("#button1").onClick(async () => {
     try{
-      wixData.insert("Preference", first, {first: $w('#dropdown1').value});
-      wixData.insert("Preference", second, {second: $w('#dropdown2').value});
-      wixData.insert("Preference", third, {third: $w('#dropdown3').value});
+      wixData.insert("Preference", { first: $w('#dropdown1').value });
+      wixData.insert("Preference", { second: $w('#dropdown2').value});
+      wixData.insert("Preference", { third: $w('#dropdown3').value});
 
     } catch{
-      console.error("Failed to update data:", error);
+      console.error("Failed to update data:");
     }
   });
 
