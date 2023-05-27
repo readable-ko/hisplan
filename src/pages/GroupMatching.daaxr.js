@@ -3,10 +3,14 @@ import wixData from 'wix-data';
 
 $w.onReady(() => {
   
-  // $w('#dropdown1').onChange(async() => {
-  //   const selectedvalue1 = $w('#dropdown1').value;
-  //   $w('#input1').value = selectedvalue1;
-  // });
+  $w('#dropdown1').onChange(async() => {
+    const selectedvalue1 = $w('#dropdown1').value;
+    $w('#input1').value = selectedvalue1;
+
+    wixData.query('Subject').eq('subject', selectedvalue1).find().then(results => {
+      console.log('Search Data : ', results.items);
+    })
+  });
 
   // $w('#dropdown2').onChange(async() => {
   //   const selectedvalue2 = $w('#dropdown2').value;
