@@ -2,18 +2,13 @@ import { matchGroups } from "backend/groupMatchingModule.jsw";
 
 $w.onReady(() => {
   
-  // const myDropdown = document.getElementById('#dropdown1');
-  // myDropdown.addEventListener('change', function() {
-  //   const selectedValue = myDropdown.value;
-    
-  //   console.log('Selected Value : ', selectedValue);
-  // });
-
   $w('#dropdown1').onChange(async() => {
     const selectedvalue = $w('#dropdown1').value;
-
+    $w('#textBox3').value = selectedvalue;
     console.log(selectedvalue);
   });
+
+
 
 //   // Dropbox JavaScript SDK 로드
 //   const Dropbox = require('dropbox').Dropbox;
