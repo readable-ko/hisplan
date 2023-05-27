@@ -4,7 +4,7 @@ $w.onReady(() => {
   
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
-    $w('#input1').value = selectedvalue1;
+    $w('#selectionTags1').value = selectedvalue1;
     const selectedvalue2 = $w('#dropdown2').value;
     $w('#input2').value = selectedvalue2;
     const selectedvalue3 = $w('#dropdown3').value;
