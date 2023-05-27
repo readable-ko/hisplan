@@ -5,38 +5,30 @@ $w.onReady(() => {
   
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
-    // let optionvalue = [];
-
-    $w('#input1').value = ''
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
-
       let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown4').options = optionvalue;
-      console.log(optionvalue);
-
-      for(let i = 0 ; i < results.length ; i++) {
-
-        console.log('Search Data : ', results.items[i]['courseId']);
-        $w('#input1').value += results.items[i]['courseId'];
-        if(i != results.length -1) {
-          $w('#input1').value += ', '
-        }
-      }
-
-      // $w('#dropdown4').options = optionvalue;
     })
   });
 
-  // $w('#dropdown2').onChange(async() => {
-  //   const selectedvalue2 = $w('#dropdown2').value;
-  //   $w('#input2').value = selectedvalue2;
-  // });
+  $w('#dropdown2').onChange(async() => {
+    const selectedvalue2 = $w('#dropdown2').value;
 
-  // $w('#dropdown3').onChange(async() => {
-  //   const selectedvalue3 = $w('#dropdown3').value;
-  //   $w('#input3').value = selectedvalue3;
-  // });
+    wixData.query('Course').eq('subject', selectedvalue2).find().then(results => {
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
+      $w('#dropdown5').options = optionvalue;
+    })
+  });
+
+  $w('#dropdown3').onChange(async() => {
+    const selectedvalue3 = $w('#dropdown3').value;
+
+    wixData.query('Course').eq('subject', selectedvalue3).find().then(results => {
+      let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
+      $w('#dropdown6').options = optionvalue;
+    })
+  });
 
   $w("#button1").onClick(async () => {
     try{
@@ -50,33 +42,6 @@ $w.onReady(() => {
     }
   });
 
-// Dropbox JavaScript SDK 로드
-//   const Dropbox = require('dropbox').Dropbox;
-//   const dbx = new Dropbox("#dropdown1");
-
-  // column 정보 가져오기
-  // $w('#dropdown1').onClick(async()) => {
-  //   const selectedvalue1 = $w('#dropdown1').value;
-  //   console.log(selectedvalue1);
-  // } 
-//   dbx.filesListFolder("Course")
-//     .then(response => {
-//       const columns = response.entries; // column 정보를 가져옵니다.
-  
-//       // 두 개의 column 정보를 합치기
-//       const combinedColumns = columns.map(column => {
-//         return column.subject + ' ' + column.courseId;
-//       });
-
-//       // 합쳐진 column 정보를 표시
-//       combinedColumns.forEach(column => {
-//         console.log(column);
-//       });
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-  
   $w("#button").onClick(async () => {
     try {
       const studyGroups = await matchGroups();
