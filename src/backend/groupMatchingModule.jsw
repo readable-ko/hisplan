@@ -74,9 +74,33 @@ function assignStudentsToStudyGroups(students, studyGroups) {
 
     // If the study group doesn't exist or doesn't have a vacancy, create a new one
     if (studyGroup === undefined || !hasVacancy(studyGroup)) {
-      studyGroup = { courseInfo: student.coursePriority[0], members: [{ studentId: student.studentId, name: student.name }] };
+      // Get the friends' study groups
+      const friendsStudyGroups = getFriendsStudyGroups(student, studyGroups);
+
+      // Find the first available study group among friends' study groups
+      studyGroup = friendsStudyGroups.find((group) => hasVacancy(group));
+
+      // If no study group is available among friends' study groups, create a new one
+      if (studyGroup === undefined) {
+        studyGroups.push({ courseInfo: student.coursePriority[0], members: [{ studentId: student.studentId, name: student.name }] });
+      }
     }
   });
+}
+
+// Get the study groups of a student's friends
+function getFriendsStudyGroups(student, studyGroups) {
+  const friendsStudyGroups = [];
+
+  student.desiredFriends.forEach((friend) => {
+    studyGroups.forEach((group) => {
+      if (group.members.some((member) => member.studentId === friend.studentId)) {
+        friendsStudyGroups.push(group);
+      }
+    });
+  });
+
+  return friendsStudyGroups;
 }
 
 // Assign the remaining students to the study groups
