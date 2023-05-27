@@ -2,13 +2,19 @@ import { matchGroups } from "backend/groupMatchingModule.jsw";
 
 $w.onReady(() => {
   
-  const myDropdown = document.getElementById('#dropdown1');
-  myDropdown.addEventListener('change', function() {
-    const selectedValue = myDropdown.value;
+  // const myDropdown = document.getElementById('#dropdown1');
+  // myDropdown.addEventListener('change', function() {
+  //   const selectedValue = myDropdown.value;
     
-    console.log('Selected Value : ', selectedValue);
-  });
-                                             
+  //   console.log('Selected Value : ', selectedValue);
+  // });
+
+  $w('#dropdown1').onChange(async() => {
+    const selectedvalue = $w('#dropdown1').value;
+
+    console.log(selectedvalue);
+  }
+
 //   // Dropbox JavaScript SDK 로드
 //   const Dropbox = require('dropbox').Dropbox;
 //   const dbx = new Dropbox("#dropdown1");
