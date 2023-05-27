@@ -49,7 +49,8 @@ $w.onReady(() => {
   });
 
   $w('#dropdown6').onChange(async() => {
-    console.log($w('#dropdown6').options.map((item) => item.label))
+    // console.log($w('#dropdown6').options.map((item) => item.label))
+    console.log($w('#dropdown6').value)
   })
 
   $w("#button1").onClick(async () => {
