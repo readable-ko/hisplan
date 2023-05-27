@@ -5,13 +5,11 @@ $w.onReady(() => {
   
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
-    $w('#input1').value = selectedvalue1;
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
       for(let i = 0 ; i < results.length ; i++) {
         console.log('Search Data : ', results.items[i]['courseId']);
-        // $w('#input1').value = results.items[i]['courseId'];
-        $w('#input1').appendChild(results.items[i]['courseId']);
+        $w('#input1').value += results.items[i]['courseId'];
       }
       
     })
