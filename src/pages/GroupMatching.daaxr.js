@@ -13,7 +13,8 @@ $w.onReady(() => {
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
 
-      // let optionvalue = results.item.map()
+      // let optionvalue = results.item.map(course => ({label : countyId.title}))
+      console.log(results);
 
       for(let i = 0 ; i < results.length ; i++) {
         $w('#dropdown4').data = results.items[i]['courseId'];
