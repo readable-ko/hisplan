@@ -15,6 +15,7 @@ $w.onReady(function () {
   });
   
   $w("#button1").onClick(async () => {
+    console.log(selectedOptions);
     try {
       // 신규 문서 추가
       const newDocument = await wixData.insert("Preference", { friends: selectedOptions });
