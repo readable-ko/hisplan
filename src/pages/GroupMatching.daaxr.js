@@ -20,6 +20,7 @@ $w.onReady(() => {
     .find()
     .then(result => {
         const course = result.items[0];
+        console.log('courseId = ', course);
         const courseId = course.courseId;
         console.log('result = ', courseId);
     });
