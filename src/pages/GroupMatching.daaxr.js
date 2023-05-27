@@ -4,7 +4,7 @@ import wixUsers from 'wix-users';
 
 $w.onReady(() => {
 
-  console.log(wixUsers.currentUser);
+  console.log(wixUsers.currentUser['id']);
   
   // 1번 Drop Down 누른 경우
   $w('#dropdown1').onChange(async() => {
