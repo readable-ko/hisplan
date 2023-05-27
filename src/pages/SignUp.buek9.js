@@ -6,7 +6,8 @@ $w.onReady(() => {
         try {
             wixData.insert("Student", { 
                 name: $w('#input1').value, 
-                studentId: $w('#input2').value
+                studentId: $w('#input2').value,
+                email: window.sharedVariable
             });
         } catch (error) {
             console.error(error.message);
