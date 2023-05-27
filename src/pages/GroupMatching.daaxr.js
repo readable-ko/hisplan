@@ -1,8 +1,12 @@
 import { matchGroups } from "backend/groupMatchingModule.jsw";
 import wixData from 'wix-data';
+import wixUsers from 'wix-users';
 
 $w.onReady(() => {
+
+  console.log(wixUsers.currentUser);
   
+  // 1번 Drop Down 누른 경우
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
 
@@ -12,6 +16,7 @@ $w.onReady(() => {
     })
   });
 
+  // 2번 Drop Down 누른 경우
   $w('#dropdown2').onChange(async() => {
     const selectedvalue2 = $w('#dropdown2').value;
 
@@ -21,6 +26,7 @@ $w.onReady(() => {
     })
   });
 
+  // 3번 Drop Down 누른 경우
   $w('#dropdown3').onChange(async() => {
     const selectedvalue3 = $w('#dropdown3').value;
 
@@ -30,6 +36,7 @@ $w.onReady(() => {
     })
   });
 
+  // Submit 버튼 누른 경우
   $w("#button1").onClick(async () => {
     try{
       wixData.insert("Preference", { 
@@ -42,6 +49,7 @@ $w.onReady(() => {
     }
   });
 
+  // Call backend Funciton 누른 경우
   $w("#button").onClick(async () => {
     try {
       const studyGroups = await matchGroups();
