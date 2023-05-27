@@ -10,10 +10,11 @@ $w.onReady(() => {
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
 
-      $w('#dropdown4').options = results.items;
+      // $w('#dropdown4').options = results.items;
 
 
       for(let i = 0 ; i < results.length ; i++) {
+        $w('#dropdown4').options = results.items[i]['couseID'];
         console.log('Search Data : ', results.items[i]['courseId']);
         $w('#input1').value += results.items[i]['courseId'];
         if(i != results.length -1) {
