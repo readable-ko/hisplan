@@ -13,12 +13,16 @@ $w.onReady(() => {
       $w('#dropdown4').options = optionvalue;
     })
 
+    const selectedTest = $w('#dropdown4').value;
+
+    console.log('Test = ', selectedTest);
 
     wixData.query('Course')
     .ascending('courseId')
-    .eq('_id', $w('#dropdown4').value)
+    .eq('_id', selectedTest)
     .find()
     .then(results => {
+
       if (results.items.length > 0) {
         const result = results.items[0].courseId;
         console.log('result = ', result);
