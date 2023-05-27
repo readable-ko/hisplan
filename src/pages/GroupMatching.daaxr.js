@@ -10,7 +10,8 @@ $w.onReady(() => {
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
       for(let i = 0 ; i < results.length ; i++) {
         console.log('Search Data : ', results.items[i]['courseId']);
-        $w('#input1').value = results.items[i]['courseId'];
+        // $w('#input1').value = results.items[i]['courseId'];
+        $w('#input1').appendChild(results.items[i]['courseId']);
       }
       
     })
