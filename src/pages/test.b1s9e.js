@@ -13,6 +13,7 @@ $w.onReady(function () {
     .catch(error => {
       console.error("Failed to fetch subjects:", error);
     });
+  console.log($w('#dropdown2').value);
 
   // 첫 번째 드롭다운의 선택이 변경되면 해당 과목의 교수님들을 가져와서 두 번째 드롭다운에 설정
   $w('#dropdown2').onChange(async function () {
