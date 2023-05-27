@@ -14,7 +14,7 @@ $w.onReady(() => {
 
 
       for(let i = 0 ; i < results.length ; i++) {
-        $w('#dropdown4').options = results.items[i]['couseID'];
+        $w('#dropdown4').options = results.items[i]['courseId'];
         console.log('Search Data : ', results.items[i]['courseId']);
         $w('#input1').value += results.items[i]['courseId'];
         if(i != results.length -1) {
