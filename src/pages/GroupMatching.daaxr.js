@@ -5,6 +5,10 @@ import wixUsers from 'wix-users';
 $w.onReady(() => {
 
   console.log(wixUsers.currentUser['id']);
+
+  wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
+    console.log(results.items);
+  })
   
   // 1번 Drop Down 누른 경우
   $w('#dropdown1').onChange(async() => {
