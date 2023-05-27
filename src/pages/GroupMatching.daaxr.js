@@ -6,8 +6,11 @@ $w.onReady(() => {
 
   // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
   let userId;
+  // wixUsers.currentUser['id']
+  console.log(wixUsers.currentUser['id']);
 
-  wixData.query('Student').eq('_id', '67561d24-e9f2-4d04-a048-e67d44ddd2a9').find().then(results => {
+
+  wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
     console.log(results.items[0]['studentId']);
     userId = results.items[0]['studentId'];
     $w('#input1').value = userId;
