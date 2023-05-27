@@ -5,7 +5,7 @@ $w.onReady(() => {
   
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
-    const optionvalue = [];
+    let optionvalue = [];
 
     $w('#input1').value = ''
 
