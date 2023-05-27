@@ -1,4 +1,5 @@
 // Velo API 레퍼런스: https://www.wix.com/velo/reference/api-overview/introduction
+import wixData from 'wix-data';
 
 let selectedOptions = [];
 
