@@ -7,7 +7,7 @@ $w.onReady(() => {
     const selectedvalue1 = $w('#dropdown1').value;
     $w('#input1').value = selectedvalue1;
 
-    wixData.query('Subject').eq('subject', selectedvalue1).find().then(results => {
+    wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
       console.log('Search Data : ', results.items);
     })
   });
