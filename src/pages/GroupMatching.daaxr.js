@@ -18,11 +18,13 @@ $w.onReady(() => {
     .ascending('courseId')
     .eq('_id', $w('#dropdown4').value)
     .find()
-    .then(result => {
-        const course = result.items[0];
-        console.log('courseId = ', course);
-        const courseId = course.courseId;
-        console.log('result = ', courseId);
+    .then(results => {
+      if (results.items.length > 0) {
+        const result = results.items[0].courseId;
+        console.log('result = ', result);
+      } else {
+        console.log('No results found.');
+      }
     });
 
   });
@@ -42,9 +44,13 @@ $w.onReady(() => {
     wixData.query('Course').eq('subject', selectedvalue3).find().then(results => {
       let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown6').options = optionvalue;
-      console.log($w('#dropdown6').options.map((item) => item.label))
+      // console.log($w('#dropdown6').options.map((item) => item.label))
     })
   });
+
+  $w('#dropdown6').onChange(async() => {
+    console.log($w('#dropdown6').options.map((item) => item.label))
+  })
 
   $w("#button1").onClick(async () => {
     try{
