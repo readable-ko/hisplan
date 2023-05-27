@@ -18,12 +18,12 @@ $w.onReady(function () {
     console.log(selectedOptions);
     try {
       // 신규 문서 추가
-      const newDocument = await wixData.insert("Preference", { friends: selectedOptions });
+      const newDocument = await wixData.insert("Preference", { test1: selectedOptions });
       const documentId = newDocument._id; // 신규 문서의 ID 얻기
       
       // 데이터베이스 업데이트
       const result = await wixData.update("Preference", documentId, {
-        friends: selectedOptions
+        test1: selectedOptions
       });
       console.log("Data updated successfully:", result);
       
