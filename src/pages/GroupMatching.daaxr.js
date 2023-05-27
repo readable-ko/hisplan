@@ -8,6 +8,7 @@ $w.onReady(() => {
   let userId;
   // wixUsers.currentUser['id']
   console.log(wixUsers.currentUser['id']);
+  console.log('67561d24-e9f2-4d04-a048-e67d44ddd2a9')
 
 
   wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
