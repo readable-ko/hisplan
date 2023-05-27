@@ -3,7 +3,7 @@ import wixData from 'wix-data';
 $w.onReady(() => {
 
     wixData.query('LoginedEmail').find().then(results => {
-        console.log(results.items['sharedemail']);
+        console.log(results.items[0]['sharedemail']);
     });
 
     $w("#button1").onClick(async () => {
