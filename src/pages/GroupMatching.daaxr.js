@@ -10,7 +10,7 @@ $w.onReady(() => {
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
 
-      $w('dropdown4').options = results.items;
+      $w('#dropdown4').options = results.items;
 
 
       for(let i = 0 ; i < results.length ; i++) {
