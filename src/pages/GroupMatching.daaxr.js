@@ -6,10 +6,24 @@ $w.onReady(() => {
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
 
+    
+
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
       let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown4').options = optionvalue;
     })
+
+
+    wixData.query('Course')
+    .ascending('courseId')
+    .eq('_id', $w('#dropdown4').value)
+    .find()
+    .then(result => {
+        const course = result.items[0];
+        const courseId = course.courseId;
+        console.log('result = ', courseId);
+    });
+
   });
 
   $w('#dropdown2').onChange(async() => {
@@ -27,7 +41,7 @@ $w.onReady(() => {
     wixData.query('Course').eq('subject', selectedvalue3).find().then(results => {
       let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown6').options = optionvalue;
-      console.log(optionvalue.map((item) => item.label)[0])
+      console.log($w('#dropdown6').options.map((item) => item.label))
     })
   });
 
