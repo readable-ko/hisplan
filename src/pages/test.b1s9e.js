@@ -27,6 +27,8 @@ $w.onReady(function () {
       const queryResult = await wixData.query("Course")
         .eq("subject", selectedSubject)
         .find();
+      console.log(queryResult);
+      
       const instructors = queryResult.items.map(item => item.instructor);
       $w('#dropdown3').options = instructors;
       
