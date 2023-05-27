@@ -1,6 +1,14 @@
 import { matchGroups } from "backend/groupMatchingModule.jsw";
+import wixData from 'wix-data';
 
 $w.onReady(() => {
+  
+  $w('#dropdown1').onChange(async() => {
+        let hasStates = false;
+        const selectedCourse = $w('#dropdown1').value;
+    
+        console.log(selectedCourse);
+  }
   
   // Dropbox JavaScript SDK 로드
   const Dropbox = require('dropbox').Dropbox;
