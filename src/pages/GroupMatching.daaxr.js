@@ -5,11 +5,16 @@ $w.onReady(() => {
   $w('#dropdown1').onChange(async() => {
     const selectedvalue1 = $w('#dropdown1').value;
     $w('#input1').value = selectedvalue1;
+  });
+
+  $w('#dropdown2').onChange(async() => {
     const selectedvalue2 = $w('#dropdown2').value;
     $w('#input2').value = selectedvalue2;
+  });
+
+  $w('#dropdown3').onChange(async() => {
     const selectedvalue3 = $w('#dropdown3').value;
     $w('#input3').value = selectedvalue3;
-    // console.log(selectedvalue1);
   });
 
 // Dropbox JavaScript SDK 로드
