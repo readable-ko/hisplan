@@ -10,7 +10,7 @@ $w.onReady(() => {
   wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
     console.log(results.items[0]['studentId']);
     userId = results.items[0]['studentId'];
-    $w('#text4').value = userId;
+    $w('#input1').value = userId;
   })
   
   // 1번 Drop Down 누른 경우
