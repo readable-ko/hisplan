@@ -3,20 +3,39 @@
 import { authentication } from "wix-members";
 import wixLocation from "wix-location";
 import wixWindow from "wix-window";
+import wixData from 'wix-data';
 
 $w.onReady(function () {
   $w("#button1").onClick(() => {
-    if (!$w("#email").valid) {
+    if (!$w("#email").valid) 
+    {
       $w("#email").value = "";
       wixWindow.openLightbox("InvaildBox");
-    } else if (!$w("#password").valid) {
+    } 
+    else if (!$w("#password").valid) 
+    {
       wixWindow.openLightbox("passwordBox");
-    } else {
+    } 
+    else 
+    {
       const email = $w("#email").value;
       const pw = $w("#password").value;
+
+      // 가입할 때 적은 Email을 DB에 저장
+      // const query = wixData.query('LoginedEmail');
+      // wixData.bulkRemove(query)
+      //   .then(() => {
+      //     console.log('데이터베이스에서 항목을 성공적으로 지웠습니다.');
+      //   })
+      //   .catch((err) => {
+      //     console.error('데이터베이스에서 항목을 지우는 도중 오류가 발생했습니다:', err);
+      // });
+      // wixData.insert("LoginedEmail", { sharedemail: email });
+
       authentication.register(email, pw).then((registResult) => {
         const status = registResult.status;
-        if (status === "ACTIVE") {
+        if (status === "ACTIVE") 
+        {
           wixLocation.to("https://seohwee.editorx.io/hisplan/info");
         }
       });
