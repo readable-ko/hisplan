@@ -8,7 +8,7 @@ $w.onReady(() => {
     $w('#input1').value = selectedvalue1;
 
     wixData.query('Course').eq('subject', selectedvalue1).find().then(results => {
-      console.log('Search Data : ', results.items);
+      console.log('Search Data : ', results.items[0]);
     })
   });
 
