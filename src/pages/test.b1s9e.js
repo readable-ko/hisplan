@@ -2,14 +2,14 @@
 
 $w.onReady(function () {
 
-	// Velo 프레임워크 API를 사용하여 자바스크립트 코드를 입력하세요.
-  console.log("Connected!");
-	// Hello world 출력:
-	// console.log("Hello world!");
-
-	// 페이지 요소에 함수를 요청하세요. 예:
-	// $w("#button1").label = "Click me!";
-
-	// "실행"을 클릭하거나 사이트를 미리보기하여 코드를 실행하세요.
+	$w('#dropdown1').onChange(function () {
+		console.log("dropdown chosen");
+		const selectedOption = $w('#dropdown1').value;
+		// 데이터베이스에 값을 저장
+		wixData.insert('Preference', { Friends })
+			.catch((error) => {
+			console.error(error);
+		});
+	});
 
 });
