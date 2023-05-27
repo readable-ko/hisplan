@@ -4,11 +4,13 @@ import wixUsers from 'wix-users';
 
 $w.onReady(() => {
 
-  console.log(wixUsers.currentUser['id']);
+  // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
+  let userId;
 
-  wixData.query('Student').eq('_id', '5ba9ad7b-21ae-4379-b35d-b2dc86e2ccd9').find().then(results => {
-    console.log(results.items[0]);
+  wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
     console.log(results.items[0]['studentId']);
+    userId = results.items[0]['studentId'];
+    $w('#text4').value = userId;
   })
   
   // 1번 Drop Down 누른 경우
@@ -45,6 +47,7 @@ $w.onReady(() => {
   $w("#button1").onClick(async () => {
     try{
       wixData.insert("Preference", { 
+        student: usersId,
         first: $w('#dropdown4').options[$w('#dropdown4').selectedIndex].label, 
         second: $w('#dropdown5').options[$w('#dropdown5').selectedIndex].label, 
         third: $w('#dropdown6').options[$w('#dropdown6').selectedIndex].label
