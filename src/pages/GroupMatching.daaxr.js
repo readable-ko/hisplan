@@ -6,7 +6,9 @@ $w.onReady(() => {
     const selectedOption = $w('#dropdownFriends').value;
     $w('#textboxFriends').value = selectedOption;
   });
-  
+});
+
+$w.onReady(() => {
   $w("#button").onClick(async () => {
     try {
       const studyGroups = await matchGroups();
@@ -14,5 +16,4 @@ $w.onReady(() => {
     } catch (error) {
       console.error(error.message);
     }
-  });
 });
