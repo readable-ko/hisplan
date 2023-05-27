@@ -27,7 +27,7 @@ $w.onReady(() => {
     wixData.query('Course').eq('subject', selectedvalue3).find().then(results => {
       let optionvalue = results.items.map(subject => ({label : subject.courseId, value : subject._id}));
       $w('#dropdown6').options = optionvalue;
-      console.log(optionvalue)
+      console.log(optionvalue.label)
     })
   });
 
