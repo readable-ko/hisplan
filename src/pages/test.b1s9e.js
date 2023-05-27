@@ -12,7 +12,6 @@ $w.onReady(function () {
   });
   
   $w("#button1").onClick(async () => {
-    console.log(selectedOptions);
     console.log($w('#textBox1').value);
     try {
       // 신규 문서 추가
