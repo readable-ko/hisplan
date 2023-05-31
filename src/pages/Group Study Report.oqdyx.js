@@ -7,6 +7,7 @@ import { currentMember } from "wix-members";
 
 let visitorId;
 let visitorEmail;
+let groupNum;
 
 $w.onReady(function () {
   // Write your JavaScript here
@@ -40,7 +41,6 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-    const groupNum = getStudentGroup(visitorEmail);
     console.log("gloryko: ", groupNum);
 //     console.log('group num ', groupNum.items);
     
@@ -54,7 +54,7 @@ $w.onReady(function () {
 });
 
 async function setVisitor() {
-  
+  groupNum = await getStudentGroup(visitorEmail);
   const memInfo = await currentMember
     .getMember()
     .then((member) => {
