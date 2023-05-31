@@ -28,7 +28,7 @@ $w.onReady(async () => {
           if(results.items[i]['Group-8'][0]['groupId'] == visitorGroupId) {
             console.log(results.items[i]['name']);
             $w('text4').value = results.items[i]['name'];
-            $w("#repeater1").data += results.items[i]['name'];
+            $w("#repeater1").data = results.items[i]['name'];
           }
         }
     });
