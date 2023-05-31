@@ -67,17 +67,6 @@ export async function increaseGroupReport(email) {
       .find();
 
     console.log(queryResult.items[0]['Group-8'][0].groupId, queryResult.items[0]['Group-8'][0].reportCount);
-    
-    const groupId = queryResult.items[0]['Group-8'][0].groupId;
-    const updatedCount = queryResult.items[0]['Group-8'][0].reportCount + 1;
-
-    // 값을 증가시키기 위해 update() 메서드 사용
-    const updatedGroup = await wixData.update('Group-8', groupId, {
-      reportCount: updatedCount
-    });
-
-    console.log('Increased Group Report:', updatedGroup);
-    return updatedGroup;
   } catch (error) {
     console.error('Error increasing group report:', error);
   }
