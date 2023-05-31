@@ -42,16 +42,27 @@ export async function removeTask(taskID) {
 }
 
 export async function getStudentID(visitorId) {
-  try {
-    const result = await wixData.query("PrivateMembersData")
-                                   .eq("_id", visitorId)
-                                   .find();
-    console.log("Length of item is: ", result.length);
-    return result.items;
-  } catch (error) {
-    console.error(error);
+    const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
+    const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
+    const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
+    const idToQuery = '21600437@handong.ac.kr'; // Replace with the specific ID you want to query
+  
+    wixData.query(referencingCollectionName)
+      .eq('email', idToQuery)
+      .find()
+      .then((results) => {
+        if (results.items.length > 0) {
+          const referencedItemId = results.items[0][referenceFieldName]._id
+          console.log(results);
+        } else {
+          console.log('Item not found');
+        }
+      })
+      .catch(error => {
+        console.error('Error querying referencing collection:', error);
+      });
   }
-}
+  
 
 export async function getGroup(email) {
   try {
