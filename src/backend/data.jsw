@@ -51,6 +51,7 @@ export async function getStudentID(visitorId) {
       .eq('email', idToQuery)
       .find()
       .then((results) => {
+          console.log('glory: ', results);
         if (results.items.length > 0) {
           const referencedItemId = results.items[0][referenceFieldName]._id;
           console.log('Glory:',results);
