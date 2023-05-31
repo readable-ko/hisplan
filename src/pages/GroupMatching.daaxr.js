@@ -84,6 +84,7 @@ $w.onReady(() => {
   });
 
   let visitorEmail;
+  let studentNumber;
 
   async function setVisitor() {
     const memInfo = await currentMember
@@ -104,6 +105,7 @@ $w.onReady(() => {
     .find()
     .then((results) => {
       console.log(results.items[0]['studentId']);
+      studentNumber = results.items[0]['studentId'];
     });
   } 
 
@@ -116,7 +118,7 @@ $w.onReady(() => {
     try {
       setVisitor();
       wixData.insert("Preference", {
-        studentId: userId,
+        studentId: studentNumber,
         first: $w("#dropdownInstructor1").options[$w("#dropdownInstructor1").selectedIndex].value,
         second: $w("#dropdownInstructor2").options[$w("#dropdownInstructor2").selectedIndex].value,
         third: $w("#dropdownInstructor3").options[$w("#dropdownInstructor3").selectedIndex].value,
