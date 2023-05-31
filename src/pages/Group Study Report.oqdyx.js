@@ -36,6 +36,8 @@ $w.onReady(function () {
     //$w('#randomCodeLightBox').show();
     //wixWindow.openLightbox('randomCodeLightBox');
   });
+  
+  $w('#button6').onClick(updateRank);
 
   //     let toInsert = {
   //       "RandomCode":   randomStr
@@ -50,8 +52,6 @@ $w.onReady(function () {
   //             let errorMsg = err;
   //           });
   //     });
- 
-  $w('#button6').onClick(updateRank);
 });
 
 async function setVisitor() {
