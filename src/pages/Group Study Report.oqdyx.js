@@ -37,10 +37,11 @@ $w.onReady(function () {
   });
     
   $w("#button4").onClick(() => {
+    setVisitor();
     let randomStr = generateRandomString(6);
     console.log(randomStr);
     console.log(visitorId);
-    //increaseGroupReport(vistorEmail);
+    increaseGroupReport(vistorEmail);
     //console.log("gloryko: ", groupNum);
 //     console.log('group num ', groupNum.items);
     
