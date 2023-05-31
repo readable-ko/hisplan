@@ -52,8 +52,9 @@ export async function getStudentID(visitorId) {
       .find()
       .then((results) => {
         if (results.items.length > 0) {
-          const referencedItemId = results.items[0][referenceFieldName]._id
+          const referencedItemId = results.items[0][referenceFieldName]._id;
           console.log('Glory:',results);
+          return referencedItemId;
         } else {
           console.log('Item not found');
         }
