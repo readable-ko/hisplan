@@ -75,7 +75,7 @@ $w.onReady(() => {
       });
   });
   
-  $w('#dropdownFriends').onChange(function () {
+  $w('#dropdownFriends').onChange(async () => {
     console.log("friends chosen");
     const selectedOption = $w('#dropdownFriends').value;
     $w('#textboxFriends').value += selectedOption;
