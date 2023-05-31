@@ -66,7 +66,7 @@ export async function increaseGroupReport(email) {
       .include("Group-8")
       .find();
 
-    console.log(queryResult.items[0]['Group-8'][0].groupId, queryResult.items[0]['Group-8'][0].reportCount);
+    console.log(queryResult.items[0]['Group-8'][0].groupId);
   } catch (error) {
     console.error('Error increasing group report:', error);
   }
