@@ -32,12 +32,11 @@ $w.onReady(function () {
     // Set the value of the textbox with the random code
     $w("#generateCode").value = randomStr;
   });
-  
-//   $w('#button6').onClick(updateRank);
-  
+    
   $w("#button4").onClick(() => {
     let randomStr = generateRandomString(6);
     console.log(randomStr);
+    console.log(memInfo.fullName);
   });
   
 });
