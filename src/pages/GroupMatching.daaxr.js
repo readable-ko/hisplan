@@ -3,7 +3,7 @@ import wixData from "wix-data";
 import wixUsers from "wix-users";
 import { currentMember } from "wix-members";
 
-$w.onReady(() => {
+$w.onReady(async () => {
   // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
   // let userId;
 
@@ -86,8 +86,8 @@ $w.onReady(() => {
   let visitorEmail;
   let studentNumber = 0;
 
-  function setVisitor() {
-    const memInfo = currentMember
+  async function setVisitor() {
+    const memInfo = await currentMember
       .getMember()
       .then((member) => {
         const email = member.loginEmail;
@@ -99,21 +99,21 @@ $w.onReady(() => {
     visitorEmail = memInfo;
     console.log("visitorEmail is:", visitorEmail);
 
-    wixData
+    await wixData
     .query("Student")
     .eq("email", visitorEmail)
     .find()
     .then((results) => {
       console.log(results.items)
-      // studentNumber = results.items[0]['studentId'];
-      // console.log(studentNumber);
-      // console.log(results.items[0]['studentId']);
+      studentNumber = results.items[0]['studentId'];
+      console.log(studentNumber);
+      console.log(results.items[0]['studentId']);
       
     });
     console.log(studentNumber);
   } 
 
-  setVisitor();
+  await setVisitor();
 
   console.log(studentNumber);
 
