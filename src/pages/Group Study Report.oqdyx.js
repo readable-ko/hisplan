@@ -59,15 +59,19 @@ async function setVisitor() {
   console.log("visitorId is:", visitorId);
 }
 
-// async function incrementReportCount(visitor) {
+async function incrementReportCount(visitor) {
 //     try {
-//       // Group 데이터베이스 컬렉션 이름
-// //       const collectionName = 'Group';
+      // Group 데이터베이스 컬렉션 이름
+//       const collectionName = 'Group';
       
-//       // visitorId에 해당하는 Group 데이터 가져오기
-//       const group = await wixData.query('Student')
-//         .eq('_id', visitor.id)
-//         .find();
+      // visitorId에 해당하는 Group 데이터 가져오기
+      const group = await wixData.query('PrivateMemberData')
+        .eq('_id', visitor.id)
+        .find();
+      
+      console.log('mem = ', group.items.length);
+      
+//       loginEmail
       
 //       const group = await wixData.query(collectionName)
 //         .eq('_id', visitor.id)
@@ -87,4 +91,4 @@ async function setVisitor() {
 //     } catch (error) {
 //       console.error('Error incrementing report count:', error);
 //     }
-//   }
+  }
