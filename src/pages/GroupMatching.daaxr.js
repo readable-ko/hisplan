@@ -33,6 +33,7 @@ $w.onReady(() => {
       });
     const visitorEmail = memInfo;
     console.log("visitorEmail is:", visitorEmail);
+    console.log("Student ID : ", visitorEmail.slice(0,7))
   }
 
   setVisitor();
