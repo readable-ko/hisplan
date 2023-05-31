@@ -37,7 +37,11 @@ $w.onReady(function () {
     //wixWindow.openLightbox('randomCodeLightBox');
   });
   
-  $w('#button6').onClick(updateRank);
+//   $w('#button6').onClick(updateRank);
+  
+  $w('#button6').onClick(() => {
+    console.log('updateRank()');
+  });
 
   //     let toInsert = {
   //       "RandomCode":   randomStr
