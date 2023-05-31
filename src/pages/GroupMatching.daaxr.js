@@ -103,7 +103,7 @@ $w.onReady(() => {
     .eq("email", visitorEmail)
     .find()
     .then((results) => {
-      console.log(results);
+      console.log(results.items[0]['studentId']);
     });
   } 
 
