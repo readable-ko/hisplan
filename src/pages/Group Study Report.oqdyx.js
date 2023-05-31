@@ -49,14 +49,14 @@ async function setVisitor() {
     .getMember()
     .then((member) => {
       const id = member._id;
-      const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
-      return id;
+      const email = member.loginEmail ;
+      return member;
     })
     .catch((error) => {
       console.error(error);
     });
-  visitorId = memInfo;
+  visitorId = memInfo['id'];
  
   //local.getItem('studentId');
-  console.log("visitorId is:", visitorId);
+  console.log("visitorId is:", memInfo['email']);
 }
