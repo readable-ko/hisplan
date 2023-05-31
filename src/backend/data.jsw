@@ -49,27 +49,26 @@ export async function getGroup() {
   return MultiRefer;
 }
 
-export async function getStudentGroup(email) {
-  const MultiRefer = await wixData.query("Student")
-                                  .eq('email', email)
-                                  .include("Group-8")
-                                  .find();
-  console.log(MultiRefer);
-  
-  return MultiRefer;
-}
-
 export async function increaseGroupReport(email) {
-  try {
-    const queryResult = await wixData.query("Student")
-      .eq('email', email)
-      .include("Group-8")
-      .find();
-    console.log(email);
-    console.log(queryResult.items[0]['Group-8'][0].groupId);
-        console.log(queryResult.items[0]['Group-8'][0].reportCount);
-  } catch (error) {
-    console.error('Error increasing group report:', error);
+    const MultiRefer = await wixData.query("Student")
+                                    .eq('email', email)
+                                    .include("Group-8")
+                                    .find();
+    const newNum = MultiRefer.items[0]['Group-8'][0].reportCount + 1;
+    console.log('report: ',MultiRefer.items[0]['Group-8'][0].reportCount);
+    updateReport(MultiRefer.items[0]['Group-8'][0], newNum);
+    console.log('report: ',MultiRefer.items[0]['Group-8'][0].reportCount);
+    return MultiRefer;
   }
-}
 
+  export async function updateReport(report, newStatus) {
+    try {
+        const toUpdate = {
+          ...report,
+          'reportCount': newNum,
+        };
+        await wixData.update("Group", toUpdate);
+      } catch (error) {
+        console.error(error);
+      }
+  }
