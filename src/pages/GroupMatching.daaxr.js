@@ -106,17 +106,17 @@ $w.onReady(() => {
     .then((results) => {
       console.log(results.items[0]['studentId']);
       studentNumber = results.items[0]['studentId'];
+      
     });
   } 
 
-  
+  setVisitor();
 
-  
+  console.log(studentNumber);
 
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
     try {
-      setVisitor();
       wixData.insert("Preference", {
         studentId: studentNumber,
         first: $w("#dropdownInstructor1").options[$w("#dropdownInstructor1").selectedIndex].value,
