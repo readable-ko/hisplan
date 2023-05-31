@@ -19,7 +19,7 @@ $w.onReady(async () => {
     .include("Group-8")
     .find()
     .then((results) => {
-      console.log(results.items[0]['Group-8']['email'])
+      console.log(results.items[0])
         for(let i = 0 ; i < 22 ; i++) {
           if(results.items[i]['Group-8']['email'] == visitorEmail){
             console.log(results.items[i]['Group-8']['email']);
