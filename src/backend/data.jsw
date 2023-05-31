@@ -66,5 +66,7 @@ export async function increaseGroupReport(email) {
                                   .find();
   MultiRefer.items[0].['Group-8'][0].reportCount++;
   
+  console.log('Increased Group Report');
+  
   return MultiRefer;
 }
