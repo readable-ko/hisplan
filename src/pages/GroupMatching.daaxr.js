@@ -31,7 +31,10 @@ $w.onReady(() => {
 
     const visitorEmail = memInfo;
     console.log("visitorEmail is:", visitorEmail);
+    // console.log("Student ID: ", visitorEmail.slice(0, 8));
   }
+
+  // setVisitor();
 
   // 1번 Dropdown 누른 경우
   $w("#dropdownSubject1").onChange(async () => {
@@ -78,8 +81,7 @@ $w.onReady(() => {
   // Friends Dropdown 누른 경우
   $w("#dropdownFriends").onChange(async () => {
     const selectedOption = $w("#dropdownFriends").value;
-    $w("#textboxFriends").value += selectedOption;
-    $w("#textboxFriends").value += " ";
+    $w("#textboxFriends").value += selectedOption + " ";
   });
 
   // Submit 버튼 누른 경우
@@ -90,6 +92,7 @@ $w.onReady(() => {
         first: $w("#dropdownInstructor1").options[$w("#dropdownInstructor1").selectedIndex].value,
         second: $w("#dropdownInstructor2").options[$w("#dropdownInstructor2").selectedIndex].value,
         third: $w("#dropdownInstructor3").options[$w("#dropdownInstructor3").selectedIndex].value,
+        friends: $w("#textboxFriends").value,
       });
     } catch {
       console.error("Failed to update data:");

@@ -32,16 +32,15 @@ $w.onReady(() => {
         });
       const visitorEmail = memInfo;
       console.log("visitorEmail is:", visitorEmail);
-      console.log("Student ID : ", visitorEmail.slice(0,8)) 
-      
+      console.log("Student ID : ", visitorEmail.slice(0, 8));
+
       wixData.insert("Student", {
         email: visitorEmail,
-        name: $w('#input1').value,
-        studentId: visitorEmail.slice(0,8)
+        name: $w("#input1").value,
+        studentId: visitorEmail.slice(0, 8),
       });
-    } 
-  })
-  
+    }
+  });
 
   setVisitor();
 });
