@@ -32,7 +32,7 @@ export async function updateTask(task, newStatus) {
 
 // this function is different from the previous ones as it returns a promise
 // this is done in order to allow calling it several times without waiting to each call to complete
-export function removeTask(taskID) {
+export async function removeTask(taskID) {
   try {
     const removePromise = wixData.remove("TodoList", taskID);
     return removePromise;
@@ -41,7 +41,7 @@ export function removeTask(taskID) {
   }
 }
 
-export function getStudentID(visitorId) {
+export async function getStudentID(visitorId) {
   try {
     const result = await wixData.query("PrivateMembersData")
                                    .eq("_id", visitorId)
