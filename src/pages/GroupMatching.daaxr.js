@@ -95,7 +95,7 @@ $w.onReady(() => {
         friends: $w("#textboxFriends").value,
       });
     } catch {
-      console.error("Failed to update data:");
+      console.error("Failed to update data:"); 
     }
   });
 
