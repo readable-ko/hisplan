@@ -31,25 +31,20 @@ $w.onReady(function () {
 
     // Set the value of the textbox with the random code
     $w("#generateCode").value = randomStr;
-
-    // Open the lightbox
-    //$w('#randomCodeLightBox').show();
-    //wixWindow.openLightbox('randomCodeLightBox');
   });
+    
+  $w("#button4").onClick(() => {
+    let randomStr = generateRandomString(6);
+    console.log(randomStr);
+    console.log(visitorId.id);
+    
+//     const group = await wixData.query('PrivateMemberData')
+//       .eq('_id', visitor.id)
+//       .find();
 
-  //     let toInsert = {
-  //       "RandomCode":   randomStr
-  //     };
-
-  //     $ww('#submitButton').onClick(() => {
-  //         wixData.insert("GroupStudyReport", toInsert)
-  //           .then((results) => {
-  //             let item = results; //see item below
-  //           })
-  //           .catch((err) => {
-  //             let errorMsg = err;
-  //           });
-  //     });
+//     console.log('mem = ', group.items.length);
+  });
+  
 });
 
 async function setVisitor() {
@@ -64,6 +59,7 @@ async function setVisitor() {
       console.error(error);
     });
   visitorId = memInfo;
+ 
   //local.getItem('studentId');
   console.log("visitorId is:", visitorId);
 }
