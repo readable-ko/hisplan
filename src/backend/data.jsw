@@ -51,8 +51,8 @@ export async function getGroup() {
 
 export async function getStudentGroup(email) {
   const MultiRefer = await wixData.query("Student")
+                                  .eq('email', email)
                                   .include("Group-8")
-                                  .eq("email", email)
                                   .find();
   console.log(MultiRefer);
   
