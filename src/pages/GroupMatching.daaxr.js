@@ -92,7 +92,7 @@ $w.onReady(() => {
         third: $w("#dropdownInstructor3").options[$w("#dropdownInstructor3").selectedIndex].value,
       });
     } catch {
-      console.error("Failed to update data:");
+      console.error("Failed to update data:"); 
     }
   });
 
