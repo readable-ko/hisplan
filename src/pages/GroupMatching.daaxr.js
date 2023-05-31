@@ -29,9 +29,9 @@ $w.onReady(() => {
   //       console.error(error);
   //     });
 
-    const visitorEmail = memInfo;
-    console.log("visitorEmail is:", visitorEmail);
-  }
+  //   const visitorEmail = memInfo;
+  //   console.log("visitorEmail is:", visitorEmail);
+  // }
 
   // setVisitor();
 
