@@ -43,22 +43,16 @@ export async function removeTask(taskID) {
 
 
 export async function getGroup(email) {
-  try {
-  
-    wixData.queryReferenced("Student", email, "Group-8")
-      .then((results) => {
-        if(results.items.length > 0) {
-          console.log(results.items[0]); //see item below
-        } else {
-          // handle case where no matching items found
-          console.log(email, " not found");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    
-  } catch (error) {
-    console.error(error);
-  }
+  wixData.queryReferenced("Student", email, "Group-8")
+    .then((results) => {
+      if(results.items.length > 0) {
+        console.log(results.items[0]); //see item below
+      } else {
+        // handle case where no matching items found
+        console.log(email, " not found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
