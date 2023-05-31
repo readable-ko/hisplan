@@ -7,6 +7,7 @@ let visitorEmail;
 let visitorGroupId;
 
 $w.onReady(async () => {
+  $w("#repeater1").data = [];
   await setVisitor();
 
   await wixData
@@ -27,9 +28,16 @@ $w.onReady(async () => {
           if(results.items[i]['Group-8'][0]['groupId'] == visitorGroupId) {
             console.log(results.items[i]['name']);
             $w('text4').value = results.items[i]['name'];
+            $w("#repeater1").data += results.items[i]['name'];
           }
         }
     });
+
+    console.log($w("#repeater1").data);
+
+    // $w("#repeater1").onItemReady(($item, itemData) => {
+    //   console.log(itemData.)
+    // })
 });
 
 async function setVisitor() {
