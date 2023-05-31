@@ -34,7 +34,7 @@ $w.onReady(() => {
     console.log("Student ID : ", visitorEmail.slice(0,8)) 
     
     wixData.insert("Student", {
-      emali: visitorEmail,
+      email: visitorEmail,
       name: $w('#input1').value,
       studentId: visitorEmail.slice(0,8)
     });
