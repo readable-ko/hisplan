@@ -53,7 +53,29 @@ $w.onReady(function () {
 });
 
 async function setVisitor() {
-  const gloryNum = await getStudentID(visitorEmail);
+    const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
+    const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
+    const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
+    const referencedItemId = '21600437@handong.ac.kr'; // Replace with the specific ID of the referenced item
+  
+    const queryOptions = {
+      suppressAuth: true, // Set to true if authentication is not required for the referenced collection
+    };
+  
+    await wixData.queryReferenced(referencingCollectionName, referenceFieldName, referencedItemId)
+      .then(results => {
+        console.log('glory:', results);
+        if (results.items.length > 0) {
+          const referencingData = results.items;
+          console.log('Glory:', referencingData);
+        } else {
+          console.log('No referencing data found');
+        }
+      })
+      .catch(error => {
+        console.error('Error querying referencing collection:', error);
+      });
+  
   const memInfo = await currentMember
     .getMember()
     .then((member) => {

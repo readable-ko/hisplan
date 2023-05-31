@@ -41,38 +41,18 @@ export async function removeTask(taskID) {
   }
 }
 
-export async function getMemberInfo(referencedItemId) {
-    const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
-    wixData.query(referencedCollectionName)
-          .eq('members', referencedItemId)
-          .find()
-          .then((referencedResults) => {
-            console.log('glory: ', referencedResults);
-            if (referencedResults.items.length > 0) {
-              const referencedData = referencedResults.items[0];
-              console.log('Referenced Data:', referencedData);
-            } else {
-              console.log('Referenced item not found');
-            }
-          })
-          .catch(error => {
-            console.error('Error querying referenced collection:', error);
-          });
-}
 
 export async function getGroup(email) {
-  try {
-    const result = await wixData.queryReferenced("Student", email, "Group-8");
-    
-    if(result.items.length > 0) {
-      //console.log("Group : ", result.items[0]); //see item below
-      return result.items;
-    } else {
-      // handle case where no matching items found
-      console.log(email, " not found");
-    }
-    
-  } catch (error) {
-    console.error(error);
-  }
+  wixData.queryReferenced("Student", email, "Group-8")
+    .then((results) => {
+      if(results.items.length > 0) {
+        console.log(results.items[0]); //see item below
+      } else {
+        // handle case where no matching items found
+        console.log(email, " not found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
