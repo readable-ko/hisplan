@@ -39,7 +39,7 @@ $w.onReady(function () {
   
 //   $w('#button6').onClick(updateRank);
   
-  $w('#button6').onClick(() => {
+  $w("#button6").onClick(() => {
     console.log('updateRank()');
   });
 
