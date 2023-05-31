@@ -19,7 +19,7 @@ $w.onReady(() => {
   //     }
   // });
 
-  $w("#button1").onCLick(async () => {
+  $w("#button1").onClick(async () => {
     async function setVisitor() {
       const memInfo = await currentMember
         .getMember()
