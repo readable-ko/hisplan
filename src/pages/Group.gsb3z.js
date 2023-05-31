@@ -3,7 +3,8 @@
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
 
-let visitorEmail; 
+let visitorEmail;
+let visitorGroupId;
 
 $w.onReady(async () => {
   await setVisitor();
@@ -13,13 +14,18 @@ $w.onReady(async () => {
     .include("Group-8")
     .find()
     .then((results) => {
-      // console.log(results.items[0]['Group-8'])
-      // console.log(results.items[0]['email'])
         for(let i = 0 ; i < 22 ; i++) {
           if(results.items[i]['email'] == visitorEmail){
-            console.log(results.items[i]['email']);
+            // console.log(results.items[i]['email']);
+            // console.log(results.items[i]['name']);
+            // console.log(results.items[i]['Group-8'][0]['groupId']);
+            visitorGroupId = results.items[i]['Group-8'][0]['groupId']
+          }
+        }
+
+        for(let i = 0 ; i < 22 ; i++) {
+          if(results.items[i]['Group-8'][0]['groupId'] == visitorGroupId) {
             console.log(results.items[i]['name']);
-            console.log(results.items[i]['Group-8'][0]['groupId']);
           }
         }
     });
