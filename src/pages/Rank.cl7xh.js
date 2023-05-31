@@ -4,7 +4,7 @@ import wixData from 'wix-data';
 
 $w.onReady(function () {
   $w("#repeater").onItemReady(($w, itemData, index) => {
-    $w("#rank").text = 'Rank #${index}';
+    $w("#rank").text = 'Rank' + index;
   });
 });
 
