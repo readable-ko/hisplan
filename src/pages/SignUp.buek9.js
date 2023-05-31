@@ -41,7 +41,7 @@ $w.onReady(() => {
         studentId: visitorEmail.slice(0,8)
       });
 
-      wixLocation.to('/Home.c1dmp.js')
+      wixLocation.to('/Home')
     } 
     setVisitor();
   })
