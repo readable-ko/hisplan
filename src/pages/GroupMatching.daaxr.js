@@ -86,8 +86,12 @@ $w.onReady(async () => {
 
   console.log(studentNumber);
 
-  const testest = await wixData.query("Student").eq("email", visitorEmail).find();
-  console.log(testest); 
+  const multiReferenceFeild = ['0', '1'];
+  const referncedItems = await wixData.get({
+    "ids": multiReferenceFeild,
+    "suppressAuth": true
+  })
+  console.log(referncedItems);
 
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
