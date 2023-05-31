@@ -84,7 +84,7 @@ $w.onReady(() => {
   });
 
   let visitorEmail;
-  let studentNumber;
+  let studentNumber = 0;
 
   async function setVisitor() {
     const memInfo = await currentMember
