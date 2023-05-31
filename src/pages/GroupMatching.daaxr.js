@@ -86,6 +86,9 @@ $w.onReady(async () => {
 
   console.log(studentNumber);
 
+  const testest = await wixData.query("Student").eq("email", visitorEmail).find();
+  console.log(testest);
+
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
     try {
