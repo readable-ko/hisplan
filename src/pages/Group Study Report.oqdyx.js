@@ -4,6 +4,8 @@ import wixWindow from "wix-window";
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
 
+let visitorId;
+
 $w.onReady(function () {
   // Write your JavaScript here
 
