@@ -1,4 +1,5 @@
 import wixData from "wix-data";
+import { currentMember } from "wix-members";
 
 $w.onReady(() => {
   // let firstEmail;
