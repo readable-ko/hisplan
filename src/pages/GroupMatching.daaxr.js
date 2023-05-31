@@ -89,7 +89,7 @@ $w.onReady(async () => {
   const multiReferenceFeild = ['0', '1'];
   const referncedItems = await wixData.get({
     "ids": multiReferenceFeild,
-    "suppressAuth": true
+    "suppressAuth": true 
   })
   console.log(referncedItems);
 
