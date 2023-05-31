@@ -51,11 +51,25 @@ export async function getStudentID(visitorId) {
       .eq('email', idToQuery)
       .find()
       .then((results) => {
-          console.log('glory: ', results);
+          
         if (results.items.length > 0) {
-          const referencedItemId = results.items[0][referenceFieldName]._id;
+          const referencedItemId = results.items[0].email; //same as idToQuery.
           console.log('Glory:',results);
-          return referencedItemId;
+          wixData.query(referencedCollectionName)
+          .eq('members', referencedItemId)
+          .find()
+          .then((referencedResults) => {
+            console.log('glory: ', referencedResults);
+            if (referencedResults.items.length > 0) {
+              const referencedData = referencedResults.items[0];
+              console.log('Referenced Data:', referencedData);
+            } else {
+              console.log('Referenced item not found');
+            }
+          })
+          .catch(error => {
+            console.error('Error querying referenced collection:', error);
+          });
         } else {
           console.log('Item not found');
         }
@@ -63,8 +77,7 @@ export async function getStudentID(visitorId) {
       .catch(error => {
         console.error('Error querying referencing collection:', error);
       });
-  }
-  
+}
 
 export async function getGroup(email) {
   try {
