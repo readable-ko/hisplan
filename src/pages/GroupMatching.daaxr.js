@@ -104,9 +104,10 @@ $w.onReady(() => {
     .eq("email", visitorEmail)
     .find()
     .then((results) => {
-      studentNumber = results.items[0]['studentId'];
-      console.log(studentNumber);
-      console.log(results.items[0]['studentId']);
+      console.log(results.items)
+      // studentNumber = results.items[0]['studentId'];
+      // console.log(studentNumber);
+      // console.log(results.items[0]['studentId']);
       
     });
     console.log(studentNumber);
