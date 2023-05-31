@@ -55,8 +55,8 @@ async function setVisitor() {
     .catch((error) => {
       console.error(error);
     });
-  visitorId = memInfo['id'];
+  visitorId = memInfo['_id'];
  
   //local.getItem('studentId');
-  console.log("visitorId is:", memInfo);
+  console.log("visitorId is:", memInfo.loginEmail);
 }
