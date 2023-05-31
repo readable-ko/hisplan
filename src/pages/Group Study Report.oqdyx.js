@@ -58,5 +58,5 @@ async function setVisitor() {
   visitorId = memInfo['id'];
  
   //local.getItem('studentId');
-  console.log("visitorId is:", memInfo['email']);
+  console.log("visitorId is:", memInfo);
 }
