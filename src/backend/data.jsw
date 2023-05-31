@@ -41,23 +41,29 @@ export async function removeTask(taskID) {
   }
 }
 
-export async function getMemberInfo(referencedItemId) {
-    const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
-    wixData.query(referencedCollectionName)
-          .eq('members', referencedItemId)
-          .find()
-          .then((referencedResults) => {
-            console.log('glory: ', referencedResults);
-            if (referencedResults.items.length > 0) {
-              const referencedData = referencedResults.items[0];
-              console.log('Referenced Data:', referencedData);
-            } else {
-              console.log('Referenced item not found');
-            }
-          })
-          .catch(error => {
-            console.error('Error querying referenced collection:', error);
-          });
+export async function getStudentID(visitorId) {
+      const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
+      const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
+      const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
+      const referencedItemId = '21600437@handong.ac.kr'; // Replace with the specific ID of the referenced item
+    
+      const queryOptions = {
+        suppressAuth: true, // Set to true if authentication is not required for the referenced collection
+      };
+    
+      wixData.queryReferencing(referencingCollectionName, referenceFieldName, referencedItemId, queryOptions)
+        .find()
+        .then(results => {
+          if (results.items.length > 0) {
+            const referencingData = results.items;
+            console.log('Referencing Data:', referencingData);
+          } else {
+            console.log('No referencing data found');
+          }
+        })
+        .catch(error => {
+          console.error('Error querying referencing collection:', error);
+        });  
 }
 
 export async function getGroup(email) {
