@@ -3,7 +3,7 @@
 import wixData from 'wix-data';
 
 $w.onReady(function () {
-  const myDataset = $w('#groupDB');
+  const myDataset = $w('#Group');
 
   myDataset.onReady(() => {
     myDataset.forEachItem(($w, itemData, itemIndex) => {
