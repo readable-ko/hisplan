@@ -41,7 +41,7 @@ $w.onReady(function () {
     console.log(visitorId);
     
     const groupNum = getGroup(visitorEmail);
-    const gloryNum = getgetStudentID(visitorEmail);
+    const gloryNum = getStudentID(visitorEmail);
 //     console.log('group num ', groupNum.items);
     
 //     getGroup(visitorEmail).then((items) => {
