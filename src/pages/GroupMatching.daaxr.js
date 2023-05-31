@@ -8,18 +8,18 @@ $w.onReady(() => {
   let userId;
   wixUsers.currentUser["id"];
   console.log(wixUsers.currentUser["id"]);
-  console.log("67561d24-e9f2-4d04-a048-e67d44ddd2a9");
+  // console.log("67561d24-e9f2-4d04-a048-e67d44ddd2a9");
 
-  wixData
-    .query("PrivateMembersData")
-    .eq("_id", wixUsers.currentUser["id"])
-    .find()
-    .then((results) => {
-      console.log(results);
-      console.log(results.items[0]["studentId"]);
-      userId = results.items[0]["studentId"];
-      $w("#input1").value = userId;
-    });
+  // wixData
+  //   .query("PrivateMembersData")
+  //   .eq("_id", wixUsers.currentUser["id"])
+  //   .find()
+  //   .then((results) => {
+  //     console.log(results);
+  //     console.log(results.items[0]["studentId"]);
+  //     userId = results.items[0]["studentId"];
+  //     $w("#input1").value = userId;
+  //   });
 
   async function setVisitor() {
     const memInfo = await currentMember
@@ -34,6 +34,8 @@ $w.onReady(() => {
     const visitorEmail = memInfo;
     console.log("visitorEmail is:", visitorEmail);
   }
+
+  setVisitor();
 
   // 1번 Drop Down 누른 경우
   $w("#dropdown1").onChange(async () => {
