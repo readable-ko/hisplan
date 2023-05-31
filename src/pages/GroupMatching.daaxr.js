@@ -86,7 +86,7 @@ $w.onReady(async () => {
 
   console.log(studentNumber);
 
-  const MultiRefer = await wixData
+  await wixData
   .query("Student")
   .include("Group-8")
   .find()
