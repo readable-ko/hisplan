@@ -31,10 +31,6 @@ $w.onReady(function () {
 
     // Set the value of the textbox with the random code
     $w("#generateCode").value = randomStr;
-
-    // Open the lightbox
-    //$w('#randomCodeLightBox').show();
-    //wixWindow.openLightbox('randomCodeLightBox');
   });
   
 //   $w('#button6').onClick(updateRank);
@@ -42,20 +38,6 @@ $w.onReady(function () {
   $w("#button6").onClick(() => {
     console.log("Rank");
   });
-
-  //     let toInsert = {
-  //       "RandomCode":   randomStr
-  //     };
-
-  //     $ww('#submitButton').onClick(() => {
-  //         wixData.insert("GroupStudyReport", toInsert)
-  //           .then((results) => {
-  //             let item = results; //see item below
-  //           })
-  //           .catch((err) => {
-  //             let errorMsg = err;
-  //           });
-  //     });
 });
 
 async function setVisitor() {
