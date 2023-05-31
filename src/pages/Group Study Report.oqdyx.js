@@ -38,7 +38,7 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-    const person = await wixData.query('PrivateMemberData')
+    const person = await wixData.query('Group')
       .eq('_id', visitor)
       .find();
 
