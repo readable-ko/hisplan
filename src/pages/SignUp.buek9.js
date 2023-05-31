@@ -1,6 +1,6 @@
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
-import wixLocation from "wix-location";
+
 
 $w.onReady(() => {
   // let firstEmail;
@@ -33,7 +33,7 @@ $w.onReady(() => {
         });
       const visitorEmail = memInfo;
       console.log("visitorEmail is:", visitorEmail);
-      console.log("Student ID : ", visitorEmail.slice(0,8)) 
+      console.log("Student ID : ", visitorEmail.slice(0,8));
       
       wixData.insert("Student", {
         email: visitorEmail,

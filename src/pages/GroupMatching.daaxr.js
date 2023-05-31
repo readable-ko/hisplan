@@ -5,33 +5,33 @@ import { currentMember } from "wix-members";
 
 $w.onReady(() => {
   // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
-  let userId;
+  // let userId;
 
-  wixData
-    .query("PrivateMembersData")
-    .eq("_id", wixUsers.currentUser["id"])
-    .find()
-    .then((results) => {
-      console.log(results);
-      console.log(results.items[0]["studentId"]);
-      userId = results.items[0]["studentId"];
-      // $w("#input1").value = userId;
-    });
+  // wixData
+  //   .query("PrivateMembersData")
+  //   .eq("_id", wixUsers.currentUser["id"])
+  //   .find()
+  //   .then((results) => {
+  //     console.log(results);
+  //     console.log(results.items[0]["studentId"]);
+  //     userId = results.items[0]["studentId"];
+  //     // $w("#input1").value = userId;
+  //   });
 
-  async function setVisitor() {
-    const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  // async function setVisitor() {
+  //   const memInfo = await currentMember
+  //     .getMember()
+  //     .then((member) => {
+  //       const email = member.loginEmail;
+  //       return email;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
 
-    const visitorEmail = memInfo;
-    console.log("visitorEmail is:", visitorEmail);
-  }
+  //   const visitorEmail = memInfo;
+  //   console.log("visitorEmail is:", visitorEmail);
+  // }
 
   // 1번 Dropdown 누른 경우
   $w("#dropdownSubject1").onChange(async () => {
@@ -81,6 +81,34 @@ $w.onReady(() => {
     $w("#textboxFriends").value += selectedOption;
     $w("#textboxFriends").value += " ";
   });
+
+  let visitorEmail;
+  async function setVisitor() {
+    const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    visitorEmail = memInfo;
+    console.log("visitorEmail is:", visitorEmail);
+  } 
+
+  setVisitor();
+
+  wixData
+    .query("Student")
+    .eq("email", visitorEmail)
+    .find()
+    .then((results) => {
+      console.log(results);
+      // console.log(results.items[0]["studentId"]);
+      // userId = results.items[0]["studentId"];
+      // $w("#input1").value = userId;
+    });
 
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
