@@ -76,6 +76,7 @@ $w.onReady(async () => {
     .find()
     .then((results) => {
       studentNumber = results.items[0]['studentId'];
+      console.log(results.items)
       groupNumber = results.items[0]['Group-8']
       console.log(groupNumber);
     });
