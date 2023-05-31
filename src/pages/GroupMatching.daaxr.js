@@ -22,14 +22,13 @@ $w.onReady(() => {
       .getMember()
       .then((member) => {
         const email = member.loginEmail;
-        const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
         return email;
       })
       .catch((error) => {
         console.error(error);
       });
     visitorEmail = memInfo;
-    //local.getItem('studentId');
+
     console.log("visitorEmail is:", visitorEmail);
   }
 
