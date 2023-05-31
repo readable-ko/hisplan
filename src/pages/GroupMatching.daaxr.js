@@ -4,39 +4,9 @@ import wixUsers from "wix-users";
 import { currentMember } from "wix-members";
 
 $w.onReady(async () => {
-  // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
-  // let userId;
-
-  // wixData
-  //   .query("PrivateMembersData")
-  //   .eq("_id", wixUsers.currentUser["id"])
-  //   .find()
-  //   .then((results) => {
-  //     console.log(results);
-  //     console.log(results.items[0]["studentId"]);
-  //     userId = results.items[0]["studentId"];
-  //     // $w("#input1").value = userId;
-  //   });
-
-  // async function setVisitor() {
-  //   const memInfo = await currentMember
-  //     .getMember()
-  //     .then((member) => {
-  //       const email = member.loginEmail;
-  //       return email;
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-
-  //   const visitorEmail = memInfo;
-  //   console.log("visitorEmail is:", visitorEmail);
-  // }
-
-  // setVisitor();
 
   // 1번 Dropdown 누른 경우
-  $w("#dropdownSubject1").onChange(async () => {
+  $w("#dropdownSubject1").onChange(() => {
     const selectedSubject = $w("#dropdownSubject1").value;
 
     wixData
@@ -85,6 +55,7 @@ $w.onReady(async () => {
 
   let visitorEmail;
   let studentNumber = 0;
+  let groupNumber;
 
   async function setVisitor() {
     const memInfo = await currentMember
@@ -105,7 +76,8 @@ $w.onReady(async () => {
     .find()
     .then((results) => {
       studentNumber = results.items[0]['studentId'];
-      
+      groupNumber = results.items[0]['Group-8']
+      console.log(groupNumber);
     });
   } 
 
