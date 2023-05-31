@@ -36,7 +36,8 @@ $w.onReady(function () {
 //   $w('#button6').onClick(updateRank);
   
   $w("#buttonTest").onClick(() => {
-    console.log("Rank");
+    let randomStr = generateRandomString(6);
+    console.log(randomStr);
   });
   
 });
