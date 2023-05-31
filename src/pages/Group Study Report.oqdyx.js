@@ -2,6 +2,7 @@
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixWindow from "wix-window";
 import wixData from "wix-data";
+import { currentMember } from "wix-members";
 
 $w.onReady(function () {
   // Write your JavaScript here
