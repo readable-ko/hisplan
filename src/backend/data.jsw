@@ -60,25 +60,26 @@ export async function getStudentGroup(email) {
 }
 
 export async function increaseGroupReport(email) {
-    const MultiRefer = await wixData.query("Student")
-                                    .eq('email', email)
-                                    .include("Group-8")
-                                    .find();
-    const newNum = MultiRefer.items[0]['Group-8'][0].reportCount + 1;
-    updateReport(MultiRefer.items[0]['Group-8'][0], newNum);
-    console.log('Increased Group Report');
-    
-    return MultiRefer;
-  }
+  try {
+    const queryResult = await wixData.query("Student")
+      .eq('email', email)
+      .include("Group-8")
+      .find();
 
-  export async function updateReport(report, newStatus) {
-    try {
-        const toUpdate = {
-          ...report,
-          'reportCount': newNum,
-        };
-        await wixData.update("Group", toUpdate);
-      } catch (error) {
-        console.error(error);
-      }
+    console.log(queryResult.items[0]['Group-8'][0].groupId, queryResult.items[0]['Group-8'][0].reportCount);
+    
+    const groupId = queryResult.items[0]['Group-8'][0].groupId;
+    const updatedCount = queryResult.items[0]['Group-8'][0].reportCount + 1;
+
+    // 값을 증가시키기 위해 update() 메서드 사용
+    const updatedGroup = await wixData.update('Group-8', groupId, {
+      reportCount: updatedCount
+    });
+
+    console.log('Increased Group Report:', updatedGroup);
+    return updatedGroup;
+  } catch (error) {
+    console.error('Error increasing group report:', error);
   }
+}
+
