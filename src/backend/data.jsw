@@ -50,6 +50,8 @@ export async function getGroup(email) {
     .then((results) => {
       if(results.items.length > 0) {
         console.log(results.items[0]); //see item below
+        const groupInfo = results.items[0];
+        return groupInfo;
       } else {
         // handle case where no matching items found
         console.log(email, " not found");
