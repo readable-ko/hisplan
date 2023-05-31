@@ -35,9 +35,10 @@ $w.onReady(function () {
   
 //   $w('#button6').onClick(updateRank);
   
-  $w("#button6").onClick(() => {
+  $w("#buttonTest").onClick(() => {
     console.log("Rank");
   });
+  
 });
 
 async function setVisitor() {
