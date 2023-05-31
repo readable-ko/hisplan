@@ -43,10 +43,6 @@ $w.onReady(function () {
 //     const groupNum = getGroup(visitorEmail);
 //     console.log('group num ', groupNum);
     
-//     getGroup(visitorEmail).then((items) => {
-//       console.log("Returned items: ", items);
-//     });
-    
   });
   
 });
