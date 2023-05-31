@@ -109,6 +109,7 @@ $w.onReady(() => {
       console.log(results.items[0]['studentId']);
       
     });
+    console.log(studentNumber);
   } 
 
   setVisitor();
