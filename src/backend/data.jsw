@@ -41,7 +41,7 @@ export function removeTask(taskID) {
   }
 }
 
-export async function getStudentEmail() {
+export function getStudentEmail() {
     wait currentMember
     .getMember()
     .then((member) => {
