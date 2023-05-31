@@ -3,7 +3,7 @@ import wixData from "wix-data";
 import wixUsers from "wix-users";
 import { currentMember } from "wix-members";
 
-$w.onReady(() => {
+$w.onReady(async () => {
   // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
   // let userId;
 
@@ -109,7 +109,7 @@ $w.onReady(() => {
     });
   } 
 
-  setVisitor();
+  await setVisitor();
 
   console.log(studentNumber);
 
