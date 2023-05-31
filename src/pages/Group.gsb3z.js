@@ -4,23 +4,7 @@ import wixData from "wix-data";
 import { currentMember } from "wix-members";
 
 $w.onReady(async () => {
-
-  // async function setVisitor() {
-  //   const memInfo = await currentMember
-  //       .getMember()
-  //       .then((member) => {
-  //         const email = member.loginEmail;
-  //         return email;
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   visitorEmail = memInfo;
-
-  //   console.log(visitorEmail);
-  // }
-
-  // await setVisitor();
+  await setVisitor();
 
   await wixData
     .query("Student")
@@ -38,3 +22,18 @@ $w.onReady(async () => {
         // }
     });
 });
+
+async function setVisitor() {
+  const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  visitorEmail = memInfo;
+
+  console.log(visitorEmail);
+}
