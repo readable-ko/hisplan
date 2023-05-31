@@ -18,28 +18,48 @@ export async function matchGroups() {
 
 // Get the students' information from the database
 export async function getStudentsInfo() {
-  let students = [];
+  // let students = [];
 
   await wixData
     .query("Preference")
-    // .include("student", "first", "second", "third", "friends")
     .find()
     // Handle the returned collection of items
     .then((preferences) => {
       // Check if preferences were found
       if (preferences.items.length > 0) {
-        // Add the students' information to the students array
-        preferences.items.forEach((preference) => {
-          students.push({
-            studentId: preference.studentId,
-            name: preference.name,
-            prioritizedCourses: [
-              { courseId: preference.first.courseId, subject: preference.first.subject, instructor: preference.first.instructor },
-              { courseId: preference.second.courseId, subject: preference.second.subject, instructor: preference.second.instructor },
-              { courseId: preference.third.courseId, subject: preference.third.subject, instructor: preference.third.instructor },
-            ],
-            desiredFriends: preference.friends.map((friend) => ({ studentId: friend.studentId, name: friend.name })),
-          });
+        // Iterate over the preferences
+        return preferences.items.map(async (preference) => {
+          await wixData
+            .query("Student")
+            .eq("studentId", preference.studentId)
+            .find()
+            .then((student) => {
+              preference.name = student.items[0].name;
+              preference.email = student.items[0].email;
+            });
+
+          await wixData
+            .query("Course")
+            .hasSome("courseId", preference.first, preference.second, preference.third)
+            .find()
+            .then((courses) => {
+              delete preference.first;
+              delete preference.second;
+              delete preference.third;
+              preference.prioritizedCourses = courses.items.map((course) => ({ subject: course.subject, instructor: course.instructor }));
+            });
+
+          await wixData
+            .query("Student")
+            .hasSome("studentId", preference.friends.split(" "))
+            .find()
+            .then((friends) => {
+              delete preference.friends;
+              preference.desiredFriends = friends.items.map((friend) => ({ studentId: friend.studentId, name: friend.name, email: friend.email }));
+            });
+
+          // students.push(preference);
+          return preference;
         });
       } else {
         // Handle case where no preferences were found
@@ -51,7 +71,7 @@ export async function getStudentsInfo() {
       console.error(error.message);
     });
 
-  return students;
+  // return students;
 }
 
 // Assign the students to the study groups
