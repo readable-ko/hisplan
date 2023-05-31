@@ -54,9 +54,10 @@ export async function getStudentID(visitorId) {
       wixData.queryReferencing(referencingCollectionName, referenceFieldName, referencedItemId, queryOptions)
         .find()
         .then(results => {
+          console.log('glory:', results);
           if (results.items.length > 0) {
             const referencingData = results.items;
-            console.log('Referencing Data:', referencingData);
+            console.log('Glory:', referencingData);
           } else {
             console.log('No referencing data found');
           }
