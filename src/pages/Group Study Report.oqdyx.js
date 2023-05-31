@@ -36,7 +36,7 @@ $w.onReady(function () {
   $w("#button4").onClick(() => {
     let randomStr = generateRandomString(6);
     console.log(randomStr);
-    console.log(visitorId.id);
+    console.log(visitorId);
     
 //     const group = await wixData.query('PrivateMemberData')
 //       .eq('_id', visitor.id)
