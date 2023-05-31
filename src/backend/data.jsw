@@ -55,9 +55,13 @@ export async function getStudentID(visitorId) {
 
 export async function getGroup(email) {
   try {
-    const result = await wixData.queryReferenced("Student", "21600437", "Group-8");
+    const query = wixData.query("Student")
+      .eq("email", email)
+      .eq("Group-8", true);
+
+    const result = await query.find();
     
-    console.log("Group : ", result);
+    console.log("Group: ", result.items);
     return result.items;
   } catch (error) {
     console.error(error);
