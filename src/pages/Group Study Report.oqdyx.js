@@ -63,37 +63,3 @@ async function setVisitor() {
   //local.getItem('studentId');
   console.log("visitorId is:", visitorId);
 }
-
-async function incrementReportCount(visitor) {
-//     try {
-      // Group 데이터베이스 컬렉션 이름
-//       const collectionName = 'Group';
-      
-      // visitorId에 해당하는 Group 데이터 가져오기
-      const group = await wixData.query('PrivateMemberData')
-        .eq('_id', visitor.id)
-        .find();
-      
-      console.log('mem = ', group.items.length);
-      
-//       loginEmail
-      
-//       const group = await wixData.query(collectionName)
-//         .eq('_id', visitor.id)
-//         .find();
-        
-//       if (group.items.length > 0) {
-//         const groupItem = group.items[0];
-        
-//         // reportCount 값을 1 증가시키고 업데이트
-//         groupItem.reportCount += 1;
-//         await wixData.update(collectionName, groupItem);
-        
-//         console.log('Report count incremented.');
-//       } else {
-//         console.error('Group data not found.');
-//       }
-//     } catch (error) {
-//       console.error('Error incrementing report count:', error);
-//     }
-  }
