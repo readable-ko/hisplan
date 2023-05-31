@@ -86,8 +86,8 @@ $w.onReady(() => {
   let visitorEmail;
   let studentNumber = 0;
 
-  async function setVisitor() {
-    const memInfo = await currentMember
+  function setVisitor() {
+    const memInfo = currentMember
       .getMember()
       .then((member) => {
         const email = member.loginEmail;
