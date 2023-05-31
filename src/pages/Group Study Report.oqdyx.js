@@ -40,7 +40,8 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-    const groupNum = getGroup(visitorEmail);
+    const groupNum = getStudentGroup(visitorEmail);
+    console.log("gloryko: ', groupNum);
 //     console.log('group num ', groupNum.items);
     
 //     getGroup(visitorEmail).then((items) => {
