@@ -60,29 +60,6 @@ export async function getMemberInfo(referencedItemId) {
           });
 }
 
-export async function getStudentID(visitorId) {
-    const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
-    const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
-    const idToQuery = '21600437@handong.ac.kr'; // Replace with the specific ID you want to query
-  
-    await wixData.query(referencingCollectionName)
-      .eq('email', idToQuery)
-      .find()
-      .then((results) => {
-          
-        if (results.items.length > 0) {
-          const referencedItemId = results.items[0].email; //same as idToQuery.
-          console.log('Glory:',results);
-          return getMemberInfo(referencedItemId);
-        } else {
-          console.log('Item not found');
-        }
-      })
-      .catch(error => {
-        console.error('Error querying referencing collection:', error);
-      });
-}
-
 export async function getGroup(email) {
   try {
     const result = await wixData.queryReferenced("Student", email, "Group-8");
