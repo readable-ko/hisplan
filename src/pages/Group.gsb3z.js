@@ -3,17 +3,28 @@
 import wixData from "wix-data";
 
 $w.onReady(async () => {
+  const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  visitorEmail = memInfo;
+
   await wixData
     .query("Student")
     .include("Group-8")
     .find()
     .then((results) => {
-        // for(let i = 0 ; i < 22 ; i++) {
-        //   if(results.items[0]['Group-8']['groupId'] == "0")
-        //   console.log(results.items[0]['Group-8']['groupId']);
-        // }
-        console.log(results.items);
-        
-        
+        for(let i = 0 ; i < 22 ; i++) {
+          if(results.items[i]['Group-8']['email'] == visitorEmail){
+            console.log(results.items[i]['Group-8']['email']);
+            console.log(results.items[i]['Group-8']['name']);
+            console.log(results.items[i]['Group-8'][0]['groupId']);
+          }
+        }
     });
 });
