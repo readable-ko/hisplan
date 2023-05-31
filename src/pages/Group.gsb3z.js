@@ -5,16 +5,16 @@ import { currentMember } from "wix-members";
 
 $w.onReady(async () => {
 
-  const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  visitorEmail = memInfo;
+  // const memInfo = await currentMember
+  //     .getMember()
+  //     .then((member) => {
+  //       const email = member.loginEmail;
+  //       return email;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // visitorEmail = memInfo;
 
   await wixData
     .query("Student")
@@ -22,12 +22,12 @@ $w.onReady(async () => {
     .find()
     .then((results) => {
       console.log(results.items[i]['Group-8']['email'])
-        for(let i = 0 ; i < 22 ; i++) {
-          if(results.items[i]['Group-8']['email'] == visitorEmail){
-            console.log(results.items[i]['Group-8']['email']);
-            console.log(results.items[i]['Group-8']['name']);
-            console.log(results.items[i]['Group-8'][0]['groupId']);
-          }
-        }
+        // for(let i = 0 ; i < 22 ; i++) {
+        //   if(results.items[i]['Group-8']['email'] == visitorEmail){
+        //     console.log(results.items[i]['Group-8']['email']);
+        //     console.log(results.items[i]['Group-8']['name']);
+        //     console.log(results.items[i]['Group-8'][0]['groupId']);
+        //   }
+        // }
     });
 });
