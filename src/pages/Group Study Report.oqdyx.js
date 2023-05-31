@@ -38,7 +38,7 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-    const student = getStudentID();
+    const student = getStudentEmail();
     console.log('result ', student);
   });
   
