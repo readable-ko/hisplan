@@ -32,7 +32,7 @@ Once your repo is set up, you can write code in it as you would in any other non
 
 Learn more about [this repo's file structure](https://support.wix.com/en/article/velo-understanding-your-sites-github-repository-beta).
 
-## Test your code with the Local Editor
+## Test code with the Local Editor
 
 The Local Editor allows you test changes made to your site in real time. The code in your local IDE is synced with the Local Editor, so you can test your changes before committing them to your repo. You can also change the site design in the Local Editor and sync it with your IDE.
 
