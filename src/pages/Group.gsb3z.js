@@ -25,15 +25,14 @@ $w.onReady(async () => {
 
 async function setVisitor() {
   const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  visitorEmail = memInfo;
-
+    .getMember()
+    .then((member) => {
+      const email = member.loginEmail;
+      return email;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  const visitorEmail = memInfo;
   console.log(visitorEmail);
 }
