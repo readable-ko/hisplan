@@ -57,8 +57,14 @@ export async function getGroup(email) {
   try {
     const result = await wixData.queryReferenced("Student", email, "Group-8");
     
-    console.log("Group : ", result);
-    return result.items;
+    if(results.items.length > 0) {
+      console.log("Group : ", result.items[0]); //see item below
+      return result.items;
+    } else {
+      // handle case where no matching items found
+      console.log("getGroup(): None");
+    }
+    
   } catch (error) {
     console.error(error);
   }
