@@ -54,8 +54,7 @@ $w.onReady(function () {
 });
 
 async function setVisitor() {
-  const groupNum = await getStudentGroup(visitorEmail);
-  console.log("gloryko: ", groupNum);
+
   const memInfo = await currentMember
     .getMember()
     .then((member) => {
@@ -68,7 +67,8 @@ async function setVisitor() {
     });
   visitorId = memInfo._id;
   visitorEmail = memInfo.loginEmail;
-  
+  const groupNum = await getStudentGroup(visitorEmail);
+  console.log("gloryko: ", groupNum);
   //local.getItem('studentId');
   console.log("visitorId is:", memInfo.loginEmail);
 }
