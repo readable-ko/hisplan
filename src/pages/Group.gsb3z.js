@@ -8,6 +8,7 @@ let visitorId;
 $w.onReady(function () {
   // Write your JavaScript here
   setVisitor();
+  console.log(visitorId);
   
   // To select an element by ID use: $w('#elementID')
   fetchValueFromDatabase();
