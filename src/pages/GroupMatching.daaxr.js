@@ -21,7 +21,7 @@ $w.onReady(() => {
 
   wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
     console.log(results.items[0])
-    console.log(results.items[0]['studentId']);
+    console.log(results.items[0]['studentId']); 
     userId = results.items[0]['studentId'];
     $w('#input1').value = userId;
   })
