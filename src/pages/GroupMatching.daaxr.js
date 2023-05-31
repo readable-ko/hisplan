@@ -74,13 +74,6 @@ $w.onReady(() => {
         $w("#dropdown6").options = optionvalue;
       });
   });
-  
-  $w('#dropdownFriends').onChange(async () => {
-    console.log("friends chosen");
-    const selectedOption = $w('#dropdownFriends').value;
-    $w('#textboxFriends').value += selectedOption;
-    $w('#textboxFriends').value += " ";
-  });
 
   // Submit 버튼 누른 경우
   $w("#button1").onClick(async () => {
