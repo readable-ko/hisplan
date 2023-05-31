@@ -92,6 +92,7 @@ $w.onReady(() => {
         first: $w("#dropdown4").options[$w("#dropdown4").selectedIndex].label,
         second: $w("#dropdown5").options[$w("#dropdown5").selectedIndex].label,
         third: $w("#dropdown6").options[$w("#dropdown6").selectedIndex].label,
+        friends: $w('#textboxFriends').value
       });
     } catch {
       console.error("Failed to update data:");
