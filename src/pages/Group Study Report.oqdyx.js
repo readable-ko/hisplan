@@ -68,7 +68,7 @@ async function setVisitor() {
   visitorId = memInfo._id;
   visitorEmail = memInfo.loginEmail;
   const groupNum = await getStudentGroup(visitorEmail);
-  console.log("gloryko: ", groupNum.query.included);
+  console.log("gloryko: ", groupNum);
   //local.getItem('studentId');
   console.log("visitorId is:", memInfo.loginEmail);
 }
