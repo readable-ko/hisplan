@@ -8,7 +8,7 @@ $w.onReady( function () {
   myDataset.onReady(() => {
     myDataset.forEachItem(($item, itemData, itemIndex) => {
       console.log('Item Index:', itemIndex);
-      $item("#rank").text = "RANK #" + itemIndex;
+      $w("#rank").text = "RANK #";
     });
   });
 });
