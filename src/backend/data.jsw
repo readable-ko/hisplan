@@ -51,7 +51,7 @@ export async function getStudentID(visitorId) {
         suppressAuth: true, // Set to true if authentication is not required for the referenced collection
       };
     
-      await wixData.queryReferencing(referencingCollectionName, referenceFieldName, referencedItemId, queryOptions)
+      await wixData.queryReferencing(referencingCollectionName, referenceFieldName, referencedItemId)
         .find()
         .then(results => {
           console.log('glory:', results);
