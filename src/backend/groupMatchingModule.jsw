@@ -1,4 +1,3 @@
-import wixData from "wix-data";
 
 // Match students into study groups
 export async function matchGroups() {
