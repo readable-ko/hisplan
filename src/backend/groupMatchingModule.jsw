@@ -17,12 +17,12 @@ export async function matchGroups() {
 }
 
 // Get the students' information from the database
-async function getStudentsInfo() {
+export async function getStudentsInfo() {
   let students = [];
 
   await wixData
     .query("Preference")
-    .include("student", "first", "second", "third", "friends")
+    // .include("student", "first", "second", "third", "friends")
     .find()
     .then(
       // Handle the returned collection of items
@@ -32,8 +32,8 @@ async function getStudentsInfo() {
           // Add the students' information to the students array
           preferences.items.forEach((preference) => {
             students.push({
-              studentId: preference.student.studentId,
-              name: preference.student.name,
+              studentId: preference.studentId,
+              name: preference.name,
               prioritizedCourses: [
                 { courseId: preference.first.courseId, subject: preference.first.subject, instructor: preference.first.instructor },
                 { courseId: preference.second.courseId, subject: preference.second.subject, instructor: preference.second.instructor },
