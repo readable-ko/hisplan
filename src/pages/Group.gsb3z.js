@@ -26,6 +26,7 @@ $w.onReady(async () => {
         for(let i = 0 ; i < 22 ; i++) {
           if(results.items[i]['Group-8'][0]['groupId'] == visitorGroupId) {
             console.log(results.items[i]['name']);
+            $w('text4').value = results.items[i]['name'];
           }
         }
     });
