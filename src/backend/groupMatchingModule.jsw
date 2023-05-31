@@ -24,34 +24,32 @@ export async function getStudentsInfo() {
     .query("Preference")
     // .include("student", "first", "second", "third", "friends")
     .find()
-    .then(
-      // Handle the returned collection of items
-      (preferences) => {
-        // Check if preferences were found
-        if (preferences.items.length > 0) {
-          // Add the students' information to the students array
-          preferences.items.forEach((preference) => {
-            students.push({
-              studentId: preference.studentId,
-              name: preference.name,
-              prioritizedCourses: [
-                { courseId: preference.first.courseId, subject: preference.first.subject, instructor: preference.first.instructor },
-                { courseId: preference.second.courseId, subject: preference.second.subject, instructor: preference.second.instructor },
-                { courseId: preference.third.courseId, subject: preference.third.subject, instructor: preference.third.instructor },
-              ],
-              desiredFriends: preference.friends.map((friend) => ({ studentId: friend.studentId, name: friend.name })),
-            });
+    // Handle the returned collection of items
+    .then((preferences) => {
+      // Check if preferences were found
+      if (preferences.items.length > 0) {
+        // Add the students' information to the students array
+        preferences.items.forEach((preference) => {
+          students.push({
+            studentId: preference.studentId,
+            name: preference.name,
+            prioritizedCourses: [
+              { courseId: preference.first.courseId, subject: preference.first.subject, instructor: preference.first.instructor },
+              { courseId: preference.second.courseId, subject: preference.second.subject, instructor: preference.second.instructor },
+              { courseId: preference.third.courseId, subject: preference.third.subject, instructor: preference.third.instructor },
+            ],
+            desiredFriends: preference.friends.map((friend) => ({ studentId: friend.studentId, name: friend.name })),
           });
-        } else {
-          // Handle case where no preferences were found
-          console.log("No preferences found");
-        }
-      },
-      // Handle potential errors
-      (error) => {
-        console.error(error.message);
+        });
+      } else {
+        // Handle case where no preferences were found
+        console.log("No preferences found");
       }
-    );
+    })
+    // Handle errors
+    .catch((error) => {
+      console.error(error.message);
+    });
 
   return students;
 }
