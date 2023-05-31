@@ -91,7 +91,7 @@ $w.onReady(async () => {
   .include("Group-8")
   .find()
   .then((results) => {
-    console.log(results.items);
+    console.log(results.items[0]['Group-8']);
   });
 
   // Submit 버튼 누른 경우
