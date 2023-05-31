@@ -41,21 +41,9 @@ export async function removeTask(taskID) {
   }
 }
 
-export async function getStudentID(visitorId) {
+export async function getMemberInfo(referencedItemId) {
     const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
-    const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
-    const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
-    const idToQuery = '21600437@handong.ac.kr'; // Replace with the specific ID you want to query
-  
-    await wixData.query(referencingCollectionName)
-      .eq('email', idToQuery)
-      .find()
-      .then((results) => {
-          
-        if (results.items.length > 0) {
-          const referencedItemId = results.items[0].email; //same as idToQuery.
-          console.log('Glory:',results);
-          wixData.query(referencedCollectionName)
+    wixData.query(referencedCollectionName)
           .eq('members', referencedItemId)
           .find()
           .then((referencedResults) => {
@@ -70,6 +58,22 @@ export async function getStudentID(visitorId) {
           .catch(error => {
             console.error('Error querying referenced collection:', error);
           });
+}
+
+export async function getStudentID(visitorId) {
+    const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
+    const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
+    const idToQuery = '21600437@handong.ac.kr'; // Replace with the specific ID you want to query
+  
+    await wixData.query(referencingCollectionName)
+      .eq('email', idToQuery)
+      .find()
+      .then((results) => {
+          
+        if (results.items.length > 0) {
+          const referencedItemId = results.items[0].email; //same as idToQuery.
+          console.log('Glory:',results);
+          return getMemberInfo(referencedItemId);
         } else {
           console.log('Item not found');
         }
