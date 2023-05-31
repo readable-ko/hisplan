@@ -55,7 +55,7 @@ export async function getStudentID(visitorId) {
 
 export async function getGroup(email) {
   try {
-    const result = await wixData.queryReferenced("#dataset5", 21600437, "Group-8");
+    const result = await wixData.queryReferenced("#dataset5", "21600437", "Group-8");
     
     console.log("Group : ", result);
     return result.items;
