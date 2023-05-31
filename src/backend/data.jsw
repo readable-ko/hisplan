@@ -41,8 +41,26 @@ export async function removeTask(taskID) {
   }
 }
 
-export async function getStudentID(visitorId) {
+export async function getMemberInfo(referencedItemId) {
     const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
+    wixData.query(referencedCollectionName)
+          .eq('members', referencedItemId)
+          .find()
+          .then((referencedResults) => {
+            console.log('glory: ', referencedResults);
+            if (referencedResults.items.length > 0) {
+              const referencedData = referencedResults.items[0];
+              console.log('Referenced Data:', referencedData);
+            } else {
+              console.log('Referenced item not found');
+            }
+          })
+          .catch(error => {
+            console.error('Error querying referenced collection:', error);
+          });
+}
+
+export async function getStudentID(visitorId) {
     const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
     const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
     const idToQuery = '21600437@handong.ac.kr'; // Replace with the specific ID you want to query
@@ -51,11 +69,11 @@ export async function getStudentID(visitorId) {
       .eq('email', idToQuery)
       .find()
       .then((results) => {
-          console.log('glory: ', results);
+          
         if (results.items.length > 0) {
-          const referencedItemId = results.items[0][referenceFieldName]._id;
+          const referencedItemId = results.items[0].email; //same as idToQuery.
           console.log('Glory:',results);
-          return referencedItemId;
+          return getMemberInfo(referencedItemId);
         } else {
           console.log('Item not found');
         }
@@ -63,15 +81,14 @@ export async function getStudentID(visitorId) {
       .catch(error => {
         console.error('Error querying referencing collection:', error);
       });
-  }
-  
+}
 
 export async function getGroup(email) {
   try {
     const result = await wixData.queryReferenced("Student", email, "Group-8");
     
     if(result.items.length > 0) {
-      console.log("Group : ", result.items[0]); //see item below
+      //console.log("Group : ", result.items[0]); //see item below
       return result.items;
     } else {
       // handle case where no matching items found
