@@ -1,20 +1,37 @@
 import { matchGroups } from "backend/groupMatchingModule.jsw";
 import wixData from "wix-data";
 import wixUsers from "wix-users";
+import { currentMember } from "wix-members";
 
 $w.onReady(() => {
   // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
-  let userId;
+  // let userId;
   // wixUsers.currentUser['id']
-  console.log(wixUsers.currentUser['id']);
+  // console.log(wixUsers.currentUser['id']);
   // console.log('67561d24-e9f2-4d04-a048-e67d44ddd2a9')
 
-  wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
-    console.log(results)
-    console.log(results.items[0]['studentId']); 
-    userId = results.items[0]['studentId'];
-    $w('#input1').value = userId;
-  })
+  // wixData.query('PrivateMembersData').eq('_id', wixUsers.currentUser['id']).find().then(results => {
+  //   console.log(results)
+  //   console.log(results.items[0]['studentId']); 
+  //   userId = results.items[0]['studentId'];
+  //   $w('#input1').value = userId;
+  // })
+
+  async function setVisitor() {
+    const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    visitorEmail = memInfo;
+    //local.getItem('studentId');
+    console.log("visitorEmail is:", visitorEmail);
+  }
 
 
   // 1번 Drop Down 누른 경우
