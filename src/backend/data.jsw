@@ -44,7 +44,7 @@ export function removeTask(taskID) {
 export function getStudentID(visitorId) {
   try {
     const result = await wixData.query("PrivateMembersData")
-                                   .eq("studentId", PrivateMembersData)
+                                   .eq("_id", visitorId)
                                    .find();
     console.log("Length of item is: ", result.length);
     return result.items;
