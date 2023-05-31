@@ -6,7 +6,7 @@ $w.onReady( function () {
   const myDataset = $w('#Group');
 
   myDataset.onReady(() => {
-    myDataset.forEachItem(($item, itemData, itemIndex) => {
+    $w("repeater").forEachItem(($item, itemData, itemIndex) => {
       console.log('Item Index:', itemIndex);
       $w("#rank").text = "RANK #";
     });
