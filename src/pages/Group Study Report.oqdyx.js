@@ -51,7 +51,7 @@ $w.onReady(function () {
   //           });
   //     });
  
-  $w('#button6').onClick(submitForm);
+  $w('#button6').onClick(updateRank);
 });
 
 async function setVisitor() {
@@ -70,7 +70,12 @@ async function setVisitor() {
   console.log("visitorId is:", visitorId);
 }
 
-function submitForm() {
+
+
+function updateRank() {
+  
+  console.error('updateRank()');
+  
   // 폼 데이터 가져오기
   const formData = {
     // 여기에 폼 필드에 해당하는 데이터를 수집하는 코드 작성
