@@ -47,7 +47,7 @@ export async function getStudentID(visitorId) {
     const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
     const idToQuery = '21600437@handong.ac.kr'; // Replace with the specific ID you want to query
   
-    wixData.query(referencingCollectionName)
+    await wixData.query(referencingCollectionName)
       .eq('email', idToQuery)
       .find()
       .then((results) => {
