@@ -41,19 +41,6 @@ export function removeTask(taskID) {
   }
 }
 
-export function getStudentEmail() {
-    wait currentMember
-    .getMember()
-    .then((member) => {
-      const email = member.loginEmail;
-      const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
-      return email;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
 export function getStudentID(visitorId) {
   try {
     const result = await wixData.query("PrivateMembersData")
