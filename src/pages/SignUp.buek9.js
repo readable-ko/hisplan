@@ -20,7 +20,7 @@ $w.onReady(() => {
   //     }
   // });
 
-  $w("#button1").onClick(async () => {
+  $w("#button2").onClick(async () => {
     async function setVisitor() {
       const memInfo = await currentMember
         .getMember()
@@ -40,8 +40,6 @@ $w.onReady(() => {
         name: $w('#input1').value,
         studentId: visitorEmail.slice(0,8)
       });
-
-      wixLocation.to('/Home')
     } 
     setVisitor();
   })
