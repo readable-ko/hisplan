@@ -60,7 +60,7 @@ export async function getGroup(email) {
 
     const result = await query.find();
     
-    console.log("Group: ", result.items[0].studentId);
+    console.log("Group: ", result.items[0].Group-8);
     return result.items;
   } catch (error) {
     console.error(error);
