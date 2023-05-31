@@ -41,18 +41,15 @@ $w.onReady(function () {
     let randomStr = generateRandomString(6);
     console.log(randomStr);
     console.log(visitorId);
-    increaseGroupReport(vistorEmail);
+    updateReport();
     //console.log("gloryko: ", groupNum);
-//     console.log('group num ', groupNum.items);
-    
-//     getGroup(visitorEmail).then((items) => {
-//       console.log("Returned items: ", items);
-//     });
-
-    
   });
-  
 });
+
+async function updateReport() {
+  await setVisitor();
+  await increaseGroupReport(visitorEmail);
+}
 
 async function setVisitor() {
 
