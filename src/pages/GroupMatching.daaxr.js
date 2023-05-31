@@ -84,6 +84,7 @@ $w.onReady(() => {
   });
 
   let visitorEmail;
+  
   async function setVisitor() {
     const memInfo = await currentMember
       .getMember()
