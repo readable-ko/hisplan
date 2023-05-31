@@ -41,7 +41,6 @@ $w.onReady(function () {
     console.log(visitorId);
     
     const groupNum = getGroup(visitorEmail);
-    const gloryNum = getStudentID(visitorEmail);
 //     console.log('group num ', groupNum.items);
     
 //     getGroup(visitorEmail).then((items) => {
@@ -54,6 +53,7 @@ $w.onReady(function () {
 });
 
 async function setVisitor() {
+  const gloryNum = await getStudentID(visitorEmail);
   const memInfo = await currentMember
     .getMember()
     .then((member) => {
