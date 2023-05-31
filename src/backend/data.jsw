@@ -65,7 +65,7 @@ export async function increaseGroupReport(email) {
     try {
         const toUpdate = {
           ...report,
-          'reportCount': newNum,
+          'reportCount': newStatus,
         };
         await wixData.update("Group", toUpdate);
       } catch (error) {
