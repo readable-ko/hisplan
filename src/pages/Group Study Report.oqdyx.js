@@ -56,7 +56,7 @@ async function setVisitor() {
     const referencingCollectionName = 'Student'; // Replace with the actual name of the referencing collection
     const referencedCollectionName = 'Group'; // Replace with the actual name of the referenced collection
     const referenceFieldName = 'Group-8'; // Replace with the actual name of the reference field in the referencing collection
-    const referencedItemId = '21600437@handong.ac.kr'; // Replace with the specific ID of the referenced item
+    const referencedItemId = ['21600437@handong.ac.kr']; // Replace with the specific ID of the referenced item
   
     const queryOptions = {
       suppressAuth: true, // Set to true if authentication is not required for the referenced collection
