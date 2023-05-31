@@ -57,8 +57,8 @@ export function getGroup(StudnetID) {
   try {
     const result = await wixData.queryReferenced("Student", StudentID, "Group-8");
     
-    console.log("Length of item is: ", result);
-    return result;
+    console.log("Group : ", result.items);
+    return result.items;
   } catch (error) {
     console.error(error);
   }
