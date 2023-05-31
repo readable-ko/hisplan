@@ -10,13 +10,13 @@ $w.onReady(() => {
   // console.log('67561d24-e9f2-4d04-a048-e67d44ddd2a9')
 
   wixData.query('Student').eq('_id', wixUsers.currentUser['id']).find().then(results => {
-    console.log(results.items[0])
+    console.log(results)
     console.log(results.items[0]['studentId']); 
     userId = results.items[0]['studentId'];
     $w('#input1').value = userId;
   })
 
-  
+
   // 1번 Drop Down 누른 경우
   $w("#dropdown1").onChange(async () => {
     const selectedvalue1 = $w("#dropdown1").value;
