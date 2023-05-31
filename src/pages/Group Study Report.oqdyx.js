@@ -1,6 +1,6 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
-import { getGroup, getStudentID } from "backend/data";
+import { getGroup, getStudentGroup, getStudentID } from "backend/data";
 import wixWindow from "wix-window";
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
@@ -40,7 +40,8 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-    const groupNum = getGroup(visitorEmail);
+    const groupNum = getStudentGroup(visitorEmail);
+    console.log("gloryko: ", groupNum);
 //     console.log('group num ', groupNum.items);
     
 //     getGroup(visitorEmail).then((items) => {

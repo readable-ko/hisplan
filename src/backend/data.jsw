@@ -42,8 +42,18 @@ export async function removeTask(taskID) {
 }
 
 
-export async function getGroup(email) {
+export async function getGroup() {
   const MultiRefer = await wixData.query("Student").include("Group-8").find();
+  console.log(MultiRefer);
+  
+  return MultiRefer;
+}
+
+export async function getStudentGroup(email) {
+  const MultiRefer = await wixData.query("Student")
+                                  .eq('email', email)
+                                  .include("Group-8")
+                                  .find();
   console.log(MultiRefer);
   
   return MultiRefer;
