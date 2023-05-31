@@ -5,16 +5,18 @@ import { currentMember } from "wix-members";
 
 $w.onReady(async () => {
 
-  // const memInfo = await currentMember
-  //     .getMember()
-  //     .then((member) => {
-  //       const email = member.loginEmail;
-  //       return email;
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // visitorEmail = memInfo;
+  const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  visitorEmail = memInfo;
+
+  console.log(visitorEmail);
 
   await wixData
     .query("Student")
