@@ -1,5 +1,6 @@
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
+import wixLocation from "wix-location";
 
 $w.onReady(() => {
   // let firstEmail;
@@ -39,6 +40,8 @@ $w.onReady(() => {
         name: $w('#input1').value,
         studentId: visitorEmail.slice(0,8)
       });
+
+      wixLocation.to('/Home.c1dmp.js')
     } 
     setVisitor();
   })
