@@ -19,27 +19,29 @@ $w.onReady(() => {
   //     }
   // });
 
-  async function setVisitor() {
-    const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
+  $w("#button1").onCLick(async () => {
+    async function setVisitor() {
+      const memInfo = await currentMember
+        .getMember()
+        .then((member) => {
+          const email = member.loginEmail;
+          return email;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      const visitorEmail = memInfo;
+      console.log("visitorEmail is:", visitorEmail);
+      console.log("Student ID : ", visitorEmail.slice(0,8)) 
+      
+      wixData.insert("Student", {
+        email: visitorEmail,
+        name: $w('#input1').value,
+        studentId: visitorEmail.slice(0,8)
       });
-    const visitorEmail = memInfo;
-    console.log("visitorEmail is:", visitorEmail);
-    console.log("Student ID : ", visitorEmail.slice(0,8)) 
-    
-    wixData.insert("Student", {
-      email: visitorEmail,
-      name: $w('#input1').value,
-      studentId: visitorEmail.slice(0,8)
-    });
-
-  } 
+    } 
+  })
+  
 
   setVisitor();
 });
