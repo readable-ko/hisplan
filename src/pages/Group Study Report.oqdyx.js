@@ -5,6 +5,7 @@ import wixData from "wix-data";
 import { currentMember } from "wix-members";
 
 let visitorId;
+let visitorEmail;
 
 $w.onReady(function () {
   // Write your JavaScript here
@@ -38,11 +39,8 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-    const person = await wixData.query('PrivateMemberData')
-      .eq('_id', visitor)
-      .find();
-
-    console.log('mem = ', group.items.length);
+    const groupNum = getGroup(visitorEmail);
+    console.log('group num ', groupNum);
   });
   
 });
@@ -52,14 +50,15 @@ async function setVisitor() {
     .getMember()
     .then((member) => {
       const id = member._id;
-      const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
-      return id;
+      const email = member.loginEmail ;
+      return member;
     })
     .catch((error) => {
       console.error(error);
     });
-  visitorId = memInfo;
- 
+  visitorId = memInfo._id;
+  visitorEmail = memInfo.loginEmail;
+  
   //local.getItem('studentId');
-  console.log("visitorId is:", visitorId);
+  console.log("visitorId is:", memInfo.loginEmail);
 }

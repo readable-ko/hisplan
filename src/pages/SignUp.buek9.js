@@ -1,5 +1,6 @@
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
+import wixLocation from "wix-location";
 
 $w.onReady(() => {
   // let firstEmail;
@@ -19,7 +20,7 @@ $w.onReady(() => {
   //     }
   // });
 
-  $w("#button1").onCLick(async () => {
+  $w("#button2").onClick(async () => {
     async function setVisitor() {
       const memInfo = await currentMember
         .getMember()
@@ -40,7 +41,6 @@ $w.onReady(() => {
         studentId: visitorEmail.slice(0, 8),
       });
     }
+    setVisitor();
   });
-
-  setVisitor();
 });

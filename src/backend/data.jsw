@@ -40,3 +40,26 @@ export function removeTask(taskID) {
     console.error(error);
   }
 }
+
+export function getStudentID(visitorId) {
+  try {
+    const result = await wixData.query("PrivateMembersData")
+                                   .eq("_id", visitorId)
+                                   .find();
+    console.log("Length of item is: ", result.length);
+    return result.items;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function getGroup(StudnetID) {
+  try {
+    const result = await wixData.queryReferenced("Student", StudentID, "Group-8");
+    
+    console.log("Length of item is: ", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
