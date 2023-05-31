@@ -48,7 +48,7 @@ $w.onReady(function () {
 
 async function updateReport() {
   await setVisitor();
-  await increaseGroupReport(vistorEmail);
+  await increaseGroupReport(visitorEmail);
 }
 
 async function setVisitor() {
