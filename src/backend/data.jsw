@@ -69,15 +69,19 @@ export async function getStudentID(visitorId) {
 
 export async function getGroup(email) {
   try {
-    const result = await wixData.queryReferenced("Student", email, "Group-8");
-    
-    if(result.items.length > 0) {
-      //console.log("Group : ", result.items[0]); //see item below
-      return result.items;
-    } else {
-      // handle case where no matching items found
-      console.log(email, " not found");
-    }
+  
+    wixData.queryReferenced("Student", email, "Group-8")
+      .then((results) => {
+        if(results.items.length > 0) {
+          console.log(results.items[0]); //see item below
+        } else {
+          // handle case where no matching items found
+          console.log(email, " not found");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     
   } catch (error) {
     console.error(error);
