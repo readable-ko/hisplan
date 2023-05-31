@@ -40,8 +40,9 @@ $w.onReady(() => {
         studentId: visitorEmail.slice(0,8)
       });
     } 
+    setVisitor();
   })
   
 
-  setVisitor();
+  
 });
