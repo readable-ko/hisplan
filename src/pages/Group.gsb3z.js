@@ -7,8 +7,8 @@ $w.onReady(function () {
   
   // To select an element by ID use: $w('#elementID')
   fetchValueFromDatabase();
+  getGroup();
 
-  // Click 'Preview' to run your code
 });
 
 async function fetchValueFromDatabase() {
@@ -27,4 +27,21 @@ async function fetchValueFromDatabase() {
   } catch (err) {
     console.error("Error : " + err);
   }
+}
+
+async function getGroup() {
+
+
+  const MultiRefer = await wixData
+  .query("Student")
+  .include("Group-8")
+  .find()
+  .then((results) => {
+    for(let i = 0 ; i < 22 ; i++) {
+      console.log(results.items[i]['Group-8']);
+      $w('#text4').value = results.items[i]['Group-8'];
+    }
+  });
+  
+  return MultiRefer;
 }
