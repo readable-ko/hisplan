@@ -15,6 +15,7 @@ $w.onReady(() => {
     userId = results.items[0]['studentId'];
     $w('#input1').value = userId;
   })
+
   
   // 1번 Drop Down 누른 경우
   $w("#dropdown1").onChange(async () => {
