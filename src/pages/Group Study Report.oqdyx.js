@@ -51,7 +51,7 @@ $w.onReady(function () {
   //           });
   //     });
   
-  $w("submitButton").onClick(() => {
+  $w("#button6").onClick(() => {
     const formData = {
       // 여기에 폼 필드에 해당하는 데이터를 수집하는 코드 작성
       // 예시: name 필드의 값을 가져오는 경우
