@@ -41,7 +41,7 @@ $w.onReady(function () {
     console.log(visitorId);
     
     const groupNum = getGroup(visitorEmail);
-    console.log('group num ', groupNum.items);
+//     console.log('group num ', groupNum.items);
     
 //     getGroup(visitorEmail).then((items) => {
 //       console.log("Returned items: ", items);
