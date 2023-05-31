@@ -8,7 +8,7 @@ let visitorId;
 
 $w.onReady(function () {
   // Write your JavaScript here
-
+  let visitorId;
   // To select an element by ID use: $w('#elementID')
   setVisitor();
   
@@ -36,7 +36,7 @@ $w.onReady(function () {
   $w("#button4").onClick(() => {
     let randomStr = generateRandomString(6);
     console.log(randomStr);
-    console.log(memInfo.fullName);
+    console.log(visitorId);
   });
   
 });
@@ -53,6 +53,7 @@ async function setVisitor() {
       console.error(error);
     });
   visitorId = memInfo;
+ 
   //local.getItem('studentId');
   console.log("visitorId is:", visitorId);
 }
