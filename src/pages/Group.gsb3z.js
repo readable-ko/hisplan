@@ -1,10 +1,14 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixData from "wix-data";
+import { currentMember } from "wix-members";
+
+let visitorId;
 
 $w.onReady(function () {
   // Write your JavaScript here
-
+  setVisitor();
+  
   // To select an element by ID use: $w('#elementID')
   fetchValueFromDatabase();
 
@@ -27,4 +31,17 @@ async function fetchValueFromDatabase() {
   } catch (err) {
     console.error("Error : " + err);
   }
+}
+
+async function setVisitor() {
+  const memInfo = await currentMember
+    .getMember()
+    .then((member) => {
+      const id = member._id;
+      const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
+      return id;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
