@@ -84,7 +84,7 @@ $w.onReady(() => {
   });
 
   let visitorEmail;
-  
+
   async function setVisitor() {
     const memInfo = await currentMember
       .getMember()
@@ -97,24 +97,24 @@ $w.onReady(() => {
       });
     visitorEmail = memInfo;
     console.log("visitorEmail is:", visitorEmail);
-  } 
 
-  setVisitor();
-
-  wixData
+    wixData
     .query("Student")
     .eq("email", visitorEmail)
     .find()
     .then((results) => {
       console.log(results);
-      // console.log(results.items[0]["studentId"]);
-      // userId = results.items[0]["studentId"];
-      // $w("#input1").value = userId;
     });
+  } 
+
+  
+
+  
 
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
     try {
+      setVisitor();
       wixData.insert("Preference", {
         studentId: userId,
         first: $w("#dropdownInstructor1").options[$w("#dropdownInstructor1").selectedIndex].value,
