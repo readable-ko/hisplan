@@ -35,7 +35,7 @@ $w.onReady(function () {
   
 //   $w('#button6').onClick(updateRank);
   
-  $w("#buttonTest").onClick(() => {
+  $w("#button4").onClick(() => {
     let randomStr = generateRandomString(6);
     console.log(randomStr);
   });
@@ -56,51 +56,4 @@ async function setVisitor() {
   visitorId = memInfo;
   //local.getItem('studentId');
   console.log("visitorId is:", visitorId);
-}
-
-
-
-function updateRank() {
-  
-  console.error('updateRank()');
-  
-  // 폼 데이터 가져오기
-  const formData = {
-    // 여기에 폼 필드에 해당하는 데이터를 수집하는 코드 작성
-    // 예시: name 필드의 값을 가져오는 경우
-    name: $w('#nameInput').value,
-  };
-
-  // 데이터 유효성 검사 등 필요한 처리를 수행
-  // ...
-
-  // Group 데이터베이스 컬렉션 이름
-  const collectionName = 'Group';
-
-  // 데이터 저장 및 rank 계산
-  wixData.query(collectionName)
-    .descending('reportCount')
-    .find()
-    .then(results => {
-      let rank = 1;
-      const promises = [];
-
-      for (let i = 0; i < results.items.length; i++) {
-        const item = results.items[i];
-        item.rank = rank;
-        rank++;
-
-        promises.push(wixData.update(collectionName, item));
-      }
-
-      return Promise.all(promises);
-    })
-    .then(() => {
-      console.log('Rank calculation completed.');
-      // 성공적으로 처리된 후에 수행할 작업을 여기에 추가
-    })
-    .catch(error => {
-      console.error('Error calculating and saving rank:', error);
-      // 오류 발생 시 처리할 작업을 여기에 추가
-    });
 }
