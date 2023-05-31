@@ -105,6 +105,7 @@ $w.onReady(() => {
     .find()
     .then((results) => {
       studentNumber = results.items[0]['studentId'];
+      console.log(studentNumber);
       console.log(results.items[0]['studentId']);
       
     });
