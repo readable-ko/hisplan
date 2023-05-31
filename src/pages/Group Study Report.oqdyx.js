@@ -38,11 +38,11 @@ $w.onReady(function () {
     console.log(randomStr);
     console.log(visitorId);
     
-//     const group = await wixData.query('PrivateMemberData')
-//       .eq('_id', visitor.id)
-//       .find();
+    const person = await wixData.query('PrivateMemberData')
+      .eq('_id', visitor)
+      .find();
 
-//     console.log('mem = ', group.items.length);
+    console.log('mem = ', group.items.length);
   });
   
 });
