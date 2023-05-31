@@ -77,6 +77,13 @@ $w.onReady(() => {
       });
   });
 
+  $w("#dropdownFriends").onChange(async () => {
+    console.log("friends chosen");
+    const selectedOption = $w("#dropdownFriends").value;
+    $w("#textboxFriends").value += selectedOption;
+    $w("#textboxFriends").value += " ";
+  });
+
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
     try {

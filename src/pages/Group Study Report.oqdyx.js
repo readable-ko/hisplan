@@ -2,11 +2,16 @@
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixWindow from "wix-window";
 import wixData from "wix-data";
+import { currentMember } from "wix-members";
+
+let visitorId;
 
 $w.onReady(function () {
   // Write your JavaScript here
 
   // To select an element by ID use: $w('#elementID')
+  setVisitor();
+  
 
   // Click 'Preview' to run your code
   const generateRandomString = (num) => {
@@ -46,3 +51,19 @@ $w.onReady(function () {
   //           });
   //     });
 });
+
+async function setVisitor() {
+  const memInfo = await currentMember
+    .getMember()
+    .then((member) => {
+      const id = member._id;
+      const fullName = `${member.contactDetails.firstName} ${member.contactDetails.lastName}`;
+      return id;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  visitorId = memInfo;
+  //local.getItem('studentId');
+  console.log("visitorId is:", visitorId);
+}
