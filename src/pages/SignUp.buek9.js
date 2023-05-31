@@ -17,4 +17,28 @@ $w.onReady(() => {
   //         console.error(error.message);
   //     }
   // });
+
+  async function setVisitor() {
+    const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    const visitorEmail = memInfo;
+    console.log("visitorEmail is:", visitorEmail);
+    console.log("Student ID : ", visitorEmail.slice(0,8))
+    
+    wixData.insert("Student", {
+      emali: visitorEmail,
+      name: $w('#input1').value,
+      studentId: visitorEmail.slice(0,8)
+    });
+
+  }
+
+  setVisitor();
 });

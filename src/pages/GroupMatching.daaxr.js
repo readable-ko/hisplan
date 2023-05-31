@@ -21,22 +21,28 @@ $w.onReady(() => {
   //     $w("#input1").value = userId;
   //   });
 
-  async function setVisitor() {
-    const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    const visitorEmail = memInfo;
-    console.log("visitorEmail is:", visitorEmail);
-    console.log("Student ID : ", visitorEmail.slice(0,7))
-  }
+  // async function setVisitor() {
+  //   const memInfo = await currentMember
+  //     .getMember()
+  //     .then((member) => {
+  //       const email = member.loginEmail;
+  //       return email;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  //   const visitorEmail = memInfo;
+  //   console.log("visitorEmail is:", visitorEmail);
+  //   console.log("Student ID : ", visitorEmail.slice(0,8))
+    
+  //   wixData.insert("Student", {
+  //     emali: visitorEmail,
+  //     studentId: visitorEmail.slice(0,8)
+  //   });
 
-  setVisitor();
+  // }
+
+  // setVisitor();
 
   // 1번 Drop Down 누른 경우
   $w("#dropdown1").onChange(async () => {
