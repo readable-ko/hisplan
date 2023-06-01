@@ -52,7 +52,7 @@ $w.onReady(async () => {
     console.log($w("#repeater2").data);
 
     $w("#repeater2").onItemReady(($item, itemData) => {
-      console.log(itemData.studentName);
+      console.log(itemData);
       $item("#text4").text = itemData.studentName;
     });
 
