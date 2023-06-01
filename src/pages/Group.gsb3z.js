@@ -10,7 +10,7 @@ $w.onReady(async () => {
   
   await setVisitor();
 
-  const itemlist = [];
+  let itemlist = [];
 
   await wixData
     .query("Student")
