@@ -47,7 +47,7 @@ $w.onReady(async () => {
         }
     });
 
-    $w("#repeater1").data = itemlist;
+    $w("#repeater1").data = [{studentName : "hello", studentId: "21800201"}];
     console.log(itemlist);
     console.log($w("#repeater1").data);
 
