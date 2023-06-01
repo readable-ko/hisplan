@@ -34,6 +34,7 @@ $w.onReady(async () => {
             let tempName = results.items[i]['name'];
             let tempId = results.items[i]['studentId'];
             let item = {
+              _id: i+1,
               studentName : tempName, 
               studentId : tempId
             };
@@ -47,7 +48,7 @@ $w.onReady(async () => {
         }
     });
 
-    $w("#repeater1").data = [{studentName : "hello", studentId: "21800201"}];
+    $w("#repeater1").data = itemlist;
     console.log(itemlist);
     console.log($w("#repeater1").data);
 
