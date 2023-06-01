@@ -10,7 +10,7 @@ $w.onReady(async () => {
   $w("#repeater1").data = [];
   await setVisitor();
 
-  let itemlist;
+  const itemlist = [];
 
   await wixData
     .query("Student")
@@ -35,6 +35,8 @@ $w.onReady(async () => {
             let tempId = results.items[i]['studentId'];
             let item = {tempName, tempId};
 
+            console.log(tempName);
+            console.log(tempId);
             itemlist.push(item);
 
             // console.log(results.items[i]);
