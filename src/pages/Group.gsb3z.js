@@ -7,7 +7,7 @@ let visitorEmail;
 let visitorGroupId;
 
 $w.onReady(async () => {
-  $w("#repeater1").data = [];
+  
   await setVisitor();
 
   const itemlist = [];
