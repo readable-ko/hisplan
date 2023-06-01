@@ -51,7 +51,7 @@ $w.onReady(async () => {
     console.log(itemlist);
     console.log($w("#repeater2").data);
 
-    $w("#repeater1").onItemReady(($item, itemData) => {
+    $w("#repeater2").onItemReady(($item, itemData) => {
       console.log(itemData.studentName);
       $item("#text4").text = itemData.studentName;
     });
