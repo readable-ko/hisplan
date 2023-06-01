@@ -10,6 +10,8 @@ $w.onReady(async () => {
   $w("#repeater1").data = [];
   await setVisitor();
 
+  let itemlist;
+
   await wixData
     .query("Student")
     .include("Group-8")
@@ -28,13 +30,20 @@ $w.onReady(async () => {
           if(results.items[i]['Group-8'][0]['groupId'] == visitorGroupId) {
             console.log(results.items[i]['name']);
             $w('text4').value = results.items[i]['name'];
-            console.log(results.items[i]);
-            $w("#repeater1").data = results.items[i];
+
+            let tempName = results.items[i]['name'];
+            let tempId = results.items[i]['studentId'];
+            let item = {tempName, tempId};
+
+            itemlist.push(item);
+
+            // console.log(results.items[i]);
+            // $w("#repeater1").data = results.items[i];
           }
         }
     });
 
-    console.log($w("#repeater1").data);
+    console.log(itemlist);
 
     // $w("#repeater1").onItemReady(($item, itemData) => {
     //   console.log(itemData.)
