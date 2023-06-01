@@ -26,7 +26,7 @@ $w.onReady(() => {
         .getMember()
         .then((member) => {
           const email = member.loginEmail;
-          return email;
+            return email;
         })
         .catch((error) => {
           console.error(error);
