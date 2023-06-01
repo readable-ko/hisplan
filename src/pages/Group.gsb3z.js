@@ -49,8 +49,8 @@ $w.onReady(async () => {
     console.log(itemlist);
     console.log($w('#repeater1').data);
 
-    $w("#repeater1").onItemReady(($item, itemData) => {
-      console.log($item);
+    $w('#repeater1').forEachItem(($item, itemData) => {
+      console.log(itemData.tempName);
       $item('#text4').text = itemData.tempName;
     });
 
