@@ -47,11 +47,11 @@ $w.onReady(async () => {
         }
     });
 
-    $w("#repeater2").data = itemlist;
+    $w("#repeater1").data = itemlist;
     console.log(itemlist);
-    console.log($w("#repeater2").data);
+    console.log($w("#repeater1").data);
 
-    $w("#repeater2").onItemReady(($item, itemData) => {
+    $w("#repeater1").onItemReady(($item, itemData) => {
       console.log(itemData);
       $item("#text4").text = itemData.studentName;
     });
