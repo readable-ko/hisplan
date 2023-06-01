@@ -47,9 +47,9 @@ $w.onReady(async () => {
         }
     });
 
-    $w("#repeater1").data = itemlist;
+    $w("#repeater2").data = itemlist;
     console.log(itemlist);
-    console.log($w("#repeater1").data);
+    console.log($w("#repeater2").data);
 
     $w("#repeater1").onItemReady(($item, itemData) => {
       console.log(itemData.studentName);
