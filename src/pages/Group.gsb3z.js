@@ -51,7 +51,7 @@ $w.onReady(async () => {
     $w("#repeater1").onItemReady(($item, itemData) => {
       console.log(itemData);
       $item('#text4').text = itemData.tempName;
-    })
+    });
 
 
 });
