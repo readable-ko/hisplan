@@ -49,7 +49,7 @@ $w.onReady(async () => {
     console.log(itemlist);
 
     $w("#repeater1").onItemReady(($item, itemData) => {
-      console.log(itemData);
+      console.log($item);
       $item('#text4').text = itemData.tempName;
     });
 
