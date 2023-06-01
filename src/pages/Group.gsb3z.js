@@ -47,6 +47,7 @@ $w.onReady(async () => {
 
     $w('#repeater1').data = itemlist;
     console.log(itemlist);
+    console.log($w('#repeater1').data);
 
     $w("#repeater1").onItemReady(($item, itemData) => {
       console.log($item);
