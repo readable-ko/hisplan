@@ -47,9 +47,12 @@ $w.onReady(async () => {
 
     console.log(itemlist);
 
-    // $w("#repeater1").onItemReady(($item, itemData) => {
-    //   console.log(itemData.)
-    // })
+    $w("#repeater1").onItemReady(($item, itemData) => {
+      console.log(itemData.tempName);
+      $item('#text4').text = itemData.tempName;
+    })
+
+
 });
 
 async function setVisitor() {
