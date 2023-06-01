@@ -33,10 +33,12 @@ $w.onReady(async () => {
 
             let tempName = results.items[i]['name'];
             let tempId = results.items[i]['studentId'];
-            let item = {tempName, tempId};
+            let item = {
+              studentName : tempName, 
+              studentId : tempId
+            };
 
-            console.log(tempName);
-            console.log(tempId);
+            console.log(item);
             itemlist.push(item);
 
             // console.log(results.items[i]);
@@ -50,8 +52,8 @@ $w.onReady(async () => {
     console.log($w('#repeater1').data);
 
     $w('#repeater1').forEachItem(($item, itemData) => {
-      console.log(itemData.tempName);
-      $item('#text4').text = itemData.tempName;
+      console.log(itemData.studentName);
+      $item('#text4').text = itemData.studentName;
     });
 
 
