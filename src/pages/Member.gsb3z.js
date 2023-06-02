@@ -15,7 +15,7 @@ $w.onReady(async () => {
   
   console.log('groupMem' , groupMembers);
    
-  let n_members = len(groupMembers.items[0].members);
+  let n_members = groupMembers.items[0].members.length;
   
   console.log('len ', n_numbers);
   
