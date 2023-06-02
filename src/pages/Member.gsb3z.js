@@ -25,7 +25,7 @@ $w.onReady(async () => {
     const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
     const email = itemData.email;
     
-//     const img = await getProfileImage(email);
+    let img = await getProfileImage(email);
     
     $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
