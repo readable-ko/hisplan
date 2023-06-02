@@ -28,8 +28,8 @@ $w.onReady(async () => {
   $w("#repeater1").onItemReady(($w, members, index) => {
     // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
     
-    const name = members.name;  // text1 필드의 값을 가져옴
-    const studentId = members.studentId;  // text1 필드의 값을 가져옴
+    const name = members[index].name;  // text1 필드의 값을 가져옴
+    const studentId = members[index].studentId;  // text1 필드의 값을 가져옴
     
     $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
