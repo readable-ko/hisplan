@@ -18,14 +18,7 @@ $w.onReady(async () => {
   let members = groupMembers.items[0].members;
   let n_members = members.length;
   
-  console.log('len ', n_members);
-  
-  console.log(members[0].name);
-  console.log(members[0].studentId);
-  console.log(members[1].name);
-  console.log(members[1].studentId);
-  
-  $w("#repeater1").onItemReady( ($item, itemData, index) => {
+  $w("#repeater1").onItemReady( ($w, itemData, index) => {
     // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
     
     const name = itemData.name;  // text1 필드의 값을 가져옴
