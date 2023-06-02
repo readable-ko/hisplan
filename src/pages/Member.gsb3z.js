@@ -56,7 +56,7 @@ $w.onReady(async () => {
       console.log(itemData);
 //       $item("#box2").children("#box1").children("#text4").text = itemData.studentName;
       
-      $w("#text7").text = itemData.studentName;; 
+      $w("#text7").text = itemData[0].studentName;; 
     });
   
   
