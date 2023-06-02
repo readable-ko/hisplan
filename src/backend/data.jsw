@@ -54,7 +54,9 @@ export async function getGroupMembers(email) {
                                     .eq('email', email)
                                     .include("Group-8")
                                     .find();
-  return MultiRefer;
+  const groupNum = MultiRefer.items[0].['Group-8'][0].groupId;
+  
+  return groupNum;
 }
 
 export async function increaseGroupReport(email) {
