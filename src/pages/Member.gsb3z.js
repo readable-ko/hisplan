@@ -2,7 +2,7 @@
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
-import { getGroup, getGroupMembers, getProfileImage } from "backend/data";
+import { getGroup, getGroupMembers } from "backend/data";
 let visitorId;
 let visitorEmail;
 let visitorGroupId;
