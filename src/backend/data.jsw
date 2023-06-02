@@ -103,7 +103,7 @@ export async function increaseGroupReport(email) {
                              .eq('loginEmail', email)
                              .find();
                              
-    const img = info.profilePhoto.src;
+    const img = info.profilePhoto;
     
     console.log('hahahahhaa');
     
