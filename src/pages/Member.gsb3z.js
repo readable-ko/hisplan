@@ -14,6 +14,11 @@ $w.onReady(async () => {
   const groupMembers = await getGroupMembers(visitorEmail);
   
   console.log('groupMem' , groupMembers);
+   
+  let n_members = len(groupMembers.items[0].members);
+  
+  console.log('len ', n_numbers);
+  
 
 });
 
