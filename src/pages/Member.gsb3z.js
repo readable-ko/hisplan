@@ -20,6 +20,11 @@ $w.onReady(async () => {
   
   console.log('len ', n_members);
   
+  console.log(members[0].name);
+  console.log(members[0].studentId);
+  console.log(members[1].name);
+  console.log(members[1].studentId);
+  
   $w("#repeater1").onItemReady(($w, members, index) => {
     // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
     
