@@ -8,10 +8,7 @@ import { authentication } from "wix-members";
 
 let interval;
 let timeInterval = 50;
-let typeStr = "“\
-In his heart a man plans his course, but the LORD determines his steps.\
-Proverb 16:9\
-”";
+let typeStr = "“\nIn his heart a man plans his course, \nbut the LORD determines his steps.\nProverb 16:9\n”";
 let typeIdx;
 let htmlStr = '';
 let displayStr;
