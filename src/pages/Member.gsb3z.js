@@ -11,7 +11,7 @@ $w.onReady(async () => {
   
   await setVisitor();
 
-  const groupMembers = await getGroup();
+  const groupMembers = await getGroupMembers(visitorEmail);
   
   console.log('groupMem' , groupMembers);
 
