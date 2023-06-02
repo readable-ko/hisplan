@@ -98,8 +98,6 @@ export async function increaseGroupReport(email) {
       }
   }
   
- import wixData from 'wix-data';
-
 export async function getProfileImage(email) {
   try {
     const info = await wixData.query("Members/FullData")
