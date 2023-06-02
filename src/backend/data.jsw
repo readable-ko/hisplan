@@ -49,6 +49,14 @@ export async function getGroup() {
   return MultiRefer;
 }
 
+export async function getGroupMembers(email) {
+  const MultiRefer = await wixData.query("Student")
+                                    .eq('email', email)
+                                    .include("Group-8")
+                                    .find();
+  return MultiRefer;
+}
+
 export async function increaseGroupReport(email) {
     const MultiRefer = await wixData.query("Student")
                                     .eq('email', email)
