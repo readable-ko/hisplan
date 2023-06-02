@@ -106,6 +106,7 @@ export async function getProfileImage(email) {
                              
     if (info && info.items && info.items.length > 0) {
       const img = info.items[0].profilePhoto;
+      console.log("Image found");
       return img;
     } else {
       throw new Error("Profile photo not found.");
