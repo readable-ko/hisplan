@@ -48,14 +48,18 @@ $w.onReady(async () => {
         }
     });
 
-    $w("#repeater1").data = itemlist;
+    $w("#repeater2").data = itemlist;
     console.log(itemlist);
-    console.log($w("#repeater1").data);
+    console.log($w("#repeater2").data);
 
-    $w("#repeater1").onItemReady(($item, itemData) => {
+    $w("#repeater2").onItemReady(($item, itemData) => {
       console.log(itemData);
-      $item("#box2").children("#box1").children("#text4").text = itemData.studentName;
+//       $item("#box2").children("#box1").children("#text4").text = itemData.studentName;
+      
+      $w("#text1").text = itemData.studentName;; 
     });
+  
+  
 
 
 });
