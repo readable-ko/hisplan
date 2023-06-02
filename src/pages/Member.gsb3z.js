@@ -13,7 +13,7 @@ $w.onReady(async () => {
 
   const groupMembers = await getGroupMembers(visitorEmail);
   
-  console.log('groupMem' , groupMembers);
+//   console.log('groupMem' , groupMembers);
    
   let members = groupMembers.items[0].members;
   let n_members = members.length;
@@ -31,7 +31,7 @@ $w.onReady(async () => {
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#imageX3").src = img;
     
-    console.log(name, studentId, email);  // 콘솔에 출력하거나 원하는 작업 수행
+//     console.log(name, studentId, email);  // 콘솔에 출력하거나 원하는 작업 수행
   });
   
   $w('#repeater1').data = members;
