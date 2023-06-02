@@ -18,6 +18,9 @@ $w.onReady(async () => {
   let members = groupMembers.items[0].members;
   let n_members = members.length;
   
+  const image = getProfileImage(visitorEmail);
+  $w("#imageX4").src = image;
+  
   $w("#repeater1").onItemReady( ($w, itemData, index) => {
     // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
     
