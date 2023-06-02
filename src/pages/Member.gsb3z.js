@@ -18,7 +18,7 @@ $w.onReady(async () => {
   let members = groupMembers.items[0].members;
   let n_members = members.length;
   
-  const image = getProfileImage(visitorEmail);
+  let image = getProfileImage(visitorEmail);
   $w("#imageX4").src = image;
   
   $w("#repeater1").onItemReady( ($w, itemData, index) => {
