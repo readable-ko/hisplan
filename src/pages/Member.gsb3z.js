@@ -29,6 +29,7 @@ $w.onReady(async () => {
     
     $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
+    $w("#text6").text = email;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#imageX3").src = img;
     
 //     console.log(name, studentId, email);  // 콘솔에 출력하거나 원하는 작업 수행
