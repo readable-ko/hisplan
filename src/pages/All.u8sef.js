@@ -7,7 +7,7 @@ import { authentication } from "wix-members";
 
 
 let interval;
-let timeInterval = 300;
+let timeInterval = 100;
 let typeStr = "“\
 In his heart a man plans his course, but the LORD determines his steps.\
 Proverb 16:9\
