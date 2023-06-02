@@ -23,15 +23,18 @@ $w.onReady(async () => {
     
     const name = itemData.name;  // text1 필드의 값을 가져옴
     const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
+    const email = itemData.email;
+    
+    const img = getProfileImage(email);
     
     $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
+    $w("#imageX3").src = ;
     
     console.log(name, studentId);  // 콘솔에 출력하거나 원하는 작업 수행
   });
   
-  $w('#repeater1').data = members;
-
+  $w('#repeater1').data = img;
 });
 
 async function setVisitor() {
