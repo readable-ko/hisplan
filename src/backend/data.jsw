@@ -98,14 +98,22 @@ export async function increaseGroupReport(email) {
       }
   }
   
-  export async function getProfileImage(email) {
+ import wixData from 'wix-data';
+
+export async function getProfileImage(email) {
+  try {
     const info = await wixData.query("Members/FullData")
                              .eq('loginEmail', email)
                              .find();
                              
-    const img = info.profilePhoto;
-    
-    console.log('hahahahhaa');
-    
-    return img;
+    if (info && info.items && info.items.length > 0) {
+      const img = info.items[0].profilePhoto;
+      return img;
+    } else {
+      throw new Error("Profile photo not found.");
+    }
+  } catch (error) {
+    console.error("Error retrieving profile photo:", error);
+    return null;
   }
+}
