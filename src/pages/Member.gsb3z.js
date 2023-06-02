@@ -18,9 +18,6 @@ $w.onReady(async () => {
   let members = groupMembers.items[0].members;
   let n_members = members.length;
   
-  let image = await getProfileImage(visitorEmail);
-  $w("#imageX4").src = image;
-  
   $w("#repeater1").onItemReady( ($w, itemData, index) => {
     // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
     
@@ -28,7 +25,7 @@ $w.onReady(async () => {
     const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
     const email = itemData.email;
     
-    const img = getProfileImage(email);
+    const img = await getProfileImage(email);
     
     $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
