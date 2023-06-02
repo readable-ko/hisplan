@@ -99,8 +99,13 @@ export async function increaseGroupReport(email) {
   }
   
   export async function getProfileImage(email) {
-    const img = await wixData.query("FullData")
+    const info = await wixData.query("FullData")
                              .eq('loginEmail', email)
                              .find();
+                             
+    const img = info.profilePhoto;
+    
     console.log('hahahahhaa');
+    
+    return img;
   }
