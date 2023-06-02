@@ -38,7 +38,7 @@ $w.onReady(async () => {
 		// Stop the interval from running when we get to the last character to by "typed".
 		if (typeIdx === typeStr.length) clearInterval(interval);
 	}, timeInterval);
-  
+   
   
   
   wixUsers.onLogin(function (user) {
