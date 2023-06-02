@@ -20,7 +20,7 @@ $w.onReady(async () => {
   
   console.log('len ', n_members);
   
-  $w("#repeater1").onItemReady(($w, itemData, index) => {
+  $w("#repeater1").onItemReady(($w, members, index) => {
     // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
     
     const name = members.name;  // text1 필드의 값을 가져옴
