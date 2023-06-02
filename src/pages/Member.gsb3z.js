@@ -2,7 +2,7 @@
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
-import { getGroup, getGroupMembers } from "backend/data";
+import { getGroup, getGroupMembers, getProfileImage } from "backend/data";
 let visitorId;
 let visitorEmail;
 let visitorGroupId;
@@ -25,7 +25,7 @@ $w.onReady(async () => {
     const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
     const email = itemData.email;
     
-//     const img = getProfileImage(email);
+    const img = getProfileImage(email);
     
     $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
     $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
