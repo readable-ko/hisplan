@@ -34,7 +34,7 @@ $w.onReady(async () => {
     console.log(name, studentId);  // 콘솔에 출력하거나 원하는 작업 수행
   });
   
-  $w('#repeater1').data = groupMembers;
+  $w('#repeater1').data = members;
 });
 
 async function setVisitor() {
