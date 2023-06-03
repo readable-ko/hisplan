@@ -13,13 +13,13 @@ $w.onReady(function () {
   // Write your JavaScript here
 
   // To select an element by ID use: $w('#elementID')
-  await setVisitor();
+//   await setVisitor();
   
-  const groupMembers = await getGroupMembers(visitorEmail);   
-  let members = groupMembers.items[0].members;
-  let n_members = members.length;
+//   const groupMembers = await getGroupMembers(visitorEmail);   
+//   let members = groupMembers.items[0].members;
+//   let n_members = members.length;
   
-  console.log(members);
+//   console.log(members);
 
   // Click 'Preview' to run your code
   const generateRandomString = (num) => {
