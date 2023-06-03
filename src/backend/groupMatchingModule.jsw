@@ -49,7 +49,7 @@ export async function getStudentsInfo() {
       console.log('friends ', preference.friends);
       const friends = await wixData
         .query("Student")
-        .hasSome("studentId", preference.friends === undefined ? [] : preference.friends.split(" "))
+        .hasSome("studentId", preference.friends === null ? [] : preference.friends.split(" "))
         .find();
       console.log("3");
       // Check if friends were found
