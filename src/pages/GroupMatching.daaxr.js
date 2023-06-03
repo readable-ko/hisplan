@@ -113,6 +113,7 @@ $w.onReady(async () => {
   $w("#buttonMatchGroup").onClick(async () => {
     try {
       const studyGroups = await matchGroups();
+      console.log('matchGroup() returned');
       console.log(studyGroups);
     } catch (error) {
       console.error(error.message);
