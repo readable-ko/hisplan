@@ -4,7 +4,9 @@ import wixData from "wix-data";
 export async function matchGroups() {
   
   let studyGroups = [];
-
+  
+  console.log('Test..');
+  
   // Get the students' information from the database
   const students = await getStudentsInfo();
     
