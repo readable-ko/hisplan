@@ -112,13 +112,16 @@ $w.onReady(async () => {
   // Match Group 버튼 누른 경우
   $w("#buttonMatchGroup").onClick(async () => {
     let studyGroups;
-    try {
-      console.log('Group Match Test');
-      studyGroups = await matchGroups();
-      console.log('matchGroup() returned');
-      console.log(studyGroups);
-    } catch (error) {
-      console.error(error.message);
-    }
+    studyGroups = await matchGroups();
+    console.log('matchGroup() returned');
+    console.log(studyGroups);
+//     try {
+//       console.log('Group Match Test');
+//       studyGroups = await matchGroups();
+//       console.log('matchGroup() returned');
+//       console.log(studyGroups);
+//     } catch (error) {
+//       console.error(error.message);
+//     }
   });
 });
