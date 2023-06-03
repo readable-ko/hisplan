@@ -10,11 +10,11 @@ let visitorId;
 let visitorEmail;
 //let groupNum;
 
-$w.onReady(function () {
+$w.onReady(async function () {
   // Write your JavaScript here
 
   // To select an element by ID use: $w('#elementID')
-  setVisitor();
+  await setVisitor();
   
   const groupMembers = await getGroupMembers(visitorEmail);   
   let members = groupMembers.items[0].members;
