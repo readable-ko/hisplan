@@ -22,16 +22,16 @@ $w.onReady(function () {
 //   console.log(members);
 
   // Click 'Preview' to run your code
-  const generateRandomString = (num) => {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    const charactersLength = characters.length;
-    for (let i = 0; i < num; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
+//   const generateRandomString = (num) => {
+//     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//     let result = "";
+//     const charactersLength = characters.length;
+//     for (let i = 0; i < num; i++) {
+//       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//     }
 
-    return result;
-  };
+//     return result;
+//   };
 
   $w("#button3").onClick(() => {
     let randomStr = generateRandomString(6);
@@ -74,4 +74,14 @@ async function setVisitor() {
   //console.log("gloryko: ", groupNum.items[0]['Group-8'][0].groupId);
   //local.getItem('studentId');
   console.log("visitorId is:", memInfo.loginEmail);
+}
+
+async function generateRandomString(num) {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    const charactersLength = characters.length;
+    for (let i = 0; i < num; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 }
