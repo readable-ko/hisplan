@@ -13,7 +13,7 @@ $w.onReady(function () {
   // Write your JavaScript here
 
   // To select an element by ID use: $w('#elementID')
-  setVisitor();
+  await setVisitor();
   
   const groupMembers = await getGroupMembers(visitorEmail);   
   let members = groupMembers.items[0].members;
