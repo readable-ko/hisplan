@@ -114,8 +114,8 @@ $w.onReady(async () => {
     try {
       const studentsInfo = await getStudentsInfo();
       console.log(studentsInfo);
-      // // const studyGroups = await matchGroups();
-      // console.log(studyGroups);
+      const studyGroups = await matchGroups();
+      console.log(studyGroups);
     } catch (error) {
       console.error(error.message);
     }
