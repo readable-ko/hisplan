@@ -3,7 +3,39 @@ import wixData from "wix-data";
 import wixUsers from "wix-users";
 import { currentMember } from "wix-members";
 
+let visitorEmail;
+let studentNumber = 0;
+let groupNumber;
+
+async function setVisitor() {
+    const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    visitorEmail = memInfo;
+    console.log("visitorEmail is:", visitorEmail);
+
+    await wixData
+    .query("Student")
+    .eq("email", visitorEmail)
+    .find()
+    .then((results) => {
+      studentNumber = results.items[0]['studentId'];
+      console.log(results.items)
+      groupNumber = wixData.get('Group-8');
+      console.log(groupNumber);
+    });
+  } 
+
+
 $w.onReady(async () => {
+  
+  await setVisitor();
 
   // 1번 Dropdown 누른 경우
   $w("#dropdownSubject1").onChange(() => {
@@ -53,37 +85,6 @@ $w.onReady(async () => {
     $w("#textboxFriends").value += selectedOption + " ";
   });
 
-  let visitorEmail;
-  let studentNumber = 0;
-  let groupNumber;
-
-  async function setVisitor() {
-    const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    visitorEmail = memInfo;
-    console.log("visitorEmail is:", visitorEmail);
-
-    await wixData
-    .query("Student")
-    .eq("email", visitorEmail)
-    .find()
-    .then((results) => {
-      studentNumber = results.items[0]['studentId'];
-      console.log(results.items)
-      groupNumber = wixData.get('Group-8');
-      console.log(groupNumber);
-    });
-  } 
-
-  await setVisitor();
-  
   // Match Group 버튼 누른 경우
   $w("#buttonMatchGroup").onClick(async () => {
     console.log('Group Match Test');
