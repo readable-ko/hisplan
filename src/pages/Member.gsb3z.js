@@ -8,25 +8,24 @@ let visitorEmail;
 let visitorGroupId;
 
 
-let members = groupMembers.items[0].members;
-  let n_members = members.length;
-  
-  $w("#repeater1").onItemReady( async ($w, itemData, index) => {
-    // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
-    
-    const name = itemData.name;  // text1 필드의 값을 가져옴
-    const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
-    const email = itemData.email;
-    
-    let img = await getProfileImage(email);
-    
-    $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
-    $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
-    $w("#text6").text = email;  // text1 요소에 가져온 값을 설정하여 출력
-    $w("#imageX3").src = img;
-    
+
+
+$w("#repeater1").onItemReady( async ($w, itemData, index) => {
+  // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
+
+  const name = itemData.name;  // text1 필드의 값을 가져옴
+  const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
+  const email = itemData.email;
+
+  let img = await getProfileImage(email);
+
+  $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text6").text = email;  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#imageX3").src = img;
+
 //     console.log(name, studentId, email);  // 콘솔에 출력하거나 원하는 작업 수행
-  });
+});
 
 
 
@@ -34,6 +33,8 @@ $w.onReady(async () => {
   
   await setVisitor();
   const groupMembers = await getGroupMembers(visitorEmail);
+  let members = groupMembers.items[0].members;
+  let n_members = members.length;
   
   console.log('groupMem' , groupMembers);
    
