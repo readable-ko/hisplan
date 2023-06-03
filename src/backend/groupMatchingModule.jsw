@@ -10,6 +10,8 @@ export async function matchGroups() {
   // Get the students' information from the database
   const students = await getStudentsInfo();
     
+  console.log('Student info returned'); 
+   
   // Assign the students to the study groups
   assignStudentsToStudyGroups(students, studyGroups);
   
