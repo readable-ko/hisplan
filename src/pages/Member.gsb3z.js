@@ -13,7 +13,7 @@ $w.onReady(async () => {
 
   const groupMembers = await getGroupMembers(visitorEmail);
   
-//   console.log('groupMem' , groupMembers);
+  console.log('groupMem' , groupMembers);
    
   let members = groupMembers.items[0].members;
   let n_members = members.length;
