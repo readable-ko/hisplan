@@ -1,19 +1,26 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
-import { getGroup } from "backend/data";
+// import { getGroup, getGroupMembers, getStudentGroup, increaseGroupReport, getStudentID } from "backend/data";
+import { getGroup, getGroupMembers, getProfileImage } from "backend/data";
 import wixWindow from "wix-window";
 import wixData from "wix-data";
 import { currentMember } from "wix-members";
 
 let visitorId;
 let visitorEmail;
+//let groupNum;
 
-$w.onReady(function () {
+$w.onReady(async function () {
   // Write your JavaScript here
 
   // To select an element by ID use: $w('#elementID')
-  setVisitor();
+  await setVisitor();
   
+  const groupMembers = await getGroupMembers(visitorEmail);   
+  let members = groupMembers.items[0].members;
+  let n_members = members.length;
+  
+  console.log(members);
 
   // Click 'Preview' to run your code
   const generateRandomString = (num) => {
@@ -36,17 +43,22 @@ $w.onReady(function () {
   });
     
   $w("#button4").onClick(() => {
+//     setVisitor();
     let randomStr = generateRandomString(6);
     console.log(randomStr);
     console.log(visitorId);
-    
-    const groupNum = getGroup(visitorEmail);
-    console.log('group num ', groupNum);
+    updateReport();
+    //console.log("gloryko: ", groupNum);
   });
-  
 });
 
+async function updateReport() {
+  await setVisitor();
+  await increaseGroupReport(visitorEmail);
+}
+
 async function setVisitor() {
+
   const memInfo = await currentMember
     .getMember()
     .then((member) => {
@@ -59,7 +71,8 @@ async function setVisitor() {
     });
   visitorId = memInfo._id;
   visitorEmail = memInfo.loginEmail;
-  
+  //const groupNum = await getStudentGroup(visitorEmail);
+  //console.log("gloryko: ", groupNum.items[0]['Group-8'][0].groupId);
   //local.getItem('studentId');
   console.log("visitorId is:", memInfo.loginEmail);
 }

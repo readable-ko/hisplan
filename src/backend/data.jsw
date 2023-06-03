@@ -32,7 +32,7 @@ export async function updateTask(task, newStatus) {
 
 // this function is different from the previous ones as it returns a promise
 // this is done in order to allow calling it several times without waiting to each call to complete
-export function removeTask(taskID) {
+export async function removeTask(taskID) {
   try {
     const removePromise = wixData.remove("TodoList", taskID);
     return removePromise;
@@ -41,25 +41,78 @@ export function removeTask(taskID) {
   }
 }
 
-export function getStudentID(visitorId) {
-  try {
-    const result = await wixData.query("PrivateMembersData")
-                                   .eq("_id", visitorId)
-                                   .find();
-    console.log("Length of item is: ", result.length);
-    return result.items;
-  } catch (error) {
-    console.error(error);
-  }
+
+export async function getGroup() {
+  const MultiRefer = await wixData.query("Student").include("Group-8").find();
+  console.log(MultiRefer);
+  
+  return MultiRefer;
 }
 
-export function getGroup(StudnetID) {
+export async function getGroupNumber(email) {
+  const MultiRefer = await wixData.query("Student")
+                                    .eq('email', email)
+                                    .include("Group-8")
+                                    .find();
+  const groupNum = MultiRefer.items[0]['Group-8'][0].groupId;
+  
+  return groupNum;
+}
+
+export async function getGroupMembers(email) {
+  const MultiRefer = await wixData.query("Student")
+                                    .eq('email', email)
+                                    .include("Group-8")
+                                    .find();
+  const groupNum = MultiRefer.items[0]['Group-8'][0].groupId;
+   
+   const members = await wixData.query("Group")
+                                 .eq('groupId', groupNum)
+                                 .include("members")
+                                 .find();
+   
+  return members;
+}
+
+export async function increaseGroupReport(email) {
+    const MultiRefer = await wixData.query("Student")
+                                    .eq('email', email)
+                                    .include("Group-8")
+                                    .find();
+    const newNum = MultiRefer.items[0]['Group-8'][0].reportCount + 1;
+    console.log('report: ',MultiRefer.items[0]['Group-8'][0].reportCount);
+    updateReport(MultiRefer.items[0]['Group-8'][0], newNum);
+    console.log('report: ',MultiRefer.items[0]['Group-8'][0].reportCount);
+    return MultiRefer;
+  }
+
+  export async function updateReport(report, newStatus) {
+    try {
+        const toUpdate = {
+          ...report,
+          'reportCount': newStatus,
+        };
+        await wixData.update("Group", toUpdate);
+      } catch (error) {
+        console.error(error);
+      }
+  }
+  
+export async function getProfileImage(email) {
   try {
-    const result = await wixData.queryReferenced("Student", StudentID, "Group-8");
-    
-    console.log("Length of item is: ", result);
-    return result;
+    const info = await wixData.query("Members/FullData")
+                             .eq('loginEmail', email)
+                             .find();
+                             
+    if (info && info.items && info.items.length > 0) {
+      const img = info.items[0].profilePhoto;
+      console.log("Image found");
+      return img;
+    } else {
+      return "https://static.wixstatic.com/media/e3f63a_7a7c2cfd35f14059abc14462fcc8e560~mv2.png";
+    }
   } catch (error) {
-    console.error(error);
+    console.error("Error retrieving profile photo:", error);
+    return null;
   }
 }

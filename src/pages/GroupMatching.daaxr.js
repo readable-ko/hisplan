@@ -3,41 +3,10 @@ import wixData from "wix-data";
 import wixUsers from "wix-users";
 import { currentMember } from "wix-members";
 
-$w.onReady(() => {
-  // 어느 페이지에서든 자신의 학번을 불러올 수 있는 코드
-  let userId;
-
-  wixData
-    .query("PrivateMembersData")
-    .eq("_id", wixUsers.currentUser["id"])
-    .find()
-    .then((results) => {
-      console.log(results);
-      console.log(results.items[0]["studentId"]);
-      userId = results.items[0]["studentId"];
-      // $w("#input1").value = userId;
-    });
-
-  async function setVisitor() {
-    const memInfo = await currentMember
-      .getMember()
-      .then((member) => {
-        const email = member.loginEmail;
-        return email;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    const visitorEmail = memInfo;
-    console.log("visitorEmail is:", visitorEmail);
-    // console.log("Student ID: ", visitorEmail.slice(0, 8));
-  }
-
-  // setVisitor();
+$w.onReady(async () => {
 
   // 1번 Dropdown 누른 경우
-  $w("#dropdownSubject1").onChange(async () => {
+  $w("#dropdownSubject1").onChange(() => {
     const selectedSubject = $w("#dropdownSubject1").value;
 
     wixData
@@ -84,11 +53,52 @@ $w.onReady(() => {
     $w("#textboxFriends").value += selectedOption + " ";
   });
 
+  let visitorEmail;
+  let studentNumber = 0;
+  let groupNumber;
+
+  async function setVisitor() {
+    const memInfo = await currentMember
+      .getMember()
+      .then((member) => {
+        const email = member.loginEmail;
+        return email;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    visitorEmail = memInfo;
+    console.log("visitorEmail is:", visitorEmail);
+
+    await wixData
+    .query("Student")
+    .eq("email", visitorEmail)
+    .find()
+    .then((results) => {
+      studentNumber = results.items[0]['studentId'];
+      console.log(results.items)
+      groupNumber = wixData.get('Group-8');
+      console.log(groupNumber);
+    });
+  } 
+
+  await setVisitor();
+
+  console.log(studentNumber);
+
+  await wixData
+  .query("Student")
+  .include("Group-8")
+  .find()
+  .then((results) => {
+    console.log(results.items['Group-8']);
+  });
+
   // Submit 버튼 누른 경우
   $w("#buttonSubmit").onClick(async () => {
     try {
       wixData.insert("Preference", {
-        studentId: userId,
+        studentId: studentNumber,
         first: $w("#dropdownInstructor1").options[$w("#dropdownInstructor1").selectedIndex].value,
         second: $w("#dropdownInstructor2").options[$w("#dropdownInstructor2").selectedIndex].value,
         third: $w("#dropdownInstructor3").options[$w("#dropdownInstructor3").selectedIndex].value,
