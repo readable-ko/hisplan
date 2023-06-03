@@ -30,15 +30,17 @@ $w("#repeater1").onItemReady( async ($w, itemData, index) => {
 
 
 $w.onReady(async () => {
-  
+  $w("#text3").text = '';  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text4").text = '';  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text6").text = '';  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#imageX3").src = '#loaderImage';
   await setVisitor();
   const groupMembers = await getGroupMembers(visitorEmail);
   let members = groupMembers.items[0].members;
   let n_members = members.length;
   
   console.log('groupMem' , groupMembers);
-  $w('#loaderImage').expand();
-  $w('#repeater1').collapse();
+  
   $w('#repeater1').data = members;
   $w('#loaderImage').collapse();
   $w('#repeater1').expand();
