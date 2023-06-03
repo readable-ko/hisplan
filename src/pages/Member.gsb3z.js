@@ -33,7 +33,7 @@ $w.onReady(async () => {
   $w("#text3").text = '';  // text1 요소에 가져온 값을 설정하여 출력
   $w("#text4").text = '';  // text1 요소에 가져온 값을 설정하여 출력
   $w("#text6").text = '';  // text1 요소에 가져온 값을 설정하여 출력
-  $w("#imageX3").src = '#loaderImage';
+  $w("#imageX3").src = '';
   await setVisitor();
   const groupMembers = await getGroupMembers(visitorEmail);
   let members = groupMembers.items[0].members;
@@ -42,8 +42,6 @@ $w.onReady(async () => {
   console.log('groupMem' , groupMembers);
   
   $w('#repeater1').data = members;
-  $w('#loaderImage').collapse();
-  $w('#repeater1').expand();
 });
 
 async function setVisitor() {
