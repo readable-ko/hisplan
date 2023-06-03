@@ -17,7 +17,7 @@ export async function matchGroups() {
   
   console.log('Finished group matching');
   
-  // console.log('Result ', studyGroups);
+  console.log('Result ', studyGroups);
   
   return studyGroups;
 }
