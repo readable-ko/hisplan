@@ -52,6 +52,7 @@ export async function getStudentsInfo() {
         .hasSome("studentId", preference.friends === null ? [] : preference.friends.split(" "))
         .find();
       console.log("3");
+      
       // Check if friends were found
       if (friends.items.length > 0) {
         preference.desiredFriends = friends.items.map((friend) => ({ studentId: friend.studentId, name: friend.name, email: friend.email }));
