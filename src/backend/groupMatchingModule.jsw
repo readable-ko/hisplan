@@ -52,7 +52,7 @@ export async function getStudentsInfo() {
       
       // console.log('friends print ', friends);
       
-      const friends = await wixData
+      let friends = await wixData
         .query("Student")
         .hasSome("studentId", friends_list)
         .find();
