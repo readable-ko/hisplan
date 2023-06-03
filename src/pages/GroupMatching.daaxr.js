@@ -95,16 +95,16 @@ $w.onReady(() => {
         friends: $w("#textboxFriends").value,
       });
     } catch {
-      console.error("Failed to update data:"); 
+      console.error("Failed to update data:");
     }
   });
 
-  // Call backend Funciton 버튼 누른 경우
+  // Match Group 버튼 누른 경우
   $w("#buttonMatchGroup").onClick(async () => {
     try {
       const studentsInfo = await getStudentsInfo();
       console.log(studentsInfo);
-      // const studyGroups = await matchGroups();
+      // // const studyGroups = await matchGroups();
       // console.log(studyGroups);
     } catch (error) {
       console.error(error.message);

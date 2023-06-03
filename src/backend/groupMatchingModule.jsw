@@ -18,60 +18,61 @@ export async function matchGroups() {
 
 // Get the students' information from the database
 export async function getStudentsInfo() {
-  // let students = [];
+  let students = [];
 
-  await wixData
-    .query("Preference")
-    .find()
-    // Handle the returned collection of items
-    .then((preferences) => {
-      // Check if preferences were found
-      if (preferences.items.length > 0) {
-        // Iterate over the preferences
-        return preferences.items.map(async (preference) => {
-          await wixData
-            .query("Student")
-            .eq("studentId", preference.studentId)
-            .find()
-            .then((student) => {
-              preference.name = student.items[0].name;
-              preference.email = student.items[0].email;
-            });
+  // Get the preferences from the database
+  let preferences = await wixData.query("Preference").find();
 
-          await wixData
-            .query("Course")
-            .hasSome("courseId", preference.first, preference.second, preference.third)
-            .find()
-            .then((courses) => {
-              delete preference.first;
-              delete preference.second;
-              delete preference.third;
-              preference.prioritizedCourses = courses.items.map((course) => ({ subject: course.subject, instructor: course.instructor }));
-            });
+  // Check if preferences were found
+  if (preferences.items.length > 0) {
+    preferences.items.forEach(async (preference) => {
+      // Get the student's information
+      const student = await wixData.query("Student").eq("studentId", preference.studentId).find();
 
-          await wixData
-            .query("Student")
-            .hasSome("studentId", preference.friends.split(" "))
-            .find()
-            .then((friends) => {
-              delete preference.friends;
-              preference.desiredFriends = friends.items.map((friend) => ({ studentId: friend.studentId, name: friend.name, email: friend.email }));
-            });
+      // Get the prioritized courses of the student
+      const courses = await wixData
+        .query("Course")
+        .hasSome(
+          "courseId",
+          [preference.first, preference.second, preference.third].map((courseId) => (courseId === undefined ? "" : courseId))
+        )
+        .find();
 
-          // students.push(preference);
-          return preference;
-        });
+      // Check if courses were found
+      if (courses.items.length > 0) {
+        preference.prioritizedCourses = courses.items.map((course) => ({ subject: course.subject, instructor: course.instructor }));
       } else {
-        // Handle case where no preferences were found
-        console.log("No preferences found");
+        console.log("No courses found: student ID = ", preference.studentId);
       }
-    })
-    // Handle errors
-    .catch((error) => {
-      console.error(error.message);
-    });
 
-  // return students;
+      // Get the friends of the student
+      const friends = await wixData
+        .query("Student")
+        .hasSome("studentId", preference.friends === undefined ? [] : preference.friends.split(" "))
+        .find();
+      console.log("3");
+      // Check if friends were found
+      if (friends.items.length > 0) {
+        preference.desiredFriends = friends.items.map((friend) => ({ studentId: friend.studentId, name: friend.name, email: friend.email }));
+      } else {
+        console.log("No friends found: student ID = ", preference.studentId);
+      }
+
+      // Add the student's information to the students array
+      students.push({
+        studentId: preference.studentId,
+        name: student.items[0].name,
+        email: student.items[0].email,
+        prioritizedCourses: preference.prioritizedCourses,
+        desiredFriends: preference.desiredFriends,
+      });
+    });
+  } else {
+    // Handle case where no preferences were found
+    console.log("No preferences found in the database: table = Preference");
+  }
+
+  return students;
 }
 
 // Assign the students to the study groups
@@ -85,16 +86,16 @@ function assignStudentsToStudyGroups(students, studyGroups) {
       const groupsForCourse = studyGroups.filter((group) => group.courseInfo === course);
       if (groupsForCourse.length > 0) {
         // Check if there are groups with vacancies
-        const groupsWithVacancy = groupsForCourse.filter((group) => hasVacancy(group));
-        if (groupsWithVacancy.length > 0) {
+        const groupsWithVacancies = groupsForCourse.filter((group) => hasVacancy(group));
+        if (groupsWithVacancies.length > 0) {
           // Check if there are groups among friends' groups
-          const groupsWithFriends = getGroupsWithFriends(student, groupsWithVacancy);
+          const groupsWithFriends = getGroupsWithFriends(student, groupsWithVacancies);
           if (groupsWithFriends.length > 0) {
             // Select the first group among friends' groups and assign the student to it
             groupsWithFriends[0].members.push({ studentId: student.studentId, name: student.name });
           } else {
             // Select the first group with vacancies and assign the student to it
-            groupsWithVacancy[0].members.push({ studentId: student.studentId, name: student.name });
+            groupsWithVacancies[0].members.push({ studentId: student.studentId, name: student.name });
           }
 
           isAssigned = true;
