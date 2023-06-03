@@ -80,9 +80,7 @@ export async function getStudentsInfo() {
     // Handle case where no preferences were found
     console.log("No preferences found in the database: table = Preference");
   }
-  
-  console.log('Student info ', students);
-  
+    
   return students;
 }
 
