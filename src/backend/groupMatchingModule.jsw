@@ -46,13 +46,9 @@ export async function getStudentsInfo() {
       }
 
       // Get the friends of the student
-      
-      // console.log('friends ', preference.friends);
-      
+            
       const friends_list = preference.friends == undefined ? [] : preference.friends.split(" ")
-      
-      console.log('friends print ', friends_list);
-      
+           
       let friends;
       
       try {
@@ -60,8 +56,6 @@ export async function getStudentsInfo() {
           .query("Student")
           .hasSome("studentId", friends_list)
           .find();
-
-        console.log("3");
       } catch (error) {
         console.error("Error:", error);
       }
@@ -86,7 +80,9 @@ export async function getStudentsInfo() {
     // Handle case where no preferences were found
     console.log("No preferences found in the database: table = Preference");
   }
-
+  
+  console.log('Student info ', students);
+  
   return students;
 }
 
