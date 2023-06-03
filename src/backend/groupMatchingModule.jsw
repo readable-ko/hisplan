@@ -49,7 +49,7 @@ export async function getStudentsInfo() {
       
       // console.log('friends ', preference.friends);
       
-      const friends_list = preference.friends === undefined ? [] : preference.friends.split(" ")
+      const friends_list = preference.friends == undefined ? [] : preference.friends.split(" ")
       
       console.log('friends print ', friends);
       
