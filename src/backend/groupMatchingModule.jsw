@@ -22,7 +22,7 @@ export async function matchGroups() {
   
   console.log('2nd group match finished');
   
-  console.log('Result ', studyGroups);
+  // console.log('Result ', studyGroups);
   
   return studyGroups;
 }
