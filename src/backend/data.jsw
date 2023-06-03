@@ -109,7 +109,7 @@ export async function getProfileImage(email) {
       console.log("Image found");
       return img;
     } else {
-      throw new Error("Profile photo not found.");
+      return "https://static.wixstatic.com/media/e3f63a_7a7c2cfd35f14059abc14462fcc8e560~mv2.png";
     }
   } catch (error) {
     console.error("Error retrieving profile photo:", error);
