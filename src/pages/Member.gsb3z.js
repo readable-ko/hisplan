@@ -37,8 +37,11 @@ $w.onReady(async () => {
   let n_members = members.length;
   
   console.log('groupMem' , groupMembers);
-   
+  $w('#loaderImage').expand();
+  $w('#repeater1').collapse();
   $w('#repeater1').data = members;
+  $w('#loaderImage').collapse();
+  $w('#repeater1').expand();
 });
 
 async function setVisitor() {
