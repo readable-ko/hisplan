@@ -112,8 +112,6 @@ $w.onReady(async () => {
   // Match Group 버튼 누른 경우
   $w("#buttonMatchGroup").onClick(async () => {
     try {
-      const studentsInfo = await getStudentsInfo();
-      console.log(studentsInfo);
       const studyGroups = await matchGroups();
       console.log(studyGroups);
     } catch (error) {
