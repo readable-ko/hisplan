@@ -46,6 +46,7 @@ export async function getStudentsInfo() {
       }
 
       // Get the friends of the student
+      console.log('friends ', preference.friends);
       const friends = await wixData
         .query("Student")
         .hasSome("studentId", preference.friends === undefined ? [] : preference.friends.split(" "))
