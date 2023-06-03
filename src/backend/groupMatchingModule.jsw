@@ -46,10 +46,10 @@ export async function getStudentsInfo() {
       }
 
       // Get the friends of the student
-      // const friends = await wixData
-     //   .query("Student")
-      //  .hasSome("studentId", preference.friends === undefined ? [] : preference.friends.split(" "))
-     //   .find();
+      const friends = await wixData
+        .query("Student")
+        .hasSome("studentId", preference.friends === undefined ? [] : preference.friends.split(" "))
+        .find();
       console.log("3");
       // Check if friends were found
       if (friends.items.length > 0) {
