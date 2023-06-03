@@ -51,12 +51,12 @@ export async function getStudentsInfo() {
       
       const friends_list = preference.friends == undefined ? [] : preference.friends.split(" ")
       
-      console.log('friends print ', friends_list);
+      // console.log('friends print ', friends_list);
       
-      //let friends = await wixData
-       // .query("Student")
-       // .hasSome("studentId", friends_list)
-       // .find();
+      let friends = await wixData
+        .query("Student")
+        .hasSome("studentId", friends_list)
+        .find();
       
       console.log("3");
       
