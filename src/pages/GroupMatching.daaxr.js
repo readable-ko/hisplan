@@ -111,10 +111,11 @@ $w.onReady(async () => {
 
   // Match Group 버튼 누른 경우
   $w("#buttonMatchGroup").onClick(async () => {
+    console.log('Group Match Test');
     let studyGroups;
     studyGroups = await matchGroups();
     console.log('matchGroup() returned');
-    console.log(studyGroups);
+//     console.log(studyGroups);
 //     try {
 //       console.log('Group Match Test');
 //       studyGroups = await matchGroups();
