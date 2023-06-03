@@ -33,7 +33,7 @@ $w.onReady(async () => {
   $w("#text3").text = '';  // text1 요소에 가져온 값을 설정하여 출력
   $w("#text4").text = '';  // text1 요소에 가져온 값을 설정하여 출력
   $w("#text6").text = '';  // text1 요소에 가져온 값을 설정하여 출력
-  $w("#imageX3").src = '';
+  $w("#imageX3").src = 'https://static.wixstatic.com/media/4231fa_8c355daa175646c483e721feeedc1e75~mv2.gif';
   await setVisitor();
   const groupMembers = await getGroupMembers(visitorEmail);
   let members = groupMembers.items[0].members;
