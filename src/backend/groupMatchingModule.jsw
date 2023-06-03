@@ -15,7 +15,7 @@ export async function matchGroups() {
   // Assign the remaining students to the study groups
   assignRemainingStudents(students, studyGroups);
   
-  console.log('Finished group matching');
+  console.log('Finished group matching and return 1');
   
   console.log('Result ', studyGroups);
   
