@@ -7,15 +7,8 @@ let visitorId;
 let visitorEmail;
 let visitorGroupId;
 
-$w.onReady(async () => {
-  
-  await setVisitor();
 
-  const groupMembers = await getGroupMembers(visitorEmail);
-  
-  console.log('groupMem' , groupMembers);
-   
-  let members = groupMembers.items[0].members;
+let members = groupMembers.items[0].members;
   let n_members = members.length;
   
   $w("#repeater1").onItemReady( async ($w, itemData, index) => {
@@ -34,7 +27,16 @@ $w.onReady(async () => {
     
 //     console.log(name, studentId, email);  // 콘솔에 출력하거나 원하는 작업 수행
   });
+
+
+
+$w.onReady(async () => {
   
+  await setVisitor();
+  const groupMembers = await getGroupMembers(visitorEmail);
+  
+  console.log('groupMem' , groupMembers);
+   
   $w('#repeater1').data = members;
 });
 
