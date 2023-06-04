@@ -20,24 +20,21 @@ $w.onReady(async function () {
   let members = groupMembers.items[0].members;
   let n_members = members.length;
 
-  // console.log(members); // 주석 처리 또는 비동기적으로 호출
-
-  // Members attendance
-
-  $w("#checkboxGroup1").items = []; // 기존 체크박스 항목 초기화
+  const checkboxOptions = [];
 
   for (let i = 0; i < n_members; i++) {
     const member = members[i];
-    
-    console.log(member);
-    
-    const checkboxItem = {
-      label: member.name, // 체크박스 항목에 표시할 멤버 이름
-      value: member._id, // 체크박스 항목의 값으로 멤버 ID를 사용 (선택한 멤버를 구분하기 위해)
+
+    const checkboxOption = {
+      label: member.name, // 체크박스 옵션에 표시할 멤버 이름
+      value: member.id, // 체크박스 옵션의 값으로 멤버 ID를 사용 (선택한 멤버를 구분하기 위해)
     };
 
-    $w("#checkboxGroup1").items.push(checkboxItem); // 체크박스 항목 추가
+    checkboxOptions.push(checkboxOption); // 체크박스 옵션 추가
   }
+
+  $w("#checkboxGroup1").options = checkboxOptions;
+
 
    console.log('checkbox done');
   
