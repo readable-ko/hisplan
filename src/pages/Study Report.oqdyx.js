@@ -28,7 +28,9 @@ $w.onReady(async function () {
 
   for (let i = 0; i < n_members; i++) {
     const member = members[i];
-
+    
+    console.log(member);
+    
     const checkboxItem = {
       label: member.name, // 체크박스 항목에 표시할 멤버 이름
       value: member._id, // 체크박스 항목의 값으로 멤버 ID를 사용 (선택한 멤버를 구분하기 위해)
