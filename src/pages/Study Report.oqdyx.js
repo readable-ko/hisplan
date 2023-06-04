@@ -16,14 +16,14 @@ $w.onReady(async function () {
   // To select an element by ID use: $w('#elementID')
   await setVisitor();
   
-  const groupMembers = await getGroupMembers(visitorEmail);   
+  const groupMembers = await getGroupMembers(visitorEmail);
   let members = groupMembers.items[0].members;
   let n_members = members.length;
-  
-  console.log(members);c
-  
+
+  // console.log(members); // 주석 처리 또는 비동기적으로 호출
+
   // Members attendance
-  
+
   $w("#checkboxGroup1").items = []; // 기존 체크박스 항목 초기화
 
   for (let i = 0; i < n_members; i++) {
@@ -34,7 +34,9 @@ $w.onReady(async function () {
       value: member._id, // 체크박스 항목의 값으로 멤버 ID를 사용 (선택한 멤버를 구분하기 위해)
     };
 
-  $w("#checkboxGroup1").items.push(checkboxItem); // 체크박스 항목 추가
+    $w("#checkboxGroup1").items.push(checkboxItem); // 체크박스 항목 추가
+  }
+
   
   
 
