@@ -39,7 +39,7 @@ $w.onReady(async function () {
     $w("#checkboxGroup1").items.push(checkboxItem); // 체크박스 항목 추가
   }
 
-  
+   console.log('checkbox done');
   
 
   $w("#button3").onClick(() => {
