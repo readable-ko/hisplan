@@ -20,7 +20,23 @@ $w.onReady(async function () {
   let members = groupMembers.items[0].members;
   let n_members = members.length;
   
-  console.log(members);
+  console.log(members);c
+  
+  // Members attendance
+  
+  $w("#checkboxGroup1").items = []; // 기존 체크박스 항목 초기화
+
+  for (let i = 0; i < n_members; i++) {
+    const member = members[i];
+
+    const checkboxItem = {
+      label: member.name, // 체크박스 항목에 표시할 멤버 이름
+      value: member._id, // 체크박스 항목의 값으로 멤버 ID를 사용 (선택한 멤버를 구분하기 위해)
+    };
+
+  $w("#checkboxGroup1").items.push(checkboxItem); // 체크박스 항목 추가
+  
+  
 
   $w("#button3").onClick(() => {
     let randomStr = generateRandomString(6);
