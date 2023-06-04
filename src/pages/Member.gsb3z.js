@@ -1,30 +1,64 @@
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // “Hello, World!” Example: https://learn-code.wix.com/en/article/1-hello-world
 import wixData from "wix-data";
+import { currentMember } from "wix-members";
+import { getGroup, getGroupMembers, getProfileImage } from "backend/data";
+let visitorId;
+let visitorEmail;
+let visitorGroupId;
 
-$w.onReady(function () {
-  // Write your JavaScript here
 
-  // To select an element by ID use: $w('#elementID')
-  fetchValueFromDatabase();
 
-  // Click 'Preview' to run your code
+
+$w("#repeater1").onItemReady( async ($w, itemData, index) => {
+  // Repeater의 각 아이템에서 text1의 정보를 가져와서 출력
+
+  const name = itemData.name;  // text1 필드의 값을 가져옴
+  const studentId = itemData.studentId;  // text1 필드의 값을 가져옴
+  const email = itemData.email;
+
+  let img = await getProfileImage(email);
+
+  $w("#text3").text = name;  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text4").text = studentId;  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text6").text = email;  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#imageX3").src = img;
+
+//     console.log(name, studentId, email);  // 콘솔에 출력하거나 원하는 작업 수행
 });
 
-async function fetchValueFromDatabase() {
-  try {
-    const collection = "Student";
-    const filter = wixData.filter().eq("Name");
 
-    console.log(filter);
 
-    // const results = await wixData.query(collection)
-    //     .limit(1)
-    //     .find(filter);
+$w.onReady(async () => {
+  $w("#text3").text = '';  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text4").text = '';  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#text6").text = '';  // text1 요소에 가져온 값을 설정하여 출력
+  $w("#imageX3").src = 'https://static.wixstatic.com/media/4231fa_8c355daa175646c483e721feeedc1e75~mv2.gif';
+  await setVisitor();
+  const groupMembers = await getGroupMembers(visitorEmail);
+  let members = groupMembers.items[0].members;
+  let n_members = members.length;
+  
+  console.log('groupMem' , groupMembers);
+  
+  $w('#repeater1').data = members;
+});
 
-    // const value = results.items[0].field;
-    // $w('#text6').value = value;
-  } catch (err) {
-    console.error("Error : " + err);
-  }
+async function setVisitor() {
+  const memInfo = await currentMember
+    .getMember()
+    .then((member) => {
+      const id = member._id;
+      const email = member.loginEmail ;
+      return member;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  visitorId = memInfo._id;
+  visitorEmail = memInfo.loginEmail;
+  //const groupNum = await getStudentGroup(visitorEmail);
+  //console.log("gloryko: ", groupNum.items[0]['Group-8'][0].groupId);
+  //local.getItem('studentId');
+  console.log("visitorId is:", memInfo.loginEmail);
 }
