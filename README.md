@@ -79,4 +79,4 @@ Group repository for Software Engineering class spring semester 2023 in HGU
   + [Requirements Engineering](https://docs.google.com/document/d/1SApuNXAv7Lc2b020zdvsEt3wgkMWTgOhAk2OQaRNfV4/edit?usp=sharing)
 * [Front-End Layouts (Figma)](https://www.figma.com/file/ZMfNi93eVmKwnPYyeumoDL/Frontend-Layouts?node-id=0%3A1&t=UjplLbY1ffW3dfLo-1)
 * [Project Workspace (Notion)](https://flax-damselfly-ed3.notion.site/SE-521723ee28f541b298a9431b84808530)
-* [Project Link (Web)](https://seohwee.editorx.io/block)
+* [Project Link (Web)](https://seohwee.editorx.io/home)
